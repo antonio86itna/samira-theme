@@ -150,10 +150,15 @@ add_action('samira_options_imported', 'my_import_callback', 10, 1);
 Il tema include ottimizzazioni automatiche:
 - **Lazy loading** immagini
 - **Minificazione** CSS/JS automatica
-- **Pulizia wp_head** da tag non necessari  
+- **Pulizia wp_head** da tag non necessari
 - **Disabilitazione emoji** WordPress (opzionale)
 - **Supporto caching** browser e plugin
 - **Ottimizzazione database** query
+
+#### Considerazioni sulle Performance
+
+- **Compatibilità con la cache**: testato con plugin come W3 Total Cache e WP Rocket; svuota la cache dopo gli aggiornamenti del tema.
+- **Minimizzazione degli asset**: vengono caricati solo script e stili essenziali per ridurre le richieste HTTP.
 
 ### ♿ Accessibilità  
 
