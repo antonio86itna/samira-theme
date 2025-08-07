@@ -1,0 +1,513 @@
+/**
+ * Admin Styles for Samira Theme
+ * 
+ * @package Samira_Theme
+ * @version 1.0.0
+ */
+
+.samira-admin {
+    background: #f1f1f1;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.samira-admin h1 {
+    color: #1f2937;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #D4A574;
+}
+
+.samira-form {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.nav-tab-wrapper {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 0;
+    padding: 0 2rem;
+}
+
+.nav-tab {
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    color: #6b7280;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-tab:hover {
+    color: #D4A574;
+    background: #f9fafb;
+}
+
+.nav-tab-active {
+    color: #D4A574 !important;
+    border-bottom-color: #D4A574 !important;
+    background: #fff !important;
+}
+
+.samira-content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.samira-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.samira-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.samira-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.samira-card h2,
+.samira-card h3 {
+    margin: 0 0 1rem 0;
+    color: #1f2937;
+    font-size: 1.25rem;
+}
+
+.samira-card h3 {
+    font-size: 1.1rem;
+    color: #4b5563;
+}
+
+.samira-tab-content h2 {
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #D4A574;
+}
+
+.samira-tab-content h3 {
+    color: #4b5563;
+    margin: 2rem 0 1rem 0;
+    font-size: 1.1rem;
+}
+
+.form-table th {
+    width: 200px;
+    padding: 1rem 0;
+    font-weight: 600;
+    color: #374151;
+}
+
+.form-table td {
+    padding: 1rem 0;
+}
+
+.form-table input[type="text"],
+.form-table input[type="email"],
+.form-table input[type="url"],
+.form-table input[type="password"],
+.form-table textarea,
+.form-table select {
+    border: 2px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-table input:focus,
+.form-table textarea:focus,
+.form-table select:focus {
+    border-color: #D4A574;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+}
+
+.form-table .description {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.samira-image-upload {
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    background: #f9fafb;
+    transition: all 0.3s ease;
+}
+
+.samira-image-upload:hover {
+    border-color: #D4A574;
+    background: #fff;
+}
+
+.samira-image-preview {
+    margin-bottom: 1rem;
+}
+
+.samira-image-preview img {
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.samira-color-picker {
+    width: 60px !important;
+    height: 40px !important;
+    border: none !important;
+    border-radius: 6px !important;
+    cursor: pointer;
+}
+
+.samira-color-preview {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.samira-preview-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #D4A574;
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(212, 165, 116, 0.3);
+}
+
+.samira-preview-link {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.samira-submit {
+    background: #f8fafc;
+    border-top: 1px solid #e5e7eb;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.samira-submit .button-primary {
+    background: #D4A574;
+    border-color: #D4A574;
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(212, 165, 116, 0.3);
+}
+
+.samira-submit .button-primary:hover {
+    background: #C19660;
+    border-color: #C19660;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(212, 165, 116, 0.4);
+}
+
+.samira-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+}
+
+.stat-item strong {
+    display: block;
+    font-size: 1.5rem;
+    color: #D4A574;
+    margin-bottom: 0.25rem;
+}
+
+.stat-item span {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.notice {
+    border-left: 4px solid #D4A574 !important;
+    border-radius: 4px;
+    margin: 1rem 0 !important;
+}
+
+.notice-success {
+    background: #ecfdf5 !important;
+    border-left-color: #10b981 !important;
+}
+
+.notice-info {
+    background: #eff6ff !important;
+    border-left-color: #3b82f6 !important;
+}
+
+.notice-warning {
+    background: #fffbeb !important;
+    border-left-color: #f59e0b !important;
+}
+
+.notice-error {
+    background: #fef2f2 !important;
+    border-left-color: #ef4444 !important;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .samira-content {
+        grid-template-columns: 1fr;
+    }
+
+    .samira-sidebar {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .samira-admin {
+        margin: -10px;
+        padding: 10px;
+    }
+
+    .samira-content {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .nav-tab-wrapper {
+        padding: 0 1rem;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .nav-tab {
+        display: inline-block;
+        padding: 0.75rem 1rem;
+    }
+
+    .form-table th {
+        width: auto;
+        display: block;
+        padding: 0.5rem 0 0.25rem 0;
+    }
+
+    .form-table td {
+        padding: 0.25rem 0 1rem 0;
+    }
+
+    .samira-submit {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* Loading states */
+.samira-loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.samira-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #D4A574;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success/Error states */
+.samira-success {
+    color: #10b981;
+}
+
+.samira-error {
+    color: #ef4444;
+}
+
+/* Button improvements */
+.button {
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    transform: translateY(-1px);
+}
+
+.button-primary {
+    background: #D4A574 !important;
+    border-color: #D4A574 !important;
+    box-shadow: 0 2px 4px rgba(212, 165, 116, 0.3) !important;
+}
+
+.button-primary:hover {
+    background: #C19660 !important;
+    border-color: #C19660 !important;
+}
+
+.button-secondary {
+    color: #D4A574 !important;
+    border-color: #D4A574 !important;
+}
+
+.button-secondary:hover {
+    color: white !important;
+    background: #D4A574 !important;
+}
+
+/* WordPress editor customization */
+.wp-editor-wrap {
+    border: 2px solid #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.wp-editor-wrap:focus-within {
+    border-color: #D4A574;
+    box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+}
+
+/* Custom select styling */
+select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+    appearance: none;
+}
+
+/* Checkbox and radio styling */
+input[type="checkbox"],
+input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.5rem;
+    accent-color: #D4A574;
+}
+
+/* Table enhancements */
+.form-table tr {
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.form-table tr:last-child {
+    border-bottom: none;
+}
+
+.form-table tr:nth-child(even) {
+    background: #fafafa;
+}
+
+/* Animation classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Tooltip styling */
+[data-tooltip] {
+    position: relative;
+    cursor: help;
+}
+
+[data-tooltip]:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+[data-tooltip]:hover:before {
+    opacity: 1;
+}
+
+/* Progress bar */
+.samira-progress {
+    width: 100%;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.samira-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #D4A574, #E6B887);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Cards hover effect */
+.samira-card {
+    transition: all 0.3s ease;
+}
+
+.samira-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
