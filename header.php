@@ -24,8 +24,7 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'samira-theme' ); ?></a>
 
         <header id="masthead" class="header">
-                <div class="container">
-                        <div class="header__content">
+                <div class="header__content container">
 				<div class="site-branding">
 					<?php
 					if ( has_custom_logo() ) {
@@ -74,10 +73,9 @@
 					<a href="#contact" class="contact-btn">
 						<?php esc_html_e( 'Contact', 'samira-theme' ); ?>
 					</a>
-				</div>
-			</div>
-		</div>
-	</header><!-- #masthead -->
+                                </div>
+                        </div>
+        </header><!-- #masthead -->
 
 	<?php
 	// Fallback menu for when no menu is assigned

@@ -46,7 +46,7 @@
                 });
 
                 // Close mobile menu if open
-                closeMobileMenu();
+                samiraTheme.closeMobileMenu();
 
                 // Update active nav link
                 updateActiveNavLink(targetId);
@@ -110,9 +110,8 @@
 
     // Mobile menu functionality
     function initMobileMenu() {
-        const $toggle = $('.mobile-menu-toggle');
-        const $menu = $('.mobile-menu');
-        const $body = $('body');
+        const $toggle = $('.menu-toggle');
+        const $menu = $('.nav-menu');
 
         $toggle.on('click', function() {
             const isOpen = $toggle.attr('aria-expanded') === 'true';
@@ -125,7 +124,7 @@
         });
 
         // Close menu on link click
-        $('.mobile-nav-link').on('click', function() {
+        $('.nav-menu a').on('click', function() {
             closeMobileMenu();
         });
 
@@ -138,8 +137,8 @@
 
         // Close menu on outside click
         $(document).on('click', function(e) {
-            if ($menu.hasClass('active') && 
-                !$(e.target).closest('.mobile-menu, .mobile-menu-toggle').length) {
+            if ($menu.hasClass('active') &&
+                !$(e.target).closest('.nav-menu, .menu-toggle').length) {
                 closeMobileMenu();
             }
         });
@@ -147,13 +146,11 @@
         function openMobileMenu() {
             $toggle.attr('aria-expanded', 'true');
             $menu.addClass('active');
-            $body.addClass('mobile-menu-open');
         }
 
         function closeMobileMenu() {
             $toggle.attr('aria-expanded', 'false');
             $menu.removeClass('active');
-            $body.removeClass('mobile-menu-open');
         }
     }
 
@@ -292,7 +289,7 @@
 
     // Update active navigation link
     function updateActiveNavLink(targetId) {
-        $('.nav-link, .mobile-nav-link').removeClass('active');
+        $('.nav-menu a').removeClass('active');
         $(`[href="${targetId}"]`).addClass('active');
     }
 
@@ -367,10 +364,10 @@
         });
 
         // Focus management for mobile menu
-        $('.mobile-menu-toggle').on('click', function() {
+        $('.menu-toggle').on('click', function() {
             setTimeout(function() {
-                if ($('.mobile-menu').hasClass('active')) {
-                    $('.mobile-menu .mobile-nav-link:first').focus();
+                if ($('.nav-menu').hasClass('active')) {
+                    $('.nav-menu a:first').focus();
                 }
             }, 300);
         });
@@ -383,9 +380,8 @@
     window.samiraTheme = {
         initTheme: initTheme,
         closeMobileMenu: function() {
-            $('.mobile-menu-toggle').attr('aria-expanded', 'false');
-            $('.mobile-menu').removeClass('active');
-            $('body').removeClass('mobile-menu-open');
+            $('.menu-toggle').attr('aria-expanded', 'false');
+            $('.nav-menu').removeClass('active');
         }
     };
 
