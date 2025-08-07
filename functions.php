@@ -20,6 +20,9 @@ define('SAMIRA_THEME_URI', get_template_directory_uri());
  * Setup del tema
  */
 function samira_theme_setup() {
+    // Carica il textdomain del tema
+    load_theme_textdomain('samira-theme', get_template_directory() . '/languages');
+
     // Supporto per le caratteristiche del tema
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
