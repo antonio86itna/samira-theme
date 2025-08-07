@@ -97,12 +97,13 @@
             if (isDark) {
                 // Moon icon for dark mode
                 icon.innerHTML = `
-                    <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+                    <path d="M17.293 13.293A8 8 0 0 1 6.707 2.707a8.001 8.001 0 1 0 10.586 10.586Z" fill="currentColor"/>
                 `;
             } else {
                 // Sun icon for light mode
                 icon.innerHTML = `
-                    <path d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+                    <path d="M10 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" fill="currentColor"/>
+                    <path d="M10 1v2M10 17v2M18.66 7.34l-1.42 1.42M4.76 12.24l-1.42 1.42M1 10h2M17 10h2M18.66 12.66l-1.42-1.42M4.76 7.76L3.34 6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 `;
             }
         }

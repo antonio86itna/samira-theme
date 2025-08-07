@@ -66,15 +66,9 @@
 
                                 <div class="header__actions">
 					<!-- Dark Mode Toggle -->
-					<button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="<?php esc_attr_e( 'Toggle dark mode', 'samira-theme' ); ?>">
-						<svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M10 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" fill="currentColor"/>
-							<path d="M10 1v2M10 17v2M18.66 7.34l-1.42 1.42M4.76 12.24l-1.42 1.42M1 10h2M17 10h2M18.66 12.66l-1.42-1.42M4.76 7.76L3.34 6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-						</svg>
-						<svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
-							<path d="M17.293 13.293A8 8 0 0 1 6.707 2.707a8.001 8.001 0 1 0 10.586 10.586Z" fill="currentColor"/>
-						</svg>
-					</button>
+                                       <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="<?php esc_attr_e( 'Toggle dark mode', 'samira-theme' ); ?>">
+                                               <svg class="dark-mode-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+                                       </button>
 
 					<!-- Contact Button -->
 					<a href="#contact" class="contact-btn">
