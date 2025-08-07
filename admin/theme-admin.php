@@ -815,7 +815,10 @@ function samira_newsletter_page() {
                     html += '</ul>';
                     $('#available-lists').html(html);
                 } else {
-                    $('#available-lists').html('No lists found or connection error');
+                    var errorMessage = response.data && response.data.message
+                        ? response.data.message
+                        : '<?php echo esc_js( __( 'No lists found or connection error', 'samira-theme' ) ); ?>';
+                    $('#available-lists').html(errorMessage);
                 }
             });
         });
