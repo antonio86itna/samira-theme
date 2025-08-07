@@ -100,13 +100,13 @@ function samira_theme_scripts() {
     wp_localize_script('samira-main', 'samira_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce'    => wp_create_nonce('samira_nonce'),
-        'strings'  => array(
-            'loading'       => esc_html__('Caricamento...', 'samira-theme'),
-            'success'       => esc_html__('Operazione completata!', 'samira-theme'),
-            'error'         => esc_html__('Errore durante la operazione', 'samira-theme'),
-            'required'      => esc_html__('Campo obbligatorio', 'samira-theme'),
-            'email_invalid' => esc_html__('Email non valida', 'samira-theme'),
-        )
+            'strings'  => array(
+                'loading'       => esc_html__( 'Loading...', 'samira-theme' ),
+                'success'       => esc_html__( 'Operation completed!', 'samira-theme' ),
+                'error'         => esc_html__( 'Error during the operation', 'samira-theme' ),
+                'required'      => esc_html__( 'Required field', 'samira-theme' ),
+                'email_invalid' => esc_html__( 'Invalid email', 'samira-theme' ),
+            )
     ));
     
     // Comments reply script
@@ -150,9 +150,9 @@ add_action('admin_enqueue_scripts', 'samira_admin_scripts');
  */
 function samira_widgets_init() {
     register_sidebar(array(
-        'name'          => __('Footer Widget Area', 'samira-theme'),
+        'name'          => __( 'Footer Widget Area', 'samira-theme' ),
         'id'            => 'footer-widget-area',
-        'description'   => __('Widget area nel footer', 'samira-theme'),
+        'description'   => __( 'Widget area in the footer', 'samira-theme' ),
         'before_widget' => '<div class="footer-widget %2$s" id="%1$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h3 class="widget-title">',
@@ -160,9 +160,9 @@ function samira_widgets_init() {
     ));
     
     register_sidebar(array(
-        'name'          => __('Sidebar Blog', 'samira-theme'),
+        'name'          => __( 'Blog Sidebar', 'samira-theme' ),
         'id'            => 'blog-sidebar',
-        'description'   => __('Sidebar per gli articoli del blog', 'samira-theme'),
+        'description'   => __( 'Sidebar for blog posts', 'samira-theme' ),
         'before_widget' => '<div class="widget %2$s" id="%1$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h3 class="widget-title">',
@@ -175,20 +175,20 @@ add_action('widgets_init', 'samira_widgets_init');
  * Custom Post Types
  */
 function samira_custom_post_types() {
-    // Portfolio/Arte
+    // Portfolio/Art
     register_post_type('portfolio', array(
         'labels' => array(
-            'name'               => __('Portfolio', 'samira-theme'),
-            'singular_name'      => __('Opera', 'samira-theme'),
-            'menu_name'          => __('Portfolio', 'samira-theme'),
-            'add_new'            => __('Aggiungi Opera', 'samira-theme'),
-            'add_new_item'       => __('Aggiungi Nuova Opera', 'samira-theme'),
-            'edit_item'          => __('Modifica Opera', 'samira-theme'),
-            'new_item'           => __('Nuova Opera', 'samira-theme'),
-            'view_item'          => __('Visualizza Opera', 'samira-theme'),
-            'search_items'       => __('Cerca Opere', 'samira-theme'),
-            'not_found'          => __('Nessuna opera trovata', 'samira-theme'),
-            'not_found_in_trash' => __('Nessuna opera nel cestino', 'samira-theme'),
+            'name'               => __( 'Portfolio', 'samira-theme' ),
+            'singular_name'      => __( 'Work', 'samira-theme' ),
+            'menu_name'          => __( 'Portfolio', 'samira-theme' ),
+            'add_new'            => __( 'Add Work', 'samira-theme' ),
+            'add_new_item'       => __( 'Add New Work', 'samira-theme' ),
+            'edit_item'          => __( 'Edit Work', 'samira-theme' ),
+            'new_item'           => __( 'New Work', 'samira-theme' ),
+            'view_item'          => __( 'View Work', 'samira-theme' ),
+            'search_items'       => __( 'Search Works', 'samira-theme' ),
+            'not_found'          => __( 'No works found', 'samira-theme' ),
+            'not_found_in_trash' => __( 'No works in trash', 'samira-theme' ),
         ),
         'public' => true,
         'show_ui' => true,
@@ -201,15 +201,15 @@ function samira_custom_post_types() {
         'show_in_rest' => true,
     ));
     
-    // Libri
+    // Books
     register_post_type('books', array(
         'labels' => array(
-            'name'               => __('Libri', 'samira-theme'),
-            'singular_name'      => __('Libro', 'samira-theme'),
-            'menu_name'          => __('I Miei Libri', 'samira-theme'),
-            'add_new'            => __('Aggiungi Libro', 'samira-theme'),
-            'add_new_item'       => __('Aggiungi Nuovo Libro', 'samira-theme'),
-            'edit_item'          => __('Modifica Libro', 'samira-theme'),
+            'name'               => __( 'Books', 'samira-theme' ),
+            'singular_name'      => __( 'Book', 'samira-theme' ),
+            'menu_name'          => __( 'My Books', 'samira-theme' ),
+            'add_new'            => __( 'Add Book', 'samira-theme' ),
+            'add_new_item'       => __( 'Add New Book', 'samira-theme' ),
+            'edit_item'          => __( 'Edit Book', 'samira-theme' ),
         ),
         'public' => true,
         'show_ui' => true,
@@ -218,7 +218,7 @@ function samira_custom_post_types() {
         'menu_icon' => 'dashicons-book',
         'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'),
         'has_archive' => true,
-        'rewrite' => array('slug' => 'libri'),
+        'rewrite' => array('slug' => 'books'),
         'show_in_rest' => true,
     ));
 }
@@ -352,7 +352,7 @@ add_filter('upload_mimes', 'samira_mime_types');
 function samira_check_svg($file) {
     if ($file['type'] === 'image/svg+xml') {
         if (!current_user_can('manage_options')) {
-            $file['error'] = __('Non hai i permessi per caricare file SVG.', 'samira-theme');
+            $file['error'] = __( 'You do not have permission to upload SVG files.', 'samira-theme' );
         }
     }
     return $file;
@@ -391,31 +391,16 @@ if (!function_exists('samira_debug')) {
  * Inizializzazione opzioni tema alla attivazione
  */
 function samira_theme_activation() {
-    // Imposta opzioni di default
-    $defaults = array(
-        'samira_hero_title' => 'Samira Mahmoodi',
-        'samira_hero_subtitle' => 'Scrittura, Arte, Rinascita',
-        'samira_about_title' => 'Chi sono',
-        'samira_about_content' => 'Samira Mahmoodi began writing shortly after graduating from college. In 2016, she received a Bachelor of Science in Nursing. Unable to suppress her despair at that time, journaling her feelings led her to re-discover her love for art and literature.',
-        'samira_book_title' => 'To Water Her Garden: A journey of self-discovery',
-        'samira_book_year' => '2019',
-        'samira_book_description' => 'In questo spazio ho svelato le ragioni dietro la mia tristezza, e dove ho anche scoperto il mio più grande potere: me stessa.',
-        'samira_newsletter_title' => 'Resta in contatto',
-        'samira_newsletter_description' => 'Iscriviti per ricevere i miei pensieri, aggiornamenti su uscite attuali e future.',
-        'samira_accent_color' => '#D4A574',
-        'samira_enable_dark_mode' => false,
-        'samira_logo_text' => 'SM',
-        'samira_footer_text' => 'Scrittrice e artista. L\'arte è il mio rifugio sicuro per l\'espressione di sé.',
-        'samira_copyright_name' => 'Samira Mahmoodi',
-    );
-    
+    // Set default options
+    $defaults = samira_get_default_options();
+
     foreach ($defaults as $option => $value) {
         if (get_option($option) === false) {
             add_option($option, $value);
         }
     }
-    
-    // Flush rewrite rules per custom post types
+
+    // Flush rewrite rules for custom post types
     flush_rewrite_rules();
     
     // Log attivazione tema
