@@ -32,9 +32,9 @@ jQuery(document).ready(function($) {
 
             // Create WordPress media uploader
             const mediaUploader = wp.media({
-                title: 'Seleziona Immagine',
+                title: samira_admin.strings.select_image,
                 button: {
-                    text: 'Usa questa immagine'
+                    text: samira_admin.strings.use_image
                 },
                 multiple: false,
                 library: {
@@ -50,7 +50,7 @@ jQuery(document).ready(function($) {
                 $preview.html('<img src="' + attachment.url + '" alt="Selected Image" style="max-width: 200px; height: auto;" />');
 
                 // Show success message
-                showNotification('Immagine caricata con successo!', 'success');
+                showNotification(samira_admin.strings.image_uploaded, 'success');
             });
 
             // Open uploader
@@ -69,7 +69,7 @@ jQuery(document).ready(function($) {
             $input.val('');
             $preview.empty();
 
-            showNotification('Immagine rimossa', 'info');
+            showNotification(samira_admin.strings.image_removed, 'info');
         });
     }
 
@@ -118,7 +118,7 @@ jQuery(document).ready(function($) {
                 const value = $field.val().trim();
 
                 if (!value) {
-                    $field.addClass('error').after('<span class="error-message" style="color: #ef4444; font-size: 0.9rem; display: block; margin-top: 0.25rem;">Campo obbligatorio</span>');
+                    $field.addClass('error').after('<span class="error-message" style="color: #ef4444; font-size: 0.9rem; display: block; margin-top: 0.25rem;">' + samira_admin.strings.required_field + '</span>');
                     hasErrors = true;
                 }
             });
@@ -129,7 +129,7 @@ jQuery(document).ready(function($) {
                 const value = $field.val().trim();
 
                 if (value && !isValidEmail(value)) {
-                    $field.addClass('error').after('<span class="error-message" style="color: #ef4444; font-size: 0.9rem; display: block; margin-top: 0.25rem;">Email non valida</span>');
+                    $field.addClass('error').after('<span class="error-message" style="color: #ef4444; font-size: 0.9rem; display: block; margin-top: 0.25rem;">' + samira_admin.strings.email_invalid + '</span>');
                     hasErrors = true;
                 }
             });
@@ -140,14 +140,14 @@ jQuery(document).ready(function($) {
                 const value = $field.val().trim();
 
                 if (value && !isValidURL(value)) {
-                    $field.addClass('error').after('<span class="error-message" style="color: #ef4444; font-size: 0.9rem; display: block; margin-top: 0.25rem;">URL non valida</span>');
+                    $field.addClass('error').after('<span class="error-message" style="color: #ef4444; font-size: 0.9rem; display: block; margin-top: 0.25rem;">' + samira_admin.strings.url_invalid + '</span>');
                     hasErrors = true;
                 }
             });
 
             if (hasErrors) {
                 e.preventDefault();
-                showNotification('Correggi gli errori nel form prima di salvare', 'error');
+                showNotification(samira_admin.strings.form_error, 'error');
 
                 // Scroll to first error
                 const $firstError = $form.find('.error').first();
@@ -162,9 +162,9 @@ jQuery(document).ready(function($) {
                 $submitBtn.prop('disabled', true).addClass('samira-loading');
 
                 if ($submitBtn.is('input')) {
-                    $submitBtn.data('original-value', $submitBtn.val()).val('Salvataggio...');
+                    $submitBtn.data('original-value', $submitBtn.val()).val(samira_admin.strings.saving);
                 } else {
-                    $submitBtn.data('original-text', $submitBtn.text()).text('Salvataggio...');
+                    $submitBtn.data('original-text', $submitBtn.text()).text(samira_admin.strings.saving);
                 }
             }
         });
@@ -209,7 +209,7 @@ jQuery(document).ready(function($) {
 
             // Show unsaved changes indicator
             if (!$('.unsaved-changes').length) {
-                $('.samira-submit').prepend('<span class="unsaved-changes" style="color: #f59e0b; font-style: italic; margin-right: 1rem;">Modifiche non salvate</span>');
+                $('.samira-submit').prepend('<span class="unsaved-changes" style="color: #f59e0b; font-style: italic; margin-right: 1rem;">' + samira_admin.strings.unsaved_changes + '</span>');
             }
 
             // Auto-save after 30 seconds of inactivity
@@ -228,7 +228,7 @@ jQuery(document).ready(function($) {
                 data: formData,
                 success: function(response) {
                     $('.unsaved-changes').remove();
-                    showNotification('Bozza salvata automaticamente', 'info', 3000);
+                    showNotification(samira_admin.strings.draft_saved, 'info', 3000);
                 },
                 error: function() {
                     console.warn('Auto-save failed');
@@ -369,26 +369,26 @@ jQuery(document).ready(function($) {
      * Handle form reset
      */
     window.samiraResetOptions = function() {
-        if (confirm('Sei sicuro di voler ripristinare tutte le impostazioni ai valori predefiniti? Questa azione non può essere annullata.')) {
+        if (confirm(samira_admin.strings.confirm_reset)) {
             const $button = $('#reset-options');
-            $button.prop('disabled', true).text('Ripristino in corso...');
+            $button.prop('disabled', true).text(samira_admin.strings.resetting);
 
             $.post(ajaxurl, {
                 action: 'samira_reset_options',
                 nonce: $('#samira_nonce').val()
             }, function(response) {
                 if (response.success) {
-                    showNotification('Impostazioni ripristinate con successo!', 'success');
+                    showNotification(samira_admin.strings.reset_success, 'success');
                     setTimeout(function() {
                         location.reload();
                     }, 2000);
                 } else {
-                    showNotification('Errore durante il ripristino delle impostazioni.', 'error');
-                    $button.prop('disabled', false).text('Reset alle Impostazioni di Default');
+                    showNotification(samira_admin.strings.reset_error, 'error');
+                    $button.prop('disabled', false).text(samira_admin.strings.reset_button);
                 }
             }).fail(function() {
-                showNotification('Errore di connessione durante il ripristino.', 'error');
-                $button.prop('disabled', false).text('Reset alle Impostazioni di Default');
+                showNotification(samira_admin.strings.connection_error, 'error');
+                $button.prop('disabled', false).text(samira_admin.strings.reset_button);
             });
         }
     };
@@ -399,7 +399,7 @@ jQuery(document).ready(function($) {
     // Show welcome message for new installations
     if (window.location.href.indexOf('samira-theme-settings') !== -1 && !localStorage.getItem('samira-admin-visited')) {
         setTimeout(function() {
-            showNotification('Benvenuto nel pannello di controllo di Samira Theme! Inizia personalizzando le tue impostazioni.', 'info', 8000);
+            showNotification(samira_admin.strings.welcome_message, 'info', 8000);
             localStorage.setItem('samira-admin-visited', 'true');
         }, 1000);
     }

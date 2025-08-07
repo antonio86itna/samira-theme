@@ -176,7 +176,7 @@
             const email = $form.find('input[name="email"]').val().trim();
 
             if (!name) {
-                showMessage('error', samira_ajax.strings.required + ': Nome');
+                showMessage('error', samira_ajax.strings.required + ': ' + samira_ajax.strings.name);
                 return;
             }
 
@@ -246,7 +246,7 @@
 
     // Scroll to top functionality
     function initScrollToTop() {
-        const $scrollTop = $('<button class="scroll-to-top" aria-label="Torna in alto"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4l8 8h-6v8h-4v-8H4l8-8z"/></svg></button>');
+        const $scrollTop = $('<button class="scroll-to-top" aria-label="' + samira_ajax.strings.scroll_to_top + '"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4l8 8h-6v8h-4v-8H4l8-8z"/></svg></button>');
 
         $('body').append($scrollTop);
 

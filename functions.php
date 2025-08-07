@@ -93,20 +93,28 @@ function samira_theme_scripts() {
         'samira_dark_mode',
         array(
             'default_on' => get_option('samira_enable_dark_mode'),
+            'strings'    => array(
+                'light_mode_activated' => esc_html__( 'Light mode activated', 'samira-theme' ),
+                'dark_mode_activated'  => esc_html__( 'Dark mode activated', 'samira-theme' ),
+                'activate_light_mode'  => esc_html__( 'Activate light mode', 'samira-theme' ),
+                'activate_dark_mode'   => esc_html__( 'Activate dark mode', 'samira-theme' ),
+            ),
         )
     );
 
-    // Localizzazione per AJAX - SINTASSI CORRETTA
+    // Localizzazione per AJAX
     wp_localize_script('samira-main', 'samira_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce'    => wp_create_nonce('samira_nonce'),
-            'strings'  => array(
-                'loading'       => esc_html__( 'Loading...', 'samira-theme' ),
-                'success'       => esc_html__( 'Operation completed!', 'samira-theme' ),
-                'error'         => esc_html__( 'Error during the operation', 'samira-theme' ),
-                'required'      => esc_html__( 'Required field', 'samira-theme' ),
-                'email_invalid' => esc_html__( 'Invalid email', 'samira-theme' ),
-            )
+        'strings'  => array(
+            'loading'         => esc_html__( 'Loading...', 'samira-theme' ),
+            'success'         => esc_html__( 'Operation completed!', 'samira-theme' ),
+            'error'           => esc_html__( 'Error during the operation', 'samira-theme' ),
+            'required'        => esc_html__( 'Required field', 'samira-theme' ),
+            'email_invalid'   => esc_html__( 'Invalid email', 'samira-theme' ),
+            'name'            => esc_html__( 'Name', 'samira-theme' ),
+            'scroll_to_top'   => esc_html__( 'Scroll to top', 'samira-theme' ),
+        )
     ));
     
     // Comments reply script
@@ -137,9 +145,29 @@ function samira_admin_scripts($hook) {
         wp_enqueue_media(); // Per media uploader
         
         // Localizzazione admin
-        wp_localize_script('samira-admin-script', 'samira_admin_ajax', array(
+        wp_localize_script('samira-admin-script', 'samira_admin', array(
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce'    => wp_create_nonce('samira_admin_nonce'),
+            'strings'  => array(
+                'select_image'     => esc_html__( 'Select Image', 'samira-theme' ),
+                'use_image'        => esc_html__( 'Use this image', 'samira-theme' ),
+                'image_uploaded'   => esc_html__( 'Image uploaded successfully!', 'samira-theme' ),
+                'image_removed'    => esc_html__( 'Image removed', 'samira-theme' ),
+                'required_field'   => esc_html__( 'Required field', 'samira-theme' ),
+                'email_invalid'    => esc_html__( 'Invalid email', 'samira-theme' ),
+                'url_invalid'      => esc_html__( 'Invalid URL', 'samira-theme' ),
+                'form_error'       => esc_html__( 'Please correct the errors in the form before saving', 'samira-theme' ),
+                'saving'           => esc_html__( 'Saving...', 'samira-theme' ),
+                'unsaved_changes'  => esc_html__( 'Unsaved changes', 'samira-theme' ),
+                'draft_saved'      => esc_html__( 'Draft saved automatically', 'samira-theme' ),
+                'confirm_reset'    => esc_html__( 'Are you sure you want to reset all settings to default? This action cannot be undone.', 'samira-theme' ),
+                'resetting'        => esc_html__( 'Resetting...', 'samira-theme' ),
+                'reset_success'    => esc_html__( 'Settings reset successfully!', 'samira-theme' ),
+                'reset_error'      => esc_html__( 'Error while resetting settings.', 'samira-theme' ),
+                'connection_error' => esc_html__( 'Connection error during reset.', 'samira-theme' ),
+                'reset_button'     => esc_html__( 'Reset to Default Settings', 'samira-theme' ),
+                'welcome_message'  => esc_html__( 'Welcome to the Samira Theme control panel! Start customizing your settings.', 'samira-theme' ),
+            ),
         ));
     }
 }

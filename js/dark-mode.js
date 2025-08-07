@@ -48,7 +48,7 @@
             }
 
             // Announce change to screen readers
-            announceToScreenReader(isDark ? 'Modalità chiara attivata' : 'Modalità scura attivata');
+            announceToScreenReader(isDark ? samira_dark_mode.strings.light_mode_activated : samira_dark_mode.strings.dark_mode_activated);
         });
 
         // Listen for system preference changes
@@ -112,9 +112,9 @@
             toggle.setAttribute('aria-pressed', isDark);
 
             const currentLabel = toggle.getAttribute('aria-label');
-            const newLabel = isDark 
-                ? 'Attiva modalità chiara' 
-                : 'Attiva modalità scura';
+            const newLabel = isDark
+                ? samira_dark_mode.strings.activate_light_mode
+                : samira_dark_mode.strings.activate_dark_mode;
 
             toggle.setAttribute('aria-label', newLabel);
         }
