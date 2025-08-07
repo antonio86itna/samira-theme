@@ -84,9 +84,10 @@ function samira_theme_scripts() {
     );
     
     // Dark mode script
-    wp_enqueue_script('samira-dark-mode',
+    wp_enqueue_script(
+        'samira-dark-mode',
         SAMIRA_THEME_URI . '/js/dark-mode.js',
-        array('jquery'),
+        array(),
         SAMIRA_THEME_VERSION,
         true
     );
