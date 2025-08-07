@@ -832,6 +832,107 @@ function samira_newsletter_page() {
 }
 
 /**
+ * Statistics page
+ */
+function samira_stats_page() {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+
+    if (isset($_POST['samira_clear_logs']) && wp_verify_nonce($_POST['samira_clear_logs_nonce'], 'samira_clear_logs')) {
+        samira_clear_newsletter_logs();
+        echo '<div class="notice notice-success"><p>' . __('Newsletter logs cleared.', 'samira-theme') . '</p></div>';
+    }
+
+    $theme_stats      = samira_get_theme_stats();
+    $newsletter_stats = samira_get_newsletter_stats();
+    ?>
+
+    <div class="wrap samira-admin">
+        <h1><?php _e('Statistics', 'samira-theme'); ?></h1>
+
+        <div class="samira-content">
+            <div class="samira-main">
+                <div class="samira-card">
+                    <h2><?php _e('Site Overview', 'samira-theme'); ?></h2>
+                    <div class="samira-stats">
+                        <div class="stat-item">
+                            <strong><?php echo $theme_stats['posts']; ?></strong>
+                            <span><?php _e('Posts', 'samira-theme'); ?></span>
+                        </div>
+                        <div class="stat-item">
+                            <strong><?php echo $theme_stats['portfolio']; ?></strong>
+                            <span><?php _e('Portfolio Items', 'samira-theme'); ?></span>
+                        </div>
+                        <div class="stat-item">
+                            <strong><?php echo $theme_stats['books']; ?></strong>
+                            <span><?php _e('Books', 'samira-theme'); ?></span>
+                        </div>
+                        <div class="stat-item">
+                            <strong><?php echo $theme_stats['social_links']; ?></strong>
+                            <span><?php _e('Social Links', 'samira-theme'); ?></span>
+                        </div>
+                        <div class="stat-item">
+                            <strong><?php echo $theme_stats['customization_percentage']; ?>%</strong>
+                            <span><?php _e('Customization', 'samira-theme'); ?></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="samira-card">
+                    <h2><?php _e('Newsletter Activity', 'samira-theme'); ?></h2>
+                    <div class="samira-stats">
+                        <div class="stat-item">
+                            <strong><?php echo $newsletter_stats['total_attempts']; ?></strong>
+                            <span><?php _e('Total attempts', 'samira-theme'); ?></span>
+                        </div>
+                        <div class="stat-item">
+                            <strong><?php echo $newsletter_stats['successful_subscriptions']; ?></strong>
+                            <span><?php _e('Successful subscriptions', 'samira-theme'); ?></span>
+                        </div>
+                        <div class="stat-item">
+                            <strong><?php echo $newsletter_stats['success_rate']; ?>%</strong>
+                            <span><?php _e('Success rate', 'samira-theme'); ?></span>
+                        </div>
+                    </div>
+
+                    <?php if (!empty($newsletter_stats['recent_activity'])) : ?>
+                        <h3><?php _e('Recent Activity', 'samira-theme'); ?></h3>
+                        <table class="widefat fixed">
+                            <thead>
+                                <tr>
+                                    <th><?php _e('Email', 'samira-theme'); ?></th>
+                                    <th><?php _e('Status', 'samira-theme'); ?></th>
+                                    <th><?php _e('Date', 'samira-theme'); ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($newsletter_stats['recent_activity'] as $log) : ?>
+                                    <tr>
+                                        <td><?php echo esc_html($log['email']); ?></td>
+                                        <td><?php echo $log['success'] ? '<span style="color:green;">' . __('Success', 'samira-theme') . '</span>' : '<span style="color:red;">' . __('Failed', 'samira-theme') . '</span>'; ?></td>
+                                        <td><?php echo esc_html($log['date']); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php else : ?>
+                        <p><?php _e('No recent activity.', 'samira-theme'); ?></p>
+                    <?php endif; ?>
+
+                    <form method="post" style="margin-top:20px;">
+                        <?php wp_nonce_field('samira_clear_logs', 'samira_clear_logs_nonce'); ?>
+                        <input type="submit" name="samira_clear_logs" class="button" value="<?php esc_attr_e('Clear Logs', 'samira-theme'); ?>" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php
+}
+
+/**
  * AJAX handler for reset options
  */
 function samira_reset_options_ajax() {
