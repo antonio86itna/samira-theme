@@ -1,0 +1,922 @@
+# Copyright (C) 2025 Custom Theme Development
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Samira Mahmoodi Theme 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/samira-theme\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-08-07T17:54:20+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: samira-theme\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Samira Mahmoodi Theme"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "Tema WordPress moderno e minimal per scrittori e artisti. Include dark mode, newsletter integration, e pannello di controllo personalizzato."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Custom Theme Development"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://samira-theme.com"
+msgstr ""
+
+#: admin/theme-admin.php:19
+#: admin/theme-admin.php:20
+msgid "Samira Theme"
+msgstr ""
+
+#: admin/theme-admin.php:30
+#: admin/theme-admin.php:198
+msgid "General Settings"
+msgstr ""
+
+#: admin/theme-admin.php:31
+msgid "Settings"
+msgstr ""
+
+#: admin/theme-admin.php:39
+#: admin/theme-admin.php:40
+msgid "Newsletter"
+msgstr ""
+
+#: admin/theme-admin.php:48
+#: admin/theme-admin.php:49
+msgid "Statistics"
+msgstr ""
+
+#: admin/theme-admin.php:57
+#: admin/theme-admin.php:58
+msgid "Import/Export"
+msgstr ""
+
+#: admin/theme-admin.php:73
+msgid "Settings saved successfully!"
+msgstr ""
+
+#: admin/theme-admin.php:80
+msgid "Samira Theme Settings"
+msgstr ""
+
+#: admin/theme-admin.php:84
+msgid "General"
+msgstr ""
+
+#: admin/theme-admin.php:87
+#: admin/theme-admin.php:290
+msgid "Hero Section"
+msgstr ""
+
+#: admin/theme-admin.php:90
+#: inc/theme-options.php:42
+#: index.php:49
+msgid "About Me"
+msgstr ""
+
+#: admin/theme-admin.php:93
+#: header.php:88
+msgid "Writing"
+msgstr ""
+
+#: admin/theme-admin.php:96
+#: admin/theme-admin.php:463
+msgid "Social Media"
+msgstr ""
+
+#: admin/theme-admin.php:99
+msgid "Style"
+msgstr ""
+
+#: admin/theme-admin.php:133
+msgid "Live Preview"
+msgstr ""
+
+#: admin/theme-admin.php:134
+msgid "View changes in real time:"
+msgstr ""
+
+#: admin/theme-admin.php:136
+msgid "Open Site"
+msgstr ""
+
+#: admin/theme-admin.php:140
+msgid "WordPress Customizer"
+msgstr ""
+
+#: admin/theme-admin.php:145
+msgid "Quick Actions"
+msgstr ""
+
+#: admin/theme-admin.php:148
+msgid "Configure Newsletter"
+msgstr ""
+
+#: admin/theme-admin.php:153
+msgid "View Statistics"
+msgstr ""
+
+#: admin/theme-admin.php:158
+#: functions.php:168
+msgid "Reset to Default Settings"
+msgstr ""
+
+#: admin/theme-admin.php:166
+msgid "Save Settings"
+msgstr ""
+
+#: admin/theme-admin.php:203
+msgid "Logo Text"
+msgstr ""
+
+#: admin/theme-admin.php:209
+msgid "Logo text if you don't upload a custom logo"
+msgstr ""
+
+#: admin/theme-admin.php:215
+msgid "Copyright Name"
+msgstr ""
+
+#: admin/theme-admin.php:226
+msgid "Footer Text"
+msgstr ""
+
+#: admin/theme-admin.php:235
+msgid "Contact Email"
+msgstr ""
+
+#: admin/theme-admin.php:245
+msgid "Performance Optimizations"
+msgstr ""
+
+#: admin/theme-admin.php:248
+msgid "Disable Emojis"
+msgstr ""
+
+#: admin/theme-admin.php:253
+msgid "Disable WordPress emojis to improve performance"
+msgstr ""
+
+#: admin/theme-admin.php:259
+msgid "Clean Head"
+msgstr ""
+
+#: admin/theme-admin.php:264
+msgid "Remove unnecessary tags from head for cleaner code"
+msgstr ""
+
+#: admin/theme-admin.php:270
+msgid "Lazy Loading"
+msgstr ""
+
+#: admin/theme-admin.php:275
+msgid "Enable lazy loading for images"
+msgstr ""
+
+#: admin/theme-admin.php:295
+msgid "Main Title"
+msgstr ""
+
+#: admin/theme-admin.php:306
+msgid "Subtitle"
+msgstr ""
+
+#: admin/theme-admin.php:317
+msgid "Hero Image"
+msgstr ""
+
+#: admin/theme-admin.php:331
+msgid "Upload Image"
+msgstr ""
+
+#: admin/theme-admin.php:332
+msgid "Remove Image"
+msgstr ""
+
+#: admin/theme-admin.php:334
+msgid "Optimal size: 600x600px"
+msgstr ""
+
+#: admin/theme-admin.php:349
+msgid "About Me Section"
+msgstr ""
+
+#: admin/theme-admin.php:354
+#: admin/theme-admin.php:690
+msgid "Section Title"
+msgstr ""
+
+#: admin/theme-admin.php:365
+msgid "About Content"
+msgstr ""
+
+#: admin/theme-admin.php:376
+msgid "Write your biography and personal story"
+msgstr ""
+
+#: admin/theme-admin.php:390
+msgid "Writing Section"
+msgstr ""
+
+#: admin/theme-admin.php:393
+msgid "You can also add books using the \"Books\" post type for more advanced management."
+msgstr ""
+
+#: admin/theme-admin.php:394
+msgid "Manage Books"
+msgstr ""
+
+#: admin/theme-admin.php:400
+msgid "Main Book Title"
+msgstr ""
+
+#: admin/theme-admin.php:411
+msgid "Publication Year"
+msgstr ""
+
+#: admin/theme-admin.php:422
+msgid "Book Description"
+msgstr ""
+
+#: admin/theme-admin.php:431
+msgid "Book Cover"
+msgstr ""
+
+#: admin/theme-admin.php:445
+msgid "Upload Cover"
+msgstr ""
+
+#: admin/theme-admin.php:446
+msgid "Remove Cover"
+msgstr ""
+
+#: admin/theme-admin.php:448
+msgid "Optimal size: 400x600px (2:3 ratio)"
+msgstr ""
+
+#: admin/theme-admin.php:536
+msgid "Style Customization"
+msgstr ""
+
+#: admin/theme-admin.php:541
+msgid "Accent Color"
+msgstr ""
+
+#: admin/theme-admin.php:547
+msgid "Main color used for links, buttons and accents"
+msgstr ""
+
+#: admin/theme-admin.php:552
+msgid "Default Dark Mode"
+msgstr ""
+
+#: admin/theme-admin.php:557
+msgid "Enable dark mode as default theme"
+msgstr ""
+
+#: admin/theme-admin.php:559
+msgid "Visitors can still change the mode with the toggle"
+msgstr ""
+
+#: admin/theme-admin.php:564
+msgid "Accent Color Preview"
+msgstr ""
+
+#: admin/theme-admin.php:567
+msgid "Example Button"
+msgstr ""
+
+#: admin/theme-admin.php:569
+msgid "Example link"
+msgstr ""
+
+#: admin/theme-admin.php:624
+msgid "Newsletter settings saved!"
+msgstr ""
+
+#: admin/theme-admin.php:629
+msgid "Newsletter Configuration"
+msgstr ""
+
+#: admin/theme-admin.php:637
+msgid "Newsletter Provider"
+msgstr ""
+
+#: admin/theme-admin.php:641
+msgid "Provider"
+msgstr ""
+
+#: admin/theme-admin.php:644
+msgid "Select Provider"
+msgstr ""
+
+#: admin/theme-admin.php:652
+msgid "API Key"
+msgstr ""
+
+#: admin/theme-admin.php:665
+msgid "List/Audience ID"
+msgstr ""
+
+#: admin/theme-admin.php:670
+msgid "Load Lists"
+msgstr ""
+
+#: admin/theme-admin.php:678
+msgid "Test Connection"
+msgstr ""
+
+#: admin/theme-admin.php:685
+msgid "Newsletter Text"
+msgstr ""
+
+#: admin/theme-admin.php:701
+msgid "Description"
+msgstr ""
+
+#: admin/theme-admin.php:714
+msgid "Newsletter Statistics"
+msgstr ""
+
+#: admin/theme-admin.php:721
+msgid "Total attempts"
+msgstr ""
+
+#: admin/theme-admin.php:725
+msgid "Successful subscriptions"
+msgstr ""
+
+#: admin/theme-admin.php:729
+msgid "Success rate"
+msgstr ""
+
+#: admin/theme-admin.php:735
+msgid "Setup Guide"
+msgstr ""
+
+#: admin/theme-admin.php:758
+msgid "Save Newsletter Configuration"
+msgstr ""
+
+#: footer.php:26
+msgid "Get in Touch"
+msgstr ""
+
+#: footer.php:53
+msgid "Follow Me"
+msgstr ""
+
+#: footer.php:97
+msgid "Enter your email"
+msgstr ""
+
+#: footer.php:104
+#: index.php:212
+msgid "Your name"
+msgstr ""
+
+#: footer.php:108
+#: footer.php:220
+msgid "Subscribe"
+msgstr ""
+
+#: footer.php:114
+msgid "Newsletter configuration pending. Please check admin settings."
+msgstr ""
+
+#: footer.php:129
+msgid "All rights reserved."
+msgstr ""
+
+#: footer.php:147
+msgid "Privacy Policy"
+msgstr ""
+
+#: footer.php:154
+msgid "Terms of Service"
+msgstr ""
+
+#: footer.php:184
+#: index.php:221
+msgid "Subscribing..."
+msgstr ""
+
+#: footer.php:215
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: functions.php:45
+msgid "Menu Principale"
+msgstr ""
+
+#: functions.php:46
+msgid "Menu Footer"
+msgstr ""
+
+#: functions.php:97
+msgid "Light mode activated"
+msgstr ""
+
+#: functions.php:98
+msgid "Dark mode activated"
+msgstr ""
+
+#: functions.php:99
+msgid "Activate light mode"
+msgstr ""
+
+#: functions.php:100
+msgid "Activate dark mode"
+msgstr ""
+
+#: functions.php:110
+msgid "Loading..."
+msgstr ""
+
+#: functions.php:111
+msgid "Operation completed!"
+msgstr ""
+
+#: functions.php:112
+msgid "Error during the operation"
+msgstr ""
+
+#: functions.php:113
+#: functions.php:156
+msgid "Required field"
+msgstr ""
+
+#: functions.php:114
+#: functions.php:157
+msgid "Invalid email"
+msgstr ""
+
+#: functions.php:115
+msgid "Name"
+msgstr ""
+
+#: functions.php:116
+msgid "Scroll to top"
+msgstr ""
+
+#: functions.php:152
+msgid "Select Image"
+msgstr ""
+
+#: functions.php:153
+msgid "Use this image"
+msgstr ""
+
+#: functions.php:154
+msgid "Image uploaded successfully!"
+msgstr ""
+
+#: functions.php:155
+msgid "Image removed"
+msgstr ""
+
+#: functions.php:158
+msgid "Invalid URL"
+msgstr ""
+
+#: functions.php:159
+msgid "Please correct the errors in the form before saving"
+msgstr ""
+
+#: functions.php:160
+msgid "Saving..."
+msgstr ""
+
+#: functions.php:161
+msgid "Unsaved changes"
+msgstr ""
+
+#: functions.php:162
+msgid "Draft saved automatically"
+msgstr ""
+
+#: functions.php:163
+msgid "Are you sure you want to reset all settings to default? This action cannot be undone."
+msgstr ""
+
+#: functions.php:164
+msgid "Resetting..."
+msgstr ""
+
+#: functions.php:165
+msgid "Settings reset successfully!"
+msgstr ""
+
+#: functions.php:166
+msgid "Error while resetting settings."
+msgstr ""
+
+#: functions.php:167
+msgid "Connection error during reset."
+msgstr ""
+
+#: functions.php:169
+msgid "Welcome to the Samira Theme control panel! Start customizing your settings."
+msgstr ""
+
+#: functions.php:181
+msgid "Footer Widget Area"
+msgstr ""
+
+#: functions.php:183
+msgid "Widget area in the footer"
+msgstr ""
+
+#: functions.php:191
+msgid "Blog Sidebar"
+msgstr ""
+
+#: functions.php:193
+msgid "Sidebar for blog posts"
+msgstr ""
+
+#: functions.php:209
+#: functions.php:211
+msgid "Portfolio"
+msgstr ""
+
+#: functions.php:210
+msgid "Work"
+msgstr ""
+
+#: functions.php:212
+msgid "Add Work"
+msgstr ""
+
+#: functions.php:213
+msgid "Add New Work"
+msgstr ""
+
+#: functions.php:214
+msgid "Edit Work"
+msgstr ""
+
+#: functions.php:215
+msgid "New Work"
+msgstr ""
+
+#: functions.php:216
+msgid "View Work"
+msgstr ""
+
+#: functions.php:217
+msgid "Search Works"
+msgstr ""
+
+#: functions.php:218
+msgid "No works found"
+msgstr ""
+
+#: functions.php:219
+msgid "No works in trash"
+msgstr ""
+
+#: functions.php:235
+msgid "Books"
+msgstr ""
+
+#: functions.php:236
+#: index.php:91
+#: index.php:127
+msgid "Book"
+msgstr ""
+
+#: functions.php:237
+#: index.php:71
+msgid "My Books"
+msgstr ""
+
+#: functions.php:238
+msgid "Add Book"
+msgstr ""
+
+#: functions.php:239
+msgid "Add New Book"
+msgstr ""
+
+#: functions.php:240
+msgid "Edit Book"
+msgstr ""
+
+#: functions.php:383
+msgid "You do not have permission to upload SVG files."
+msgstr ""
+
+#: header.php:24
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:47
+msgid "Menu"
+msgstr ""
+
+#: header.php:69
+msgid "Toggle dark mode"
+msgstr ""
+
+#: header.php:75
+#: header.php:91
+msgid "Contact"
+msgstr ""
+
+#: header.php:86
+msgid "Home"
+msgstr ""
+
+#: header.php:87
+msgid "About"
+msgstr ""
+
+#: header.php:89
+msgid "Art"
+msgstr ""
+
+#: header.php:90
+msgid "Blog"
+msgstr ""
+
+#: inc/customizer.php:21
+msgid "Samira Quick Settings"
+msgstr ""
+
+#: inc/customizer.php:22
+msgid "Impostazioni rapide per il tema Samira"
+msgstr ""
+
+#: inc/customizer.php:28
+msgid "Colori"
+msgstr ""
+
+#: inc/customizer.php:41
+msgid "Colore Accento"
+msgstr ""
+
+#: inc/customizer.php:47
+msgid "Tipografia"
+msgstr ""
+
+#: inc/customizer.php:54
+msgid "Impostazioni Complete"
+msgstr ""
+
+#: inc/customizer.php:57
+#, php-format
+msgid "Per impostazioni avanzate, vai al %s"
+msgstr ""
+
+#: inc/customizer.php:58
+msgid "Pannello Samira Theme"
+msgstr ""
+
+#: inc/newsletter-integration.php:20
+msgid "Security error"
+msgstr ""
+
+#: inc/newsletter-integration.php:28
+#: inc/theme-options.php:166
+msgid "Invalid email address"
+msgstr ""
+
+#: inc/newsletter-integration.php:32
+msgid "Name is required"
+msgstr ""
+
+#: inc/newsletter-integration.php:41
+msgid "Newsletter not configured. Contact administrator."
+msgstr ""
+
+#: inc/newsletter-integration.php:50
+msgid "Newsletter provider not supported"
+msgstr ""
+
+#: inc/newsletter-integration.php:74
+msgid "Invalid Mailchimp API key"
+msgstr ""
+
+#: inc/newsletter-integration.php:104
+msgid "Mailchimp connection error"
+msgstr ""
+
+#: inc/newsletter-integration.php:115
+#: inc/newsletter-integration.php:175
+msgid "Subscription successful!"
+msgstr ""
+
+#: inc/newsletter-integration.php:120
+msgid "You are already subscribed to the newsletter!"
+msgstr ""
+
+#: inc/newsletter-integration.php:123
+#: inc/newsletter-integration.php:183
+msgid "Unknown error"
+msgstr ""
+
+#: inc/newsletter-integration.php:164
+msgid "Brevo connection error"
+msgstr ""
+
+#: inc/newsletter-integration.php:180
+msgid "Profile updated successfully!"
+msgstr ""
+
+#: inc/newsletter-integration.php:202
+msgid "Provider not supported"
+msgstr ""
+
+#: inc/newsletter-integration.php:212
+msgid "Invalid API key"
+msgstr ""
+
+#: inc/newsletter-integration.php:225
+#: inc/newsletter-integration.php:257
+msgid "Connection error"
+msgstr ""
+
+#: inc/newsletter-integration.php:234
+#: inc/newsletter-integration.php:266
+msgid "Connection successful"
+msgstr ""
+
+#: inc/newsletter-integration.php:235
+#: inc/newsletter-integration.php:267
+msgid "Unnamed list"
+msgstr ""
+
+#: inc/newsletter-integration.php:240
+#: inc/newsletter-integration.php:272
+msgid "Invalid credentials"
+msgstr ""
+
+#: inc/theme-options.php:37
+#: inc/theme-options.php:85
+#: index.php:19
+msgid "Samira Mahmoodi"
+msgstr ""
+
+#: inc/theme-options.php:38
+#: index.php:22
+msgid "Writing, Art, Rebirth"
+msgstr ""
+
+#: inc/theme-options.php:43
+msgid "Samira Mahmoodi began writing shortly after graduating from college. In 2016, she received a Bachelor of Science in Nursing. Unable to suppress her despair at that time, journaling her feelings led her to rediscover her love for art and literature. She buried this integral part of herself after convincing her 14-year-old self she would be unsuccessful doing what she loved. In 2019, she released her first book, \"To Water Her Garden: A journey of self-discovery\". It was in this space that she unveiled the reasons behind her sadness, and where she also discovered her greatest power: herself."
+msgstr ""
+
+#: inc/theme-options.php:49
+msgid "To Water Her Garden: A journey of self-discovery"
+msgstr ""
+
+#: inc/theme-options.php:51
+#: index.php:136
+msgid "Within this space I revealed the reasons behind my sadness and where I also discovered my greatest power: myself."
+msgstr ""
+
+#: inc/theme-options.php:58
+#: index.php:151
+msgid "My Art"
+msgstr ""
+
+#: inc/theme-options.php:59
+#: index.php:153
+msgid "Art has spoken to me and understood me better than anyone else. It has always been my safe haven for self-expression. Creating my art empowers me beyond explanation."
+msgstr ""
+
+#: inc/theme-options.php:65
+#: index.php:205
+msgid "Stay Connected"
+msgstr ""
+
+#: inc/theme-options.php:66
+#: index.php:207
+msgid "Subscribe to receive my thoughts, updates on current and future releases."
+msgstr ""
+
+#: inc/theme-options.php:84
+msgid "Writer and artist. Art is my safe haven for self-expression."
+msgstr ""
+
+#: inc/theme-options.php:153
+msgid "Invalid color format"
+msgstr ""
+
+#: inc/theme-options.php:160
+msgid "Invalid newsletter provider"
+msgstr ""
+
+#: inc/theme-options.php:179
+msgid "Invalid options format"
+msgstr ""
+
+#: inc/theme-options.php:267
+msgid "Instagram"
+msgstr ""
+
+#: inc/theme-options.php:268
+msgid "Goodreads"
+msgstr ""
+
+#: inc/theme-options.php:269
+msgid "LinkedIn"
+msgstr ""
+
+#: inc/theme-options.php:270
+msgid "Twitter"
+msgstr ""
+
+#: inc/theme-options.php:271
+msgid "Facebook"
+msgstr ""
+
+#: index.php:25
+msgid "Discover my story"
+msgstr ""
+
+#: index.php:26
+msgid "Subscribe to the newsletter"
+msgstr ""
+
+#: index.php:54
+msgid "Samira Mahmoodi began writing shortly after graduating from college. In 2016, she received a Bachelor of Science in Nursing. Unable to suppress her despair at that time, journaling her feelings led her to rediscover her love for art and literature."
+msgstr ""
+
+#: index.php:60
+msgid "My Journey"
+msgstr ""
+
+#: index.php:61
+msgid "In 2019 I published my first book, a story of personal discovery that revealed the reasons behind my sadness and where I also found my greatest power: myself."
+msgstr ""
+
+#: index.php:62
+msgid "Art has always spoken to me and understood me better than anyone else. It has always been my safe haven for self-expression."
+msgstr ""
+
+#: index.php:107
+#: index.php:139
+msgid "Read on Goodreads"
+msgstr ""
+
+#: index.php:110
+msgid "Buy"
+msgstr ""
+
+#: index.php:190
+msgid "Art Piece"
+msgstr ""
+
+#: index.php:191
+msgid "Description of the artwork and creative process. Add your works from the admin panel."
+msgstr ""
+
+#: index.php:215
+msgid "Your email"
+msgstr ""
+
+#: index.php:219
+msgid "Subscribe to the Newsletter"
+msgstr ""
+
+#: index.php:246
+msgid "by"
+msgstr ""
+
+#: index.php:268
+msgid "Categories:"
+msgstr ""
+
+#: index.php:281
+msgid "Tags:"
+msgstr ""
+
+#: index.php:297
+msgid "Next article"
+msgstr ""
+
+#: index.php:298
+msgid "Previous article"
+msgstr ""
+
+#: index.php:312
+msgid "Content not found"
+msgstr ""
+
+#: index.php:313
+msgid "Sorry, no content matched your request. Please try searching for something else."
+msgstr ""
