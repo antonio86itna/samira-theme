@@ -933,6 +933,76 @@ function samira_stats_page() {
 }
 
 /**
+ * Import/Export page
+ */
+function samira_import_export_page() {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+
+    if (isset($_POST['samira_export']) && check_admin_referer('samira_import_export', 'samira_ie_nonce')) {
+        $options = samira_export_options();
+        $json    = wp_json_encode($options);
+
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/json; charset=utf-8');
+        header('Content-Disposition: attachment; filename=samira-theme-settings-' . date('Y-m-d') . '.json');
+        echo $json;
+        exit;
+    }
+
+    if (isset($_POST['samira_import']) && check_admin_referer('samira_import_export', 'samira_ie_nonce')) {
+        if (!empty($_FILES['samira_import_file']['tmp_name'])) {
+            $file_contents = file_get_contents($_FILES['samira_import_file']['tmp_name']);
+            $options       = json_decode($file_contents, true);
+
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $result = samira_import_options($options);
+                if (!is_wp_error($result)) {
+                    wp_cache_flush();
+                    echo '<div class="notice notice-success"><p>' . __('Settings imported successfully.', 'samira-theme') . '</p></div>';
+                } else {
+                    echo '<div class="notice notice-error"><p>' . esc_html($result->get_error_message()) . '</p></div>';
+                }
+            } else {
+                echo '<div class="notice notice-error"><p>' . __('Invalid JSON file.', 'samira-theme') . '</p></div>';
+            }
+        } else {
+            echo '<div class="notice notice-error"><p>' . __('Please upload a JSON file.', 'samira-theme') . '</p></div>';
+        }
+    }
+
+    ?>
+    <div class="wrap samira-admin">
+        <h1><?php _e('Import/Export Settings', 'samira-theme'); ?></h1>
+
+        <div class="samira-content">
+            <div class="samira-main">
+                <div class="samira-card">
+                    <h2><?php _e('Export Settings', 'samira-theme'); ?></h2>
+                    <form method="post" action="">
+                        <?php wp_nonce_field('samira_import_export', 'samira_ie_nonce'); ?>
+                        <p><?php _e('Download your current theme settings as a JSON file.', 'samira-theme'); ?></p>
+                        <p><input type="submit" name="samira_export" class="button button-primary" value="<?php esc_attr_e('Download Settings', 'samira-theme'); ?>" /></p>
+                    </form>
+                </div>
+
+                <div class="samira-card">
+                    <h2><?php _e('Import Settings', 'samira-theme'); ?></h2>
+                    <form method="post" enctype="multipart/form-data">
+                        <?php wp_nonce_field('samira_import_export', 'samira_ie_nonce'); ?>
+                        <input type="file" name="samira_import_file" accept="application/json" />
+                        <p><input type="submit" name="samira_import" class="button button-primary" value="<?php esc_attr_e('Import Settings', 'samira-theme'); ?>" /></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php
+}
+
+/**
  * AJAX handler for reset options
  */
 function samira_reset_options_ajax() {

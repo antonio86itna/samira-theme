@@ -172,6 +172,20 @@ function samira_validate_option($value, $option_name) {
 }
 
 /**
+ * Export theme options
+ */
+function samira_export_options() {
+    $defaults = samira_get_default_options();
+    $options  = array();
+
+    foreach ($defaults as $option_name => $default_value) {
+        $options[$option_name] = get_option($option_name, $default_value);
+    }
+
+    return $options;
+}
+
+/**
  * Import theme options
  */
 function samira_import_options($options) {
