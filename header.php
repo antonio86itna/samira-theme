@@ -23,9 +23,9 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'samira-theme' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<div class="container">
-			<div class="header-content">
+        <header id="masthead" class="header">
+                <div class="container">
+                        <div class="header__content">
 				<div class="site-branding">
 					<?php
 					if ( has_custom_logo() ) {
@@ -64,7 +64,7 @@
 					?>
 				</nav><!-- #site-navigation -->
 
-				<div class="header-actions">
+                                <div class="header__actions">
 					<!-- Dark Mode Toggle -->
 					<button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="<?php esc_attr_e( 'Toggle dark mode', 'samira-theme' ); ?>">
 						<svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
