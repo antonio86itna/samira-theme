@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 function samira_newsletter_signup() {
     // Verifica nonce per sicurezza
     if (!wp_verify_nonce($_POST['nonce'], 'samira_nonce')) {
-        wp_send_json_error(array('message' => __('Errore di sicurezza', 'samira-theme')));
+        wp_send_json_error(array('message' => __( 'Security error', 'samira-theme' )));
     }
     
     // Sanitize e validate input
@@ -25,11 +25,11 @@ function samira_newsletter_signup() {
     $name = sanitize_text_field($_POST['name'] ?? '');
     
     if (empty($email) || !is_email($email)) {
-        wp_send_json_error(array('message' => __('Indirizzo email non valido', 'samira-theme')));
+        wp_send_json_error(array('message' => __( 'Invalid email address', 'samira-theme' )));
     }
     
     if (empty($name)) {
-        wp_send_json_error(array('message' => __('Il nome è obbligatorio', 'samira-theme')));
+        wp_send_json_error(array('message' => __( 'Name is required', 'samira-theme' )));
     }
     
     // Get provider settings
@@ -38,7 +38,7 @@ function samira_newsletter_signup() {
     $list_id = get_option('samira_newsletter_list_id', '');
     
     if (empty($api_key) || empty($list_id)) {
-        wp_send_json_error(array('message' => __('Newsletter non configurata. Contatta amministratore.', 'samira-theme')));
+        wp_send_json_error(array('message' => __( 'Newsletter not configured. Contact administrator.', 'samira-theme' )));
     }
     
     // Subscribe based on provider
@@ -47,7 +47,7 @@ function samira_newsletter_signup() {
     } elseif ($provider === 'brevo') {
         $result = samira_brevo_subscribe($email, $name, $api_key, $list_id);
     } else {
-        wp_send_json_error(array('message' => __('Provider newsletter non supportato', 'samira-theme')));
+        wp_send_json_error(array('message' => __( 'Newsletter provider not supported', 'samira-theme' )));
     }
     
     // Log subscription attempt
@@ -71,7 +71,7 @@ function samira_mailchimp_subscribe($email, $name, $api_key, $list_id) {
     $datacenter = substr($api_key, strpos($api_key, '-') + 1);
     
     if (empty($datacenter)) {
-        return array('success' => false, 'message' => __('API Key Mailchimp non valida', 'samira-theme'));
+        return array('success' => false, 'message' => __( 'Invalid Mailchimp API key', 'samira-theme' ));
     }
     
     $url = "https://{$datacenter}.api.mailchimp.com/3.0/lists/{$list_id}/members/";
@@ -101,7 +101,7 @@ function samira_mailchimp_subscribe($email, $name, $api_key, $list_id) {
     if (is_wp_error($response)) {
         return array(
             'success' => false, 
-            'message' => __('Errore di connessione a Mailchimp', 'samira-theme'),
+            'message' => __( 'Mailchimp connection error', 'samira-theme' ),
             'error_details' => $response->get_error_message()
         );
     }
@@ -112,15 +112,15 @@ function samira_mailchimp_subscribe($email, $name, $api_key, $list_id) {
     if ($response_code === 200) {
         return array(
             'success' => true, 
-            'message' => __('Iscrizione completata con successo!', 'samira-theme')
+            'message' => __( 'Subscription successful!', 'samira-theme' )
         );
     } elseif ($response_code === 400 && isset($body['title']) && $body['title'] === 'Member Exists') {
         return array(
             'success' => false, 
-            'message' => __('Sei già iscritto alla newsletter!', 'samira-theme')
+            'message' => __( 'You are already subscribed to the newsletter!', 'samira-theme' )
         );
     } else {
-        $error_message = isset($body['detail']) ? $body['detail'] : __('Errore sconosciuto', 'samira-theme');
+        $error_message = isset($body['detail']) ? $body['detail'] : __( 'Unknown error', 'samira-theme' );
         return array(
             'success' => false, 
             'message' => $error_message,
@@ -161,7 +161,7 @@ function samira_brevo_subscribe($email, $name, $api_key, $list_id) {
     if (is_wp_error($response)) {
         return array(
             'success' => false, 
-            'message' => __('Errore di connessione a Brevo', 'samira-theme'),
+            'message' => __( 'Brevo connection error', 'samira-theme' ),
             'error_details' => $response->get_error_message()
         );
     }
@@ -172,15 +172,15 @@ function samira_brevo_subscribe($email, $name, $api_key, $list_id) {
     if ($response_code === 201) {
         return array(
             'success' => true, 
-            'message' => __('Iscrizione completata con successo!', 'samira-theme')
+            'message' => __( 'Subscription successful!', 'samira-theme' )
         );
     } elseif ($response_code === 204) {
         return array(
             'success' => true, 
-            'message' => __('Profilo aggiornato con successo!', 'samira-theme')
+            'message' => __( 'Profile updated successfully!', 'samira-theme' )
         );
     } else {
-        $error_message = isset($body['message']) ? $body['message'] : __('Errore sconosciuto', 'samira-theme');
+        $error_message = isset($body['message']) ? $body['message'] : __( 'Unknown error', 'samira-theme' );
         return array(
             'success' => false, 
             'message' => $error_message,
@@ -199,7 +199,7 @@ function samira_test_newsletter_connection($provider, $api_key, $list_id) {
         return samira_test_brevo_connection($api_key, $list_id);
     }
     
-    return array('success' => false, 'message' => 'Provider non supportato');
+    return array('success' => false, 'message' => __( 'Provider not supported', 'samira-theme' ));
 }
 
 /**
@@ -209,7 +209,7 @@ function samira_test_mailchimp_connection($api_key, $list_id) {
     $datacenter = substr($api_key, strpos($api_key, '-') + 1);
     
     if (empty($datacenter)) {
-        return array('success' => false, 'message' => 'API Key non valida');
+        return array('success' => false, 'message' => __( 'Invalid API key', 'samira-theme' ));
     }
     
     $url = "https://{$datacenter}.api.mailchimp.com/3.0/lists/{$list_id}";
@@ -222,7 +222,7 @@ function samira_test_mailchimp_connection($api_key, $list_id) {
     ));
     
     if (is_wp_error($response)) {
-        return array('success' => false, 'message' => 'Errore di connessione');
+        return array('success' => false, 'message' => __( 'Connection error', 'samira-theme' ));
     }
     
     $response_code = wp_remote_retrieve_response_code($response);
@@ -231,13 +231,13 @@ function samira_test_mailchimp_connection($api_key, $list_id) {
         $body = json_decode(wp_remote_retrieve_body($response), true);
         return array(
             'success' => true, 
-            'message' => 'Connessione riuscita',
-            'list_name' => $body['name'] ?? 'Lista senza nome',
+            'message' => __( 'Connection successful', 'samira-theme' ),
+            'list_name' => $body['name'] ?? __( 'Unnamed list', 'samira-theme' ),
             'subscriber_count' => $body['stats']['member_count'] ?? 0
         );
     }
     
-    return array('success' => false, 'message' => 'Credenziali non valide');
+    return array('success' => false, 'message' => __( 'Invalid credentials', 'samira-theme' ));
 }
 
 /**
@@ -254,7 +254,7 @@ function samira_test_brevo_connection($api_key, $list_id) {
     ));
     
     if (is_wp_error($response)) {
-        return array('success' => false, 'message' => 'Errore di connessione');
+        return array('success' => false, 'message' => __( 'Connection error', 'samira-theme' ));
     }
     
     $response_code = wp_remote_retrieve_response_code($response);
@@ -263,13 +263,13 @@ function samira_test_brevo_connection($api_key, $list_id) {
         $body = json_decode(wp_remote_retrieve_body($response), true);
         return array(
             'success' => true, 
-            'message' => 'Connessione riuscita',
-            'list_name' => $body['name'] ?? 'Lista senza nome',
+            'message' => __( 'Connection successful', 'samira-theme' ),
+            'list_name' => $body['name'] ?? __( 'Unnamed list', 'samira-theme' ),
             'subscriber_count' => $body['totalSubscribers'] ?? 0
         );
     }
     
-    return array('success' => false, 'message' => 'Credenziali non valide');
+    return array('success' => false, 'message' => __( 'Invalid credentials', 'samira-theme' ));
 }
 
 /**

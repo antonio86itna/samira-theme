@@ -16,14 +16,14 @@ get_header(); ?>
                 <div class="hero__content">
                     <div class="hero__text">
                         <h1 class="hero__title">
-                            <?php echo esc_html(get_option('samira_hero_title', 'Samira Mahmoodi')); ?>
+                            <?php echo esc_html( get_option('samira_hero_title', __( 'Samira Mahmoodi', 'samira-theme' )) ); ?>
                         </h1>
                         <p class="hero__subtitle">
-                            <?php echo esc_html(get_option('samira_hero_subtitle', 'Scrittura, Arte, Rinascita')); ?>
+                            <?php echo esc_html( get_option('samira_hero_subtitle', __( 'Writing, Art, Rebirth', 'samira-theme' )) ); ?>
                         </p>
                         <div class="hero__actions">
-                            <a href="#about" class="btn btn--primary">Scopri la mia storia</a>
-                            <a href="#newsletter" class="btn btn--outline">Iscriviti alla newsletter</a>
+                            <a href="#about" class="btn btn--primary"><?php echo esc_html__( 'Discover my story', 'samira-theme' ); ?></a>
+                            <a href="#newsletter" class="btn btn--outline"><?php echo esc_html__( 'Subscribe to the newsletter', 'samira-theme' ); ?></a>
                         </div>
                     </div>
                     <div class="hero__image">
@@ -46,20 +46,20 @@ get_header(); ?>
         <!-- About Section -->
         <section class="about section" id="about">
             <div class="container">
-                <h2 class="section__title"><?php echo esc_html(get_option('samira_about_title', 'Chi sono')); ?></h2>
+                <h2 class="section__title"><?php echo esc_html( get_option('samira_about_title', __( 'About Me', 'samira-theme' )) ); ?></h2>
                 <div class="about__grid">
                     <div class="about__content">
                         <div class="about__text">
                             <?php 
-                            $about_content = get_option('samira_about_content', 'Samira Mahmoodi began writing shortly after graduating from college. In 2016, she received a Bachelor of Science in Nursing. Unable to suppress her despair at that time, journaling her feelings led her to re-discover her love for art and literature.');
+                            $about_content = get_option('samira_about_content', __( 'Samira Mahmoodi began writing shortly after graduating from college. In 2016, she received a Bachelor of Science in Nursing. Unable to suppress her despair at that time, journaling her feelings led her to rediscover her love for art and literature.', 'samira-theme' ));
                             echo wp_kses_post(wpautop($about_content));
                             ?>
                         </div>
                     </div>
                     <div class="about__journey">
-                        <h3 class="about__subtitle">Il mio percorso</h3>
-                        <p>Nel 2019 ho pubblicato il mio primo libro, una storia di scoperta personale che ha svelato le ragioni dietro la mia tristezza e dove ho anche scoperto il mio più grande potere: me stessa.</p>
-                        <p>L'arte ha sempre parlato a me e mi ha capita meglio di chiunque altro. È sempre stata il mio rifugio sicuro per l'espressione di sé.</p>
+                        <h3 class="about__subtitle"><?php echo esc_html__( 'My Journey', 'samira-theme' ); ?></h3>
+                        <p><?php echo esc_html__( 'In 2019 I published my first book, a story of personal discovery that revealed the reasons behind my sadness and where I also found my greatest power: myself.', 'samira-theme' ); ?></p>
+                        <p><?php echo esc_html__( 'Art has always spoken to me and understood me better than anyone else. It has always been my safe haven for self-expression.', 'samira-theme' ); ?></p>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@ get_header(); ?>
         <!-- Writing Section -->
         <section class="writing section" id="writing">
             <div class="container">
-                <h2 class="section__title">I Miei Libri</h2>
+                <h2 class="section__title"><?php echo esc_html__( 'My Books', 'samira-theme' ); ?></h2>
                 <div class="writing__content">
                     <?php
                     // Prima mostra i libri dal custom post type
@@ -88,7 +88,7 @@ get_header(); ?>
                                         <?php the_post_thumbnail('medium', array('class' => 'book-card__cover')); ?>
                                     <?php else: ?>
                                         <div class="book-card__cover-placeholder">
-                                            <span>Libro</span>
+                                            <span><?php echo esc_html__( 'Book', 'samira-theme' ); ?></span>
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -104,10 +104,10 @@ get_header(); ?>
                                     ?>
                                     <div class="book-card__links">
                                         <?php if ($goodreads_link): ?>
-                                            <a href="<?php echo esc_url($goodreads_link); ?>" class="btn btn--outline" target="_blank">Leggi su Goodreads</a>
+                                            <a href="<?php echo esc_url($goodreads_link); ?>" class="btn btn--outline" target="_blank"><?php echo esc_html__( 'Read on Goodreads', 'samira-theme' ); ?></a>
                                         <?php endif; ?>
                                         <?php if ($amazon_link): ?>
-                                            <a href="<?php echo esc_url($amazon_link); ?>" class="btn btn--primary" target="_blank">Acquista</a>
+                                            <a href="<?php echo esc_url($amazon_link); ?>" class="btn btn--primary" target="_blank"><?php echo esc_html__( 'Buy', 'samira-theme' ); ?></a>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -124,7 +124,7 @@ get_header(); ?>
                                 <img src="<?php echo esc_url($book_cover); ?>" alt="Book Cover" class="book-card__cover">
                             <?php else: ?>
                                 <div class="book-card__cover-placeholder">
-                                    <span>Libro</span>
+                                      <span><?php echo esc_html__( 'Book', 'samira-theme' ); ?></span>
                                 </div>
                             <?php endif; ?>
                             <div class="book-card__content">
@@ -133,10 +133,10 @@ get_header(); ?>
                                 </h3>
                                 <p class="book-card__year"><?php echo esc_html(get_option('samira_book_year', '2019')); ?></p>
                                 <p class="book-card__description">
-                                    <?php echo esc_html(get_option('samira_book_description', 'In questo spazio ho svelato le ragioni dietro la mia tristezza, e dove ho anche scoperto il mio più grande potere: me stessa.')); ?>
+                                      <?php echo esc_html( get_option('samira_book_description', __( 'Within this space I revealed the reasons behind my sadness and where I also discovered my greatest power: myself.', 'samira-theme' )) ); ?>
                                 </p>
                                 <?php if (get_option('samira_social_goodreads')): ?>
-                                    <a href="<?php echo esc_url(get_option('samira_social_goodreads')); ?>" class="btn btn--outline" target="_blank">Leggi su Goodreads</a>
+                                      <a href="<?php echo esc_url(get_option('samira_social_goodreads')); ?>" class="btn btn--outline" target="_blank"><?php echo esc_html__( 'Read on Goodreads', 'samira-theme' ); ?></a>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -148,11 +148,9 @@ get_header(); ?>
         <!-- Art Section -->
         <section class="art section" id="art">
             <div class="container">
-                <h2 class="section__title">La Mia Arte</h2>
+                <h2 class="section__title"><?php echo esc_html__( 'My Art', 'samira-theme' ); ?></h2>
                 <div class="art__content">
-                    <p class="art__description">
-                        L'arte mi ha parlato e mi ha capita meglio di chiunque altro. È sempre stata il mio rifugio sicuro per l'espressione di sé. Creare la mia arte mi dà potere oltre ogni spiegazione.
-                    </p>
+                      <p class="art__description"><?php echo esc_html__( 'Art has spoken to me and understood me better than anyone else. It has always been my safe haven for self-expression. Creating my art empowers me beyond explanation.', 'samira-theme' ); ?></p>
                     <div class="art__gallery">
                         <?php
                         $portfolio_query = new WP_Query(array(
@@ -189,8 +187,8 @@ get_header(); ?>
                                         </svg>
                                     </div>
                                     <div class="art-item__content">
-                                        <h3 class="art-item__title">Opera d'Arte <?php echo $i; ?></h3>
-                                        <p class="art-item__excerpt">Descrizione dell'opera d'arte e del processo creativo. Aggiungi le tue opere dal pannello di amministrazione.</p>
+                                          <h3 class="art-item__title"><?php echo esc_html__( 'Art Piece', 'samira-theme' ); ?> <?php echo $i; ?></h3>
+                                          <p class="art-item__excerpt"><?php echo esc_html__( 'Description of the artwork and creative process. Add your works from the admin panel.', 'samira-theme' ); ?></p>
                                     </div>
                                 </div>
                             <?php endfor;
@@ -204,23 +202,23 @@ get_header(); ?>
         <section class="newsletter section" id="newsletter">
             <div class="container">
                 <div class="newsletter__content">
-                    <h2 class="section__title"><?php echo esc_html(get_option('samira_newsletter_title', 'Resta in contatto')); ?></h2>
+                      <h2 class="section__title"><?php echo esc_html( get_option('samira_newsletter_title', __( 'Stay Connected', 'samira-theme' )) ); ?></h2>
                     <p class="newsletter__description">
-                        <?php echo esc_html(get_option('samira_newsletter_description', 'Iscriviti per ricevere i miei pensieri, aggiornamenti su uscite attuali e future.')); ?>
+                          <?php echo esc_html( get_option('samira_newsletter_description', __( 'Subscribe to receive my thoughts, updates on current and future releases.', 'samira-theme' )) ); ?>
                     </p>
                     <form class="newsletter__form" id="newsletter-form">
                         <div class="form-row">
                             <div class="form-group">
-                                <input type="text" name="name" placeholder="Il tuo nome" class="form-input" required>
+                                  <input type="text" name="name" placeholder="<?php echo esc_attr__( 'Your name', 'samira-theme' ); ?>" class="form-input" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" name="email" placeholder="La tua email" class="form-input" required>
+                                  <input type="email" name="email" placeholder="<?php echo esc_attr__( 'Your email', 'samira-theme' ); ?>" class="form-input" required>
                             </div>
                         </div>
                         <button type="submit" class="btn btn--primary newsletter__submit">
-                            <span class="btn-text">Iscriviti alla Newsletter</span>
+                            <span class="btn-text"><?php echo esc_html__( 'Subscribe to the Newsletter', 'samira-theme' ); ?></span>
                             <span class="btn-loading" style="display: none;">
-                                <span class="loading-spinner"></span> Iscrizione in corso...
+                                <span class="loading-spinner"></span> <?php echo esc_html__( 'Subscribing...', 'samira-theme' ); ?>
                             </span>
                         </button>
                     </form>
@@ -245,7 +243,7 @@ get_header(); ?>
                                             <?php echo get_the_date(); ?>
                                         </span>
                                         <span class="byline">
-                                            da <?php the_author(); ?>
+                                            <?php echo esc_html__( 'by', 'samira-theme' ); ?> <?php the_author(); ?>
                                         </span>
                                     </div>
                                 <?php endif; ?>
@@ -267,7 +265,7 @@ get_header(); ?>
                                     $categories = get_the_category();
                                     if (!empty($categories)): ?>
                                         <div class="entry-categories">
-                                            <strong>Categorie:</strong>
+                                            <strong><?php echo esc_html__( 'Categories:', 'samira-theme' ); ?></strong>
                                             <?php foreach ($categories as $category): ?>
                                                 <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" class="category-link">
                                                     <?php echo esc_html($category->name); ?>
@@ -280,7 +278,7 @@ get_header(); ?>
                                     $tags = get_the_tags();
                                     if (!empty($tags)): ?>
                                         <div class="entry-tags">
-                                            <strong>Tag:</strong>
+                                            <strong><?php echo esc_html__( 'Tags:', 'samira-theme' ); ?></strong>
                                             <?php foreach ($tags as $tag): ?>
                                                 <a href="<?php echo esc_url(get_tag_link($tag->term_id)); ?>" class="tag-link">
                                                     <?php echo esc_html($tag->name); ?>
@@ -296,8 +294,8 @@ get_header(); ?>
                         // Navigation between posts
                         if (get_post_type() === 'post'):
                             the_post_navigation(array(
-                                'next_text' => '<span class="nav-title">Articolo successivo</span><br><span class="nav-post-title">%title</span>',
-                                'prev_text' => '<span class="nav-title">Articolo precedente</span><br><span class="nav-post-title">%title</span>',
+                                'next_text' => '<span class="nav-title">' . esc_html__( 'Next article', 'samira-theme' ) . '</span><br><span class="nav-post-title">%title</span>',
+                                'prev_text' => '<span class="nav-title">' . esc_html__( 'Previous article', 'samira-theme' ) . '</span><br><span class="nav-post-title">%title</span>',
                             ));
                         endif;
 
@@ -311,8 +309,8 @@ get_header(); ?>
 
                 <?php else: ?>
                     <div class="no-posts">
-                        <h2>Contenuto non trovato</h2>
-                        <p>Mi dispiace, ma non è stato trovato nessun contenuto per la tua richiesta. Prova a cercare qualcos'altro.</p>
+                        <h2><?php echo esc_html__( 'Content not found', 'samira-theme' ); ?></h2>
+                        <p><?php echo esc_html__( 'Sorry, no content matched your request. Please try searching for something else.', 'samira-theme' ); ?></p>
                         <?php get_search_form(); ?>
                     </div>
                 <?php endif; ?>
