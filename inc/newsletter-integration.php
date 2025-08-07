@@ -431,7 +431,7 @@ function samira_clear_newsletter_logs() {
  */
 function samira_test_newsletter_ajax() {
     if (!wp_verify_nonce($_POST['nonce'], 'samira_nonce') || !current_user_can('manage_options')) {
-        wp_send_json_error(array('message' => 'Accesso negato'));
+        wp_send_json_error(array('message' => __( 'Access denied', 'samira-theme' )));
     }
     
     $provider = sanitize_text_field($_POST['provider'] ?? '');
@@ -453,7 +453,7 @@ add_action('wp_ajax_samira_test_newsletter', 'samira_test_newsletter_ajax');
  */
 function samira_get_newsletter_lists_ajax() {
     if (!wp_verify_nonce($_POST['nonce'], 'samira_nonce') || !current_user_can('manage_options')) {
-        wp_send_json_error(array('message' => 'Accesso negato'));
+        wp_send_json_error(array('message' => __( 'Access denied', 'samira-theme' )));
     }
     
     $provider = sanitize_text_field($_POST['provider'] ?? '');
