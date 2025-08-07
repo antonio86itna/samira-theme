@@ -81,13 +81,21 @@ function samira_theme_scripts() {
     );
     
     // Dark mode script
-    wp_enqueue_script('samira-dark-mode', 
-        SAMIRA_THEME_URI . '/js/dark-mode.js', 
-        array('jquery'), 
-        SAMIRA_THEME_VERSION, 
+    wp_enqueue_script('samira-dark-mode',
+        SAMIRA_THEME_URI . '/js/dark-mode.js',
+        array('jquery'),
+        SAMIRA_THEME_VERSION,
         true
     );
-    
+
+    wp_localize_script(
+        'samira-dark-mode',
+        'samira_dark_mode',
+        array(
+            'default_on' => get_option('samira_enable_dark_mode'),
+        )
+    );
+
     // Localizzazione per AJAX - SINTASSI CORRETTA
     wp_localize_script('samira-main', 'samira_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
@@ -260,7 +268,7 @@ function samira_body_classes($classes) {
     
     // Aggiungi classe per dark mode (se abilitato di default)
     if (get_option('samira_enable_dark_mode', false)) {
-        $classes[] = 'dark-mode-enabled';
+        $classes[] = 'dark-mode';
     }
     
     return $classes;
