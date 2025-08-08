@@ -65,6 +65,9 @@ add_action('after_setup_theme', 'samira_theme_setup');
  * Enqueue scripts and styles
  */
 function samira_theme_scripts() {
+    // Dashicons for social icons
+    wp_enqueue_style('dashicons');
+
     // Main CSS
     wp_enqueue_style('samira-style', get_stylesheet_uri(), array(), SAMIRA_THEME_VERSION);
     
