@@ -842,7 +842,7 @@ function samira_stats_page() {
         return;
     }
 
-    if (isset($_POST['samira_clear_logs']) && wp_verify_nonce($_POST['samira_clear_logs_nonce'], 'samira_clear_logs')) {
+    if (isset($_POST['samira_clear_logs']) && check_admin_referer('samira_clear_logs', 'samira_clear_logs_nonce')) {
         samira_clear_newsletter_logs();
         echo '<div class="notice notice-success"><p>' . __('Newsletter logs cleared.', 'samira-theme') . '</p></div>';
     }
