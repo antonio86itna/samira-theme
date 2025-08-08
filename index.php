@@ -224,6 +224,9 @@ get_header(); ?>
                             <?php endfor;
                         endif; ?>
                     </div>
+                    <div class="art__actions">
+                        <a href="<?php echo esc_url( get_post_type_archive_link('portfolio') ); ?>" class="btn btn--outline"><?php echo esc_html__( 'Show all', 'samira-theme' ); ?></a>
+                    </div>
                 </div>
             </div>
         </section>
