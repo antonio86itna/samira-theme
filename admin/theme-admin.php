@@ -1021,10 +1021,10 @@ function samira_import_export_page() {
  */
 function samira_reset_options_ajax() {
     if (!wp_verify_nonce($_POST['nonce'], 'samira_reset') || !current_user_can('manage_options')) {
-        wp_send_json_error();
+        wp_send_json_error(array('message' => __( 'Access denied', 'samira-theme' )));
     }
 
     samira_reset_options();
-    wp_send_json_success();
+    wp_send_json_success(array('message' => __( 'Settings reset successfully!', 'samira-theme' )));
 }
 add_action('wp_ajax_samira_reset_options', 'samira_reset_options_ajax');

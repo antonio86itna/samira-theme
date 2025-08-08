@@ -207,7 +207,7 @@
                     }
                 },
                 error: function(xhr, status, error) {
-                    console.error('Newsletter signup error:', error);
+                    console.error(samira_ajax.strings.ajax_error, error);
                     showMessage('error', samira_ajax.strings.error);
                 },
                 complete: function() {

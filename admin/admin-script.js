@@ -378,12 +378,12 @@ jQuery(document).ready(function($) {
                 nonce: $('#samira_nonce').val()
             }, function(response) {
                 if (response.success) {
-                    showNotification(samira_admin.strings.reset_success, 'success');
+                    showNotification(response.data.message || samira_admin.strings.reset_success, 'success');
                     setTimeout(function() {
                         location.reload();
                     }, 2000);
                 } else {
-                    showNotification(samira_admin.strings.reset_error, 'error');
+                    showNotification(response.data.message || samira_admin.strings.reset_error, 'error');
                     $button.prop('disabled', false).text(samira_admin.strings.reset_button);
                 }
             }).fail(function() {
