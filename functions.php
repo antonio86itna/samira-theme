@@ -263,6 +263,87 @@ function samira_custom_post_types() {
 add_action('init', 'samira_custom_post_types');
 
 /**
+ * Book purchase links meta box.
+ */
+function samira_add_book_meta_box() {
+    add_meta_box(
+        'samira-book-links',
+        __( 'Book Purchase Links', 'samira-theme' ),
+        'samira_book_links_meta_box_callback',
+        'books',
+        'normal',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'samira_add_book_meta_box');
+
+/**
+ * Meta box display callback.
+ *
+ * @param WP_Post $post The current post object.
+ */
+function samira_book_links_meta_box_callback($post) {
+    wp_nonce_field('samira_book_links_meta', 'samira_book_links_meta_nonce');
+
+    $amazon   = get_post_meta($post->ID, 'book_amazon_link', true);
+    $bam      = get_post_meta($post->ID, 'book_bam_link', true);
+    $bookshop = get_post_meta($post->ID, 'book_bookshop_link', true);
+    $bn       = get_post_meta($post->ID, 'book_bn_link', true);
+
+    echo '<table class="form-table">';
+    echo '<tr><th><label for="book_amazon_link">' . esc_html__( 'Amazon Link', 'samira-theme' ) . '</label></th>';
+    echo '<td><input type="url" id="book_amazon_link" name="book_amazon_link" value="' . esc_attr( $amazon ) . '" class="widefat" /></td></tr>';
+
+    echo '<tr><th><label for="book_bam_link">' . esc_html__( 'Books-A-Million Link', 'samira-theme' ) . '</label></th>';
+    echo '<td><input type="url" id="book_bam_link" name="book_bam_link" value="' . esc_attr( $bam ) . '" class="widefat" /></td></tr>';
+
+    echo '<tr><th><label for="book_bookshop_link">' . esc_html__( 'Bookshop Link', 'samira-theme' ) . '</label></th>';
+    echo '<td><input type="url" id="book_bookshop_link" name="book_bookshop_link" value="' . esc_attr( $bookshop ) . '" class="widefat" /></td></tr>';
+
+    echo '<tr><th><label for="book_bn_link">' . esc_html__( 'Barnes &amp; Noble Link', 'samira-theme' ) . '</label></th>';
+    echo '<td><input type="url" id="book_bn_link" name="book_bn_link" value="' . esc_attr( $bn ) . '" class="widefat" /></td></tr>';
+    echo '</table>';
+}
+
+/**
+ * Save book link meta box content.
+ *
+ * @param int $post_id Post ID.
+ */
+function samira_save_book_links_meta($post_id) {
+    if (!isset($_POST['samira_book_links_meta_nonce']) || !wp_verify_nonce($_POST['samira_book_links_meta_nonce'], 'samira_book_links_meta')) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (isset($_POST['post_type']) && 'books' === $_POST['post_type']) {
+        if (!current_user_can('edit_post', $post_id)) {
+            return;
+        }
+    } else {
+        return;
+    }
+
+    $fields = array('book_amazon_link', 'book_bam_link', 'book_bookshop_link', 'book_bn_link');
+
+    foreach ($fields as $field) {
+        if (isset($_POST[$field])) {
+            $url = esc_url_raw(wp_unslash($_POST[$field]));
+
+            if (!empty($url)) {
+                update_post_meta($post_id, $field, $url);
+            } else {
+                delete_post_meta($post_id, $field);
+            }
+        }
+    }
+}
+add_action('save_post_books', 'samira_save_book_links_meta');
+
+/**
  * Include dei file necessari con controlli
  */
 function samira_include_files() {
