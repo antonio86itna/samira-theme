@@ -47,7 +47,7 @@ function samira_get_default_options() {
 
         // Writing Section
         'samira_book_title'       => __( 'To Water Her Garden: A journey of self-discovery', 'samira-theme' ),
-        'samira_book_year'        => '2019',
+        'samira_book_year'        => __( '2019', 'samira-theme' ),
         'samira_book_description' => __(
             'Within this space I revealed the reasons behind my sadness and where I also discovered my greatest power: myself.',
             'samira-theme'
@@ -76,7 +76,7 @@ function samira_get_default_options() {
         'samira_social_facebook'  => '',
 
         // Branding
-        'samira_logo_text'        => 'SM',
+        'samira_logo_text'        => __( 'SM', 'samira-theme' ),
         'samira_accent_color'     => '#D4A574',
         'samira_enable_dark_mode' => false,
 

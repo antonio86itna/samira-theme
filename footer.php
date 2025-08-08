@@ -9,13 +9,13 @@
                         <?php the_custom_logo(); ?>
                     <?php else: ?>
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="footer-logo" rel="home">
-                            <?php echo esc_html(get_option('samira_logo_text', 'SM')); ?>
+                            <?php echo esc_html(get_option('samira_logo_text', __( 'SM', 'samira-theme' ))); ?>
                         </a>
                     <?php endif; ?>
                     
                     <p class="footer-bio">
                         <?php 
-                        $footer_text = get_option('samira_footer_text', 'Writer and artist. Art is my safe haven for self-expression.');
+                        $footer_text = get_option('samira_footer_text', __( 'Writer and artist. Art is my safe haven for self-expression.', 'samira-theme' ));
                         echo esc_html($footer_text);
                         ?>
                     </p>
@@ -77,13 +77,13 @@
                 <div class="footer-newsletter">
                     <h4 class="footer-section-title">
                         <?php 
-                        $newsletter_title = get_option('samira_newsletter_title', 'Stay Connected');
+                        $newsletter_title = get_option('samira_newsletter_title', __( 'Stay Connected', 'samira-theme' ));
                         echo esc_html($newsletter_title);
                         ?>
                     </h4>
                     <p class="newsletter-description">
                         <?php 
-                        $newsletter_description = get_option('samira_newsletter_description', 'Subscribe to receive my thoughts, updates on current and future releases.');
+                        $newsletter_description = get_option('samira_newsletter_description', __( 'Subscribe to receive my thoughts, updates on current and future releases.', 'samira-theme' ));
                         echo esc_html($newsletter_description);
                         ?>
                     </p>
@@ -123,7 +123,7 @@
                     <p class="footer-copyright">
                         &copy; <?php echo date('Y'); ?> 
                         <?php 
-                        $copyright_name = get_option('samira_copyright_name', 'Samira Mahmoodi');
+                        $copyright_name = get_option('samira_copyright_name', __( 'Samira Mahmoodi', 'samira-theme' ));
                         echo esc_html($copyright_name);
                         ?>. 
                         <?php esc_html_e('All rights reserved.', 'samira-theme'); ?>

@@ -6,24 +6,24 @@
  * @version 1.0.0
  */
 
-// Impedisce accesso diretto
+// Prevent direct access
 if (!defined('ABSPATH')) {
     exit;
 }
 
-// Costanti del tema
+// Theme constants
 define('SAMIRA_THEME_VERSION', '1.0.0');
 define('SAMIRA_THEME_DIR', get_template_directory());
 define('SAMIRA_THEME_URI', get_template_directory_uri());
 
 /**
- * Setup del tema
+ * Theme setup
  */
 function samira_theme_setup() {
-    // Carica il textdomain del tema
+    // Load theme text domain
     load_theme_textdomain('samira-theme', get_template_directory() . '/languages');
 
-    // Supporto per le caratteristiche del tema
+    // Theme feature support
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
     add_theme_support('custom-logo', array(
@@ -43,13 +43,13 @@ function samira_theme_setup() {
     add_theme_support('wp-block-styles');
     add_theme_support('align-wide');
     
-    // Menu di navigazione
+    // Navigation menus
     register_nav_menus(array(
-        'primary' => __('Menu Principale', 'samira-theme'),
-        'footer'  => __('Menu Footer', 'samira-theme'),
+        'primary' => __('Primary Menu', 'samira-theme'),
+        'footer'  => __('Footer Menu', 'samira-theme'),
     ));
     
-    // Formati post
+    // Post formats
     add_theme_support('post-formats', array(
         'aside',
         'image',
@@ -62,10 +62,10 @@ function samira_theme_setup() {
 add_action('after_setup_theme', 'samira_theme_setup');
 
 /**
- * Enqueue degli script e stili
+ * Enqueue scripts and styles
  */
 function samira_theme_scripts() {
-    // CSS principale
+    // Main CSS
     wp_enqueue_style('samira-style', get_stylesheet_uri(), array(), SAMIRA_THEME_VERSION);
     
     // Google Fonts
@@ -75,7 +75,7 @@ function samira_theme_scripts() {
         null
     );
     
-    // JavaScript principale
+    // Main JavaScript
     wp_enqueue_script('samira-main', 
         SAMIRA_THEME_URI . '/js/main.js', 
         array('jquery'), 
@@ -106,7 +106,7 @@ function samira_theme_scripts() {
         )
     );
 
-    // Localizzazione per AJAX
+    // Localization for AJAX
     wp_localize_script('samira-main', 'samira_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce'    => wp_create_nonce('samira_nonce'),
@@ -132,7 +132,7 @@ add_action('wp_enqueue_scripts', 'samira_theme_scripts');
  * Enqueue admin scripts
  */
 function samira_admin_scripts($hook) {
-    // Solo nelle pagine del tema
+    // Only on theme pages
     if (strpos($hook, 'samira-theme') !== false) {
         wp_enqueue_style('samira-admin-style', 
             SAMIRA_THEME_URI . '/admin/admin-style.css', 
@@ -146,9 +146,9 @@ function samira_admin_scripts($hook) {
             true
         );
         wp_enqueue_style('wp-color-picker');
-        wp_enqueue_media(); // Per media uploader
+        wp_enqueue_media(); // For media uploader
         
-        // Localizzazione admin
+        // Admin localization
         wp_localize_script('samira-admin-script', 'samira_admin', array(
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce'    => wp_create_nonce('samira_admin_nonce'),
@@ -279,7 +279,7 @@ function samira_include_files() {
 add_action('after_setup_theme', 'samira_include_files', 20);
 
 /**
- * Gestione degli errori JavaScript
+ * JavaScript error handling
  */
 function samira_javascript_detection() {
     echo "<script>(function(html){html.className = html.className.replace(/\\bno-js\\b/,'js')})(document.documentElement);</script>\n";
@@ -287,18 +287,18 @@ function samira_javascript_detection() {
 add_action('wp_head', 'samira_javascript_detection', 0);
 
 /**
- * Aggiungi classe body per tema
+ * Add body class for theme
  */
 function samira_body_classes($classes) {
-    // Aggiungi classe per il tema
+    // Add class for the theme
     $classes[] = 'samira-theme';
-    
-    // Aggiungi classe per homepage personalizzata
+
+    // Add class for custom homepage
     if (is_front_page()) {
         $classes[] = 'samira-homepage';
     }
-    
-    // Aggiungi classe per dark mode (se abilitato di default)
+
+    // Add class for dark mode (if enabled by default)
     if (boolval(samira_get_option('samira_enable_dark_mode', false))) {
         $classes[] = 'dark-mode';
     }
@@ -308,7 +308,7 @@ function samira_body_classes($classes) {
 add_filter('body_class', 'samira_body_classes');
 
 /**
- * Personalizza excerpt length
+ * Customize excerpt length
  */
 function samira_excerpt_length($length) {
     return 25;
@@ -316,7 +316,7 @@ function samira_excerpt_length($length) {
 add_filter('excerpt_length', 'samira_excerpt_length');
 
 /**
- * Personalizza excerpt more
+ * Customize excerpt more
  */
 function samira_excerpt_more($more) {
     return '...';
@@ -324,7 +324,7 @@ function samira_excerpt_more($more) {
 add_filter('excerpt_more', 'samira_excerpt_more');
 
 /**
- * Aggiungi meta tags personalizzati
+ * Add custom meta tags
  */
 function samira_head_meta() {
     echo '<meta name="theme-color" content="#D4A574">' . "\n";
@@ -334,7 +334,7 @@ function samira_head_meta() {
 add_action('wp_head', 'samira_head_meta');
 
 /**
- * Disabilita emoji se non necessari
+ * Disable emojis if not needed
  */
 function samira_disable_emojis() {
     if (get_option('samira_disable_emojis', false)) {
@@ -368,7 +368,7 @@ function samira_disable_emojis_dns_prefetch($urls, $relation_type) {
 }
 
 /**
- * Aggiungi supporto per SVG upload (solo per admin)
+ * Add SVG upload support (admin only)
  */
 function samira_mime_types($mimes) {
     if (current_user_can('manage_options')) {
@@ -379,7 +379,7 @@ function samira_mime_types($mimes) {
 add_filter('upload_mimes', 'samira_mime_types');
 
 /**
- * Sicurezza SVG upload
+ * SVG upload security
  */
 function samira_check_svg($file) {
     if ($file['type'] === 'image/svg+xml') {
@@ -392,7 +392,7 @@ function samira_check_svg($file) {
 add_filter('wp_handle_upload_prefilter', 'samira_check_svg');
 
 /**
- * Pulizia wp_head
+ * Clean up wp_head
  */
 function samira_clean_head() {
     if (get_option('samira_clean_head', true)) {
@@ -441,7 +441,7 @@ function samira_theme_activation() {
 add_action('after_switch_theme', 'samira_theme_activation');
 
 /**
- * Pulizia alla disattivazione del tema
+ * Cleanup on theme deactivation
  */
 function samira_theme_deactivation() {
     // Flush rewrite rules
@@ -450,12 +450,12 @@ function samira_theme_deactivation() {
 add_action('switch_theme', 'samira_theme_deactivation');
 
 /**
- * Aggiungi CSS inline per accent color
+ * Add inline CSS for accent color
  */
 function samira_accent_color_css() {
     $accent_color = get_option('samira_accent_color', '#D4A574');
     
-    // Genera colore hover (più scuro)
+    // Generate hover color (darker)
     $rgb = sscanf($accent_color, "#%02x%02x%02x");
     if ($rgb && count($rgb) === 3) {
         $hover_color = sprintf("#%02x%02x%02x", 
@@ -470,7 +470,7 @@ function samira_accent_color_css() {
 add_action('wp_head', 'samira_accent_color_css', 20);
 
 /**
- * Controlla requisiti tema
+ * Check theme requirements
  */
 function samira_check_requirements() {
     $wp_version = get_bloginfo('version');

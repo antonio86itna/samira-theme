@@ -6,21 +6,21 @@
  * @version 1.0.0
  */
 
-// Impedisce accesso diretto
+// Prevent direct access
 if (!defined('ABSPATH')) {
     exit;
 }
 
 /**
- * Handler AJAX per newsletter signup
+ * AJAX handler for newsletter signup
  */
 function samira_newsletter_signup() {
-    // Verifica nonce per sicurezza
+    // Verify nonce for security
     if (!wp_verify_nonce($_POST['nonce'], 'samira_nonce')) {
         wp_send_json_error(array('message' => __( 'Security error', 'samira-theme' )));
     }
     
-    // Sanitize e validate input
+    // Sanitize and validate input
     $email = sanitize_email($_POST['email'] ?? '');
     $name = sanitize_text_field($_POST['name'] ?? '');
     
