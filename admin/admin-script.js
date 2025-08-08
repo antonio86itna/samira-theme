@@ -8,7 +8,7 @@
 jQuery(document).ready(function($) {
     'use strict';
 
-    console.log('Samira Theme Admin loaded');
+    console.log(samira_admin.strings.admin_loaded);
 
     // Initialize all admin functionality
     initImageUpload();
@@ -47,7 +47,7 @@ jQuery(document).ready(function($) {
                 const attachment = mediaUploader.state().get('selection').first().toJSON();
 
                 $input.val(attachment.url);
-                $preview.html('<img src="' + attachment.url + '" alt="Selected Image" style="max-width: 200px; height: auto;" />');
+                $preview.html('<img src="' + attachment.url + '" alt="' + samira_admin.strings.selected_image_alt + '" style="max-width: 200px; height: auto;" />');
 
                 // Show success message
                 showNotification(samira_admin.strings.image_uploaded, 'success');
@@ -231,7 +231,7 @@ jQuery(document).ready(function($) {
                     showNotification(samira_admin.strings.draft_saved, 'info', 3000);
                 },
                 error: function() {
-                    console.warn('Auto-save failed');
+                    console.warn(samira_admin.strings.autosave_failed);
                 }
             });
         }

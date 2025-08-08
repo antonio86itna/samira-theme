@@ -15,7 +15,7 @@
 
     // Initialize all theme functionality
     function initTheme() {
-        console.log('Samira Theme initialized');
+        console.log(samira_ajax.strings.theme_initialized);
 
         initSmoothScroll();
         initScrollAnimations();
@@ -342,7 +342,7 @@
     // Handle form errors gracefully
     $(document).on('ajaxError', function(event, xhr, settings, error) {
         if (settings.url === samira_ajax.ajax_url) {
-            console.error('AJAX Error:', error);
+            console.error(samira_ajax.strings.ajax_error, error);
         }
     });
 
