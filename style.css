@@ -118,16 +118,17 @@ a:hover {
 }
 
 /* Header */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  background: var(--header-bg);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--color-border);
-}
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--header-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+    transition: var(--transition-base);
+  }
 
 .header.scrolled {
   background: var(--color-surface);
@@ -182,12 +183,8 @@ a:hover {
   gap: var(--spacing-sm);
 }
 
-.header,
 .dark-mode-toggle {
   transition: var(--transition-base);
-}
-
-.dark-mode-toggle {
   background: none;
   border: none;
   color: var(--color-text);
@@ -910,16 +907,6 @@ body.dark-mode .footer {
 
 
 /* Footer Fix - Correct classes for footer.php */
-.footer {
-    background-color: var(--color-text);
-    color: var(--color-background);
-    padding: var(--spacing-xl) 0 var(--spacing-md);
-}
-
-body.dark-mode .footer {
-    background-color: #0a0a0a;
-}
-
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
