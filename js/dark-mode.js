@@ -18,7 +18,7 @@
         const body = document.body;
 
         if (!toggle) {
-            console.warn('Dark mode toggle not found');
+            console.warn(samira_dark_mode.strings.toggle_not_found);
             return;
         }
 

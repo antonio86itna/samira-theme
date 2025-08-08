@@ -1059,3 +1059,27 @@ msgstr ""
 #: index.php:313
 msgid "Sorry, no content matched your request. Please try searching for something else."
 msgstr ""
+
+#: js/main.js
+msgid "Samira Theme initialized"
+msgstr ""
+
+#: js/main.js
+msgid "AJAX Error:"
+msgstr ""
+
+#: js/dark-mode.js
+msgid "Dark mode toggle not found"
+msgstr ""
+
+#: admin/admin-script.js
+msgid "Samira Theme Admin loaded"
+msgstr ""
+
+#: admin/admin-script.js
+msgid "Selected Image"
+msgstr ""
+
+#: admin/admin-script.js
+msgid "Auto-save failed"
+msgstr ""

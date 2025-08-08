@@ -102,6 +102,7 @@ function samira_theme_scripts() {
                 'dark_mode_activated'  => esc_html__( 'Dark mode activated', 'samira-theme' ),
                 'activate_light_mode'  => esc_html__( 'Activate light mode', 'samira-theme' ),
                 'activate_dark_mode'   => esc_html__( 'Activate dark mode', 'samira-theme' ),
+                'toggle_not_found'     => esc_html__( 'Dark mode toggle not found', 'samira-theme' ),
             ),
         )
     );
@@ -118,6 +119,8 @@ function samira_theme_scripts() {
             'email_invalid'   => esc_html__( 'Invalid email', 'samira-theme' ),
             'name'            => esc_html__( 'Name', 'samira-theme' ),
             'scroll_to_top'   => esc_html__( 'Scroll to top', 'samira-theme' ),
+            'theme_initialized' => esc_html__( 'Samira Theme initialized', 'samira-theme' ),
+            'ajax_error'      => esc_html__( 'AJAX Error:', 'samira-theme' ),
         )
     ));
     
@@ -171,6 +174,9 @@ function samira_admin_scripts($hook) {
                 'connection_error' => esc_html__( 'Connection error during reset.', 'samira-theme' ),
                 'reset_button'     => esc_html__( 'Reset to Default Settings', 'samira-theme' ),
                 'welcome_message'  => esc_html__( 'Welcome to the Samira Theme control panel! Start customizing your settings.', 'samira-theme' ),
+                'admin_loaded'     => esc_html__( 'Samira Theme Admin loaded', 'samira-theme' ),
+                'selected_image_alt' => esc_html__( 'Selected Image', 'samira-theme' ),
+                'autosave_failed'  => esc_html__( 'Auto-save failed', 'samira-theme' ),
             ),
         ));
     }
