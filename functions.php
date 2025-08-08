@@ -20,8 +20,8 @@ define('SAMIRA_THEME_URI', get_template_directory_uri());
  * Theme setup
  */
 function samira_theme_setup() {
-    // Load theme text domain
-    load_theme_textdomain('samira-theme', get_template_directory() . '/languages');
+    // Load translations for theme
+    load_theme_textdomain('samira-theme', get_template_directory().'/languages');
 
     // Theme feature support
     add_theme_support('title-tag');
