@@ -71,17 +71,42 @@ get_header(); ?>
                 <h2 class="section__title"><?php echo esc_html__( 'My Books', 'samira-theme' ); ?></h2>
                 <div class="writing__content">
                     <?php
+                    // Store links configuration
+                    $store_links = array(
+                        'amazon' => array(
+                            'meta'   => 'book_amazon_link',
+                            'option' => 'samira_book_link_amazon',
+                            'label'  => __( 'Amazon', 'samira-theme' ),
+                        ),
+                        'bam' => array(
+                            'meta'   => 'book_bam_link',
+                            'option' => 'samira_book_link_bam',
+                            'label'  => __( 'Books-A-Million', 'samira-theme' ),
+                        ),
+                        'bookshop' => array(
+                            'meta'   => 'book_bookshop_link',
+                            'option' => 'samira_book_link_bookshop',
+                            'label'  => __( 'Bookshop', 'samira-theme' ),
+                        ),
+                        'bn' => array(
+                            'meta'   => 'book_bn_link',
+                            'option' => 'samira_book_link_bn',
+                            'label'  => __( 'Barnes & Noble', 'samira-theme' ),
+                        ),
+                    );
+
                     // Display books from custom post type first
                     $books_query = new WP_Query(array(
-                        'post_type' => 'books',
+                        'post_type'      => 'books',
                         'posts_per_page' => -1,
-                        'meta_key' => 'book_year',
-                        'orderby' => 'meta_value_num',
-                        'order' => 'DESC'
+                        'meta_key'       => 'book_year',
+                        'orderby'        => 'meta_value_num',
+                        'order'          => 'DESC',
                     ));
 
                     if ($books_query->have_posts()):
-                        while ($books_query->have_posts()): $books_query->the_post(); ?>
+                        while ($books_query->have_posts()):
+                            $books_query->the_post(); ?>
                             <div class="book-card">
                                 <div class="book-card__cover">
                                     <?php if (has_post_thumbnail()): ?>
@@ -98,17 +123,15 @@ get_header(); ?>
                                     <div class="book-card__description">
                                         <?php the_excerpt(); ?>
                                     </div>
-                                    <?php 
-                                    $goodreads_link = get_post_meta(get_the_ID(), 'goodreads_link', true);
-                                    $amazon_link = get_post_meta(get_the_ID(), 'amazon_link', true);
-                                    ?>
                                     <div class="book-card__links">
-                                        <?php if ($goodreads_link): ?>
-                                            <a href="<?php echo esc_url($goodreads_link); ?>" class="btn btn--outline" target="_blank"><?php echo esc_html__( 'Read on Goodreads', 'samira-theme' ); ?></a>
-                                        <?php endif; ?>
-                                        <?php if ($amazon_link): ?>
-                                            <a href="<?php echo esc_url($amazon_link); ?>" class="btn btn--primary" target="_blank"><?php echo esc_html__( 'Buy', 'samira-theme' ); ?></a>
-                                        <?php endif; ?>
+                                        <?php foreach ($store_links as $class => $data):
+                                            $link = get_post_meta(get_the_ID(), $data['meta'], true);
+                                            if ($link): ?>
+                                                <a href="<?php echo esc_url($link); ?>" class="btn btn--<?php echo esc_attr($class); ?>" target="_blank" rel="noopener">
+                                                    <?php printf(esc_html__( 'Buy on %s', 'samira-theme' ), esc_html($data['label'])); ?>
+                                                </a>
+                                            <?php endif;
+                                        endforeach; ?>
                                     </div>
                                 </div>
                             </div>
@@ -135,9 +158,16 @@ get_header(); ?>
                                 <p class="book-card__description">
                                       <?php echo esc_html( get_option('samira_book_description', __( 'Within this space I revealed the reasons behind my sadness and where I also discovered my greatest power: myself.', 'samira-theme' )) ); ?>
                                 </p>
-                                <?php if (get_option('samira_social_goodreads')): ?>
-                                      <a href="<?php echo esc_url(get_option('samira_social_goodreads')); ?>" class="btn btn--outline" target="_blank"><?php echo esc_html__( 'Read on Goodreads', 'samira-theme' ); ?></a>
-                                <?php endif; ?>
+                                <div class="book-card__links">
+                                    <?php foreach ($store_links as $class => $data):
+                                        $link = get_option($data['option']);
+                                        if ($link): ?>
+                                            <a href="<?php echo esc_url($link); ?>" class="btn btn--<?php echo esc_attr($class); ?>" target="_blank" rel="noopener">
+                                                <?php printf(esc_html__( 'Buy on %s', 'samira-theme' ), esc_html($data['label'])); ?>
+                                            </a>
+                                        <?php endif;
+                                    endforeach; ?>
+                                </div>
                             </div>
                         </div>
                     <?php endif; ?>
