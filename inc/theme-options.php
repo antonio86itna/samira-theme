@@ -53,6 +53,10 @@ function samira_get_default_options() {
             'samira-theme'
         ),
         'samira_book_cover'       => '',
+        'samira_book_link_amazon'  => '',
+        'samira_book_link_bam'     => '',
+        'samira_book_link_bookshop' => '',
+        'samira_book_link_bn'      => '',
 
         // Art Section
         'samira_art_title'        => __( 'My Art', 'samira-theme' ),
@@ -117,6 +121,10 @@ function samira_sanitize_option($value, $option_name) {
     switch ($option_name) {
         case 'samira_hero_image':
         case 'samira_book_cover':
+        case 'samira_book_link_amazon':
+        case 'samira_book_link_bam':
+        case 'samira_book_link_bookshop':
+        case 'samira_book_link_bn':
             return esc_url_raw($value);
 
         case 'samira_social_instagram':
