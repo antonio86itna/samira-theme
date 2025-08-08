@@ -1,6 +1,6 @@
 /*
 Theme Name: Samira Mahmoodi Theme
-Description: Tema WordPress moderno e minimal per scrittori e artisti. Include dark mode, newsletter integration, e pannello di controllo personalizzato.
+Description: Modern and minimal WordPress theme for writers and artists. Includes dark mode, newsletter integration, and a custom control panel.
 Version: 1.0.0
 Author: Custom Theme Development
 Author URI: https://samira-theme.com
@@ -909,7 +909,7 @@ body.dark-mode .footer {
 }
 
 
-/* Footer Fix - Classi corrette per footer.php */
+/* Footer Fix - Correct classes for footer.php */
 .footer {
     background-color: var(--color-text);
     color: var(--color-background);

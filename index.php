@@ -1,6 +1,6 @@
 <?php
 /**
- * Template principale
+ * Main template
  * 
  * @package Samira_Theme
  */
@@ -30,7 +30,7 @@ get_header(); ?>
                         <?php 
                         $hero_image = get_option('samira_hero_image');
                         if ($hero_image): ?>
-                            <img src="<?php echo esc_url($hero_image); ?>" alt="<?php echo esc_attr(get_option('samira_hero_title', 'Samira Mahmoodi')); ?>" class="hero__img">
+                            <img src="<?php echo esc_url($hero_image); ?>" alt="<?php echo esc_attr(get_option('samira_hero_title', __( 'Samira Mahmoodi', 'samira-theme' ))); ?>" class="hero__img">
                         <?php else: ?>
                             <div class="hero__img-placeholder">
                                 <svg width="120" height="120" viewBox="0 0 120 120" fill="currentColor">
@@ -71,7 +71,7 @@ get_header(); ?>
                 <h2 class="section__title"><?php echo esc_html__( 'My Books', 'samira-theme' ); ?></h2>
                 <div class="writing__content">
                     <?php
-                    // Prima mostra i libri dal custom post type
+                    // Display books from custom post type first
                     $books_query = new WP_Query(array(
                         'post_type' => 'books',
                         'posts_per_page' => -1,
@@ -115,7 +115,7 @@ get_header(); ?>
                         <?php endwhile;
                         wp_reset_postdata();
                     else:
-                        // Fallback al libro dalle opzioni del tema
+                        // Fallback to book from theme options
                         ?>
                         <div class="book-card">
                             <?php 
@@ -129,9 +129,9 @@ get_header(); ?>
                             <?php endif; ?>
                             <div class="book-card__content">
                                 <h3 class="book-card__title">
-                                    <?php echo esc_html(get_option('samira_book_title', 'To Water Her Garden: A journey of self-discovery')); ?>
+                                    <?php echo esc_html(get_option('samira_book_title', __( 'To Water Her Garden: A journey of self-discovery', 'samira-theme' ))); ?>
                                 </h3>
-                                <p class="book-card__year"><?php echo esc_html(get_option('samira_book_year', '2019')); ?></p>
+                                <p class="book-card__year"><?php echo esc_html(get_option('samira_book_year', __( '2019', 'samira-theme' ))); ?></p>
                                 <p class="book-card__description">
                                       <?php echo esc_html( get_option('samira_book_description', __( 'Within this space I revealed the reasons behind my sadness and where I also discovered my greatest power: myself.', 'samira-theme' )) ); ?>
                                 </p>
@@ -229,7 +229,7 @@ get_header(); ?>
 
     <?php else: ?>
 
-        <!-- Template per altre pagine -->
+        <!-- Template for other pages -->
         <div class="container">
             <div class="content-area">
                 <?php if (have_posts()): ?>

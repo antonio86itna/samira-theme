@@ -204,7 +204,7 @@ function samira_render_general_tab() {
                 </th>
                 <td>
                     <input type="text" id="samira_logo_text" name="samira_logo_text" 
-                           value="<?php echo esc_attr(get_option('samira_logo_text', 'SM')); ?>" 
+                           value="<?php echo esc_attr(get_option('samira_logo_text', __( 'SM', 'samira-theme' ))); ?>"
                            class="regular-text" />
                     <p class="description"><?php _e('Logo text if you don\'t upload a custom logo', 'samira-theme'); ?></p>
                 </td>
@@ -216,7 +216,7 @@ function samira_render_general_tab() {
                 </th>
                 <td>
                     <input type="text" id="samira_copyright_name" name="samira_copyright_name" 
-                           value="<?php echo esc_attr(get_option('samira_copyright_name', 'Samira Mahmoodi')); ?>" 
+                           value="<?php echo esc_attr(get_option('samira_copyright_name', __( 'Samira Mahmoodi', 'samira-theme' ))); ?>"
                            class="regular-text" />
                 </td>
             </tr>
@@ -226,7 +226,7 @@ function samira_render_general_tab() {
                     <label for="samira_footer_text"><?php _e('Footer Text', 'samira-theme'); ?></label>
                 </th>
                 <td>
-                    <textarea id="samira_footer_text" name="samira_footer_text" rows="3" class="large-text"><?php echo esc_textarea(get_option('samira_footer_text', 'Writer and artist. Art is my safe haven for self-expression.')); ?></textarea>
+                    <textarea id="samira_footer_text" name="samira_footer_text" rows="3" class="large-text"><?php echo esc_textarea(get_option('samira_footer_text', __( 'Writer and artist. Art is my safe haven for self-expression.', 'samira-theme' ))); ?></textarea>
                 </td>
             </tr>
 
@@ -296,7 +296,7 @@ function samira_render_hero_tab() {
                 </th>
                 <td>
                     <input type="text" id="samira_hero_title" name="samira_hero_title" 
-                           value="<?php echo esc_attr(get_option('samira_hero_title', 'Samira Mahmoodi')); ?>" 
+                           value="<?php echo esc_attr(get_option('samira_hero_title', __( 'Samira Mahmoodi', 'samira-theme' ))); ?>"
                            class="large-text" />
                 </td>
             </tr>
@@ -307,7 +307,7 @@ function samira_render_hero_tab() {
                 </th>
                 <td>
                     <input type="text" id="samira_hero_subtitle" name="samira_hero_subtitle" 
-                           value="<?php echo esc_attr(get_option('samira_hero_subtitle', 'Writing, Art, Rebirth')); ?>" 
+                           value="<?php echo esc_attr(get_option('samira_hero_subtitle', __( 'Writing, Art, Rebirth', 'samira-theme' ))); ?>"
                            class="large-text" />
                 </td>
             </tr>
@@ -355,7 +355,7 @@ function samira_render_about_tab() {
                 </th>
                 <td>
                     <input type="text" id="samira_about_title" name="samira_about_title" 
-                           value="<?php echo esc_attr(get_option('samira_about_title', 'About Me')); ?>" 
+                           value="<?php echo esc_attr(get_option('samira_about_title', __( 'About Me', 'samira-theme' ))); ?>"
                            class="large-text" />
                 </td>
             </tr>
@@ -366,7 +366,7 @@ function samira_render_about_tab() {
                 </th>
                 <td>
                     <?php
-                    $about_content = get_option('samira_about_content', 'Samira Mahmoodi began writing shortly after graduating from college...');
+                    $about_content = get_option('samira_about_content', __( 'Samira Mahmoodi began writing shortly after graduating from college...', 'samira-theme' ));
                     wp_editor($about_content, 'samira_about_content', array(
                         'textarea_rows' => 10,
                         'media_buttons' => false,
@@ -401,7 +401,7 @@ function samira_render_writing_tab() {
                 </th>
                 <td>
                     <input type="text" id="samira_book_title" name="samira_book_title" 
-                           value="<?php echo esc_attr(get_option('samira_book_title', 'To Water Her Garden: A journey of self-discovery')); ?>" 
+                           value="<?php echo esc_attr(get_option('samira_book_title', __( 'To Water Her Garden: A journey of self-discovery', 'samira-theme' ))); ?>"
                            class="large-text" />
                 </td>
             </tr>
@@ -412,7 +412,7 @@ function samira_render_writing_tab() {
                 </th>
                 <td>
                     <input type="text" id="samira_book_year" name="samira_book_year" 
-                           value="<?php echo esc_attr(get_option('samira_book_year', '2019')); ?>" 
+                           value="<?php echo esc_attr(get_option('samira_book_year', __( '2019', 'samira-theme' ))); ?>"
                            class="regular-text" />
                 </td>
             </tr>
@@ -422,7 +422,7 @@ function samira_render_writing_tab() {
                     <label for="samira_book_description"><?php _e('Book Description', 'samira-theme'); ?></label>
                 </th>
                 <td>
-                    <textarea id="samira_book_description" name="samira_book_description" rows="4" class="large-text"><?php echo esc_textarea(get_option('samira_book_description', 'In this space I unveiled the reasons behind my sadness...')); ?></textarea>
+                    <textarea id="samira_book_description" name="samira_book_description" rows="4" class="large-text"><?php echo esc_textarea(get_option('samira_book_description', __( 'In this space I unveiled the reasons behind my sadness...', 'samira-theme' ))); ?></textarea>
                 </td>
             </tr>
 
@@ -691,7 +691,7 @@ function samira_newsletter_page() {
                                 </th>
                                 <td>
                                     <input type="text" id="samira_newsletter_title" name="samira_newsletter_title" 
-                                           value="<?php echo esc_attr(get_option('samira_newsletter_title', 'Stay Connected')); ?>" 
+                                           value="<?php echo esc_attr(get_option('samira_newsletter_title', __( 'Stay Connected', 'samira-theme' ))); ?>"
                                            class="large-text" />
                                 </td>
                             </tr>
@@ -702,7 +702,7 @@ function samira_newsletter_page() {
                                 </th>
                                 <td>
                                     <textarea id="samira_newsletter_description" name="samira_newsletter_description" 
-                                              rows="3" class="large-text"><?php echo esc_textarea(get_option('samira_newsletter_description', 'Subscribe to receive my thoughts, updates on current and future releases.')); ?></textarea>
+                                              rows="3" class="large-text"><?php echo esc_textarea(get_option('samira_newsletter_description', __( 'Subscribe to receive my thoughts, updates on current and future releases.', 'samira-theme' ))); ?></textarea>
                                 </td>
                             </tr>
                         </table>

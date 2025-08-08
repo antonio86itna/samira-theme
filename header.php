@@ -33,7 +33,7 @@
 						?>
 						<h1 class="site-title">
 							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-								<?php echo esc_html( get_option( 'samira_logo_text', 'SM' ) ); ?>
+                                                                <?php echo esc_html( get_option( 'samira_logo_text', __( 'SM', 'samira-theme' ) ) ); ?>
 							</a>
 						</h1>
 						<?php
