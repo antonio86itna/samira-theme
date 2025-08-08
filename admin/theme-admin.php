@@ -449,6 +449,46 @@ function samira_render_writing_tab() {
                     </div>
                 </td>
             </tr>
+            <tr>
+                <th scope="row">
+                    <label for="samira_book_link_amazon"><?php _e('Amazon Link', 'samira-theme'); ?></label>
+                </th>
+                <td>
+                    <input type="url" id="samira_book_link_amazon" name="samira_book_link_amazon"
+                           value="<?php echo esc_attr(get_option('samira_book_link_amazon', '')); ?>"
+                           class="large-text" />
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <label for="samira_book_link_bam"><?php _e('Books-A-Million Link', 'samira-theme'); ?></label>
+                </th>
+                <td>
+                    <input type="url" id="samira_book_link_bam" name="samira_book_link_bam"
+                           value="<?php echo esc_attr(get_option('samira_book_link_bam', '')); ?>"
+                           class="large-text" />
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <label for="samira_book_link_bookshop"><?php _e('Bookshop Link', 'samira-theme'); ?></label>
+                </th>
+                <td>
+                    <input type="url" id="samira_book_link_bookshop" name="samira_book_link_bookshop"
+                           value="<?php echo esc_attr(get_option('samira_book_link_bookshop', '')); ?>"
+                           class="large-text" />
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <label for="samira_book_link_bn"><?php _e('Barnes &amp; Noble Link', 'samira-theme'); ?></label>
+                </th>
+                <td>
+                    <input type="url" id="samira_book_link_bn" name="samira_book_link_bn"
+                           value="<?php echo esc_attr(get_option('samira_book_link_bn', '')); ?>"
+                           class="large-text" />
+                </td>
+            </tr>
         </table>
     </div>
     <?php
