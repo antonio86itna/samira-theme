@@ -26,7 +26,7 @@
         const savedMode = localStorage.getItem('samira-dark-mode');
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const defaultOn = typeof samira_dark_mode !== 'undefined' && Boolean(Number(samira_dark_mode.default_on));
-        const shouldBeDark = savedMode ? savedMode === 'true' : (defaultOn ? true : systemPrefersDark);
+        const shouldBeDark = savedMode === null ? (defaultOn || systemPrefersDark) : savedMode === 'true';
 
         // Apply initial mode
         if (shouldBeDark) {

@@ -299,7 +299,7 @@ function samira_body_classes($classes) {
     }
     
     // Aggiungi classe per dark mode (se abilitato di default)
-    if (get_option('samira_enable_dark_mode', false)) {
+    if (boolval(samira_get_option('samira_enable_dark_mode', false))) {
         $classes[] = 'dark-mode';
     }
     
