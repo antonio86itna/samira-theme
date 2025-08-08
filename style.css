@@ -559,6 +559,28 @@ a:hover {
   line-height: 1.6;
 }
 
+.portfolio-tabs {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-lg);
+}
+
+.portfolio-tab {
+  border: 2px solid var(--color-accent);
+  background: transparent;
+  color: var(--color-text);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.portfolio-tab.active,
+.portfolio-tab:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
 /* Newsletter Section */
 .newsletter {
   text-align: center;

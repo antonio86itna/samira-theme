@@ -24,6 +24,7 @@
         initNewsletterForm();
         initScrollToTop();
         initLazyLoading();
+        initPortfolioTabs();
     }
 
     // Smooth scrolling for anchor links
@@ -285,6 +286,38 @@
                 imageObserver.observe(this);
             });
         }
+    }
+
+    // Portfolio tabs filtering
+    function initPortfolioTabs() {
+        const $container = $('.portfolio-tabs');
+        if (!$container.length) {
+            return;
+        }
+
+        const $tabs = $container.find('.portfolio-tab');
+        const $items = $('.portfolio-item');
+        const current = $container.data('current') || 'all';
+
+        $tabs.on('click', function() {
+            const term = $(this).data('term');
+            $tabs.removeClass('active');
+            $(this).addClass('active');
+
+            if (term === 'all') {
+                $items.show();
+            } else {
+                $items.hide().filter(function() {
+                    const terms = $(this).data('terms');
+                    if (!terms) {
+                        return false;
+                    }
+                    return terms.split(' ').includes(term);
+                }).show();
+            }
+        });
+
+        $container.find(`[data-term="${current}"]`).trigger('click');
     }
 
     // Update active navigation link

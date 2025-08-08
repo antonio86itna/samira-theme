@@ -235,6 +235,7 @@ function samira_custom_post_types() {
         'menu_icon' => 'dashicons-art',
         'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'),
         'has_archive' => true,
+        'taxonomies' => array('art_type'),
         'rewrite' => array('slug' => 'portfolio'),
         'show_in_rest' => true,
     ));
@@ -261,6 +262,32 @@ function samira_custom_post_types() {
     ));
 }
 add_action('init', 'samira_custom_post_types');
+
+/**
+ * Custom Taxonomies
+ */
+function samira_custom_taxonomies() {
+    register_taxonomy('art_type', array('portfolio'), array(
+        'labels' => array(
+            'name'          => __( 'Art Types', 'samira-theme' ),
+            'singular_name' => __( 'Art Type', 'samira-theme' ),
+            'search_items'  => __( 'Search Art Types', 'samira-theme' ),
+            'all_items'     => __( 'All Art Types', 'samira-theme' ),
+            'edit_item'     => __( 'Edit Art Type', 'samira-theme' ),
+            'update_item'   => __( 'Update Art Type', 'samira-theme' ),
+            'add_new_item'  => __( 'Add New Art Type', 'samira-theme' ),
+            'new_item_name' => __( 'New Art Type Name', 'samira-theme' ),
+            'menu_name'     => __( 'Art Types', 'samira-theme' ),
+        ),
+        'hierarchical'      => false,
+        'public'            => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'rewrite'           => array('slug' => 'art-type'),
+    ));
+}
+add_action('init', 'samira_custom_taxonomies');
 
 /**
  * Book purchase links meta box.
