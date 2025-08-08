@@ -66,7 +66,7 @@
                                 <div class="header__actions">
 					<!-- Dark Mode Toggle -->
                                        <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="<?php esc_attr_e( 'Toggle dark mode', 'samira-theme' ); ?>">
-                                               <svg class="dark-mode-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+                                               <svg class="dark-mode-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
                                        </button>
 
 					<!-- Contact Button -->

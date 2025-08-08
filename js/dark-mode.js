@@ -90,9 +90,11 @@
         }
 
         function updateToggleIcon(isDark) {
-            const icon = toggle.querySelector('svg');
+            const icon = toggle.querySelector('.dark-mode-icon');
 
             if (!icon) return;
+
+            icon.setAttribute('viewBox', '0 0 24 24');
 
             if (isDark) {
                 // Moon icon for dark mode
