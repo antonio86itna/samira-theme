@@ -685,6 +685,7 @@ function samira_newsletter_page() {
                                         <option value="mailchimp" <?php selected(get_option('samira_newsletter_provider'), 'mailchimp'); ?>>Mailchimp</option>
                                         <option value="brevo" <?php selected(get_option('samira_newsletter_provider'), 'brevo'); ?>>Brevo (SendinBlue)</option>
                                     </select>
+                                    <span id="provider-status" class="samira-provider-status"></span>
                                 </td>
                             </tr>
 
@@ -802,17 +803,13 @@ function samira_newsletter_page() {
 
     <script>
     jQuery(document).ready(function($) {
-        $('#test-connection').click(function() {
-            var provider = $('#newsletter-provider').val();
-            var apiKey = $('input[name="samira_newsletter_api_key"]').val();
-            var listId = $('input[name="samira_newsletter_list_id"]').val();
+        function updateProviderStatus(success, message) {
+            var color = success ? 'green' : 'red';
+            $('#provider-status').html('<span style="color: ' + color + ';">' + (success ? '<?php echo esc_js(__('Connected', 'samira-theme')); ?>' : '<?php echo esc_js(__('Disconnected', 'samira-theme')); ?>') + (message ? ': ' + message : '') + '</span>');
+        }
 
-            if (!provider || !apiKey || !listId) {
-                $('#test-result').html('<span style="color: red;">Fill all fields before testing</span>');
-                return;
-            }
-
-            $('#test-result').html('<span>Testing...</span>');
+        function testConnection(provider, apiKey, listId) {
+            $('#test-result').html('<span><?php echo esc_js(__('Testing...', 'samira-theme')); ?></span>');
 
             $.post(ajaxurl, {
                 action: 'samira_test_newsletter',
@@ -821,24 +818,47 @@ function samira_newsletter_page() {
                 api_key: apiKey,
                 list_id: listId
             }, function(response) {
+                updateProviderStatus(response.success, response.data.message);
                 if (response.success) {
                     $('#test-result').html('<span style="color: green;">✓ ' + response.data.message + '</span>');
                 } else {
                     $('#test-result').html('<span style="color: red;">✗ ' + response.data.message + '</span>');
                 }
             });
+        }
+
+        $('#test-connection').click(function() {
+            var provider = $('#newsletter-provider').val();
+            var apiKey = $('input[name="samira_newsletter_api_key"]').val();
+            var listId = $('input[name="samira_newsletter_list_id"]').val();
+
+            if (!provider || !apiKey || !listId) {
+                $('#test-result').html('<span style="color: red;"><?php echo esc_js(__('Fill all fields before testing', 'samira-theme')); ?></span>');
+                return;
+            }
+
+            testConnection(provider, apiKey, listId);
         });
+
+        var initialProvider = $('#newsletter-provider').val();
+        var initialApiKey = $('input[name="samira_newsletter_api_key"]').val();
+        var initialListId = $('input[name="samira_newsletter_list_id"]').val();
+        if (initialProvider && initialApiKey && initialListId) {
+            testConnection(initialProvider, initialApiKey, initialListId);
+        } else {
+            updateProviderStatus(false, '<?php echo esc_js(__('Not configured', 'samira-theme')); ?>');
+        }
 
         $('#load-lists').click(function() {
             var provider = $('#newsletter-provider').val();
             var apiKey = $('input[name="samira_newsletter_api_key"]').val();
 
             if (!provider || !apiKey) {
-                alert('Select a provider and enter API key');
+                alert('<?php echo esc_js(__('Select a provider and enter API key', 'samira-theme')); ?>');
                 return;
             }
 
-            $('#available-lists').html('Loading lists...');
+            $('#available-lists').html('<?php echo esc_js(__('Loading lists...', 'samira-theme')); ?>');
 
             $.post(ajaxurl, {
                 action: 'samira_get_newsletter_lists',
@@ -847,10 +867,10 @@ function samira_newsletter_page() {
                 api_key: apiKey
             }, function(response) {
                 if (response.success && response.data.lists) {
-                    var html = '<h4>Available lists:</h4><ul>';
+                    var html = '<h4><?php echo esc_js(__('Available lists:', 'samira-theme')); ?></h4><ul>';
                     $.each(response.data.lists, function(id, list) {
-                        html += '<li><strong>' + list.name + '</strong> (ID: ' + id + ', Subscribers: ' + list.subscribers + ') ';
-                        html += '<button type="button" class="button button-small select-list" data-id="' + id + '">Select</button></li>';
+                        html += '<li><strong>' + list.name + '</strong> (ID: ' + id + ', <?php echo esc_js(__('Subscribers', 'samira-theme')); ?>: ' + list.subscribers + ')';
+                        html += '<button type="button" class="button button-small select-list" data-id="' + id + '"><?php echo esc_js(__('Select', 'samira-theme')); ?></button></li>';
                     });
                     html += '</ul>';
                     $('#available-lists').html(html);
@@ -866,7 +886,7 @@ function samira_newsletter_page() {
         $(document).on('click', '.select-list', function() {
             var listId = $(this).data('id');
             $('input[name="samira_newsletter_list_id"]').val(listId);
-            $(this).text('Selected').prop('disabled', true);
+            $(this).text('<?php echo esc_js(__('Selected', 'samira-theme')); ?>').prop('disabled', true);
         });
     });
     </script>

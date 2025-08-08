@@ -193,12 +193,24 @@ function samira_brevo_subscribe($email, $name, $api_key, $list_id) {
  * Test newsletter connection
  */
 function samira_test_newsletter_connection($provider, $api_key, $list_id) {
+    if (empty($provider)) {
+        return array('success' => false, 'message' => __( 'Please select a provider', 'samira-theme' ));
+    }
+
+    if (empty($api_key)) {
+        return array('success' => false, 'message' => __( 'API key is required', 'samira-theme' ));
+    }
+
+    if (empty($list_id)) {
+        return array('success' => false, 'message' => __( 'List ID is required', 'samira-theme' ));
+    }
+
     if ($provider === 'mailchimp') {
         return samira_test_mailchimp_connection($api_key, $list_id);
     } elseif ($provider === 'brevo') {
         return samira_test_brevo_connection($api_key, $list_id);
     }
-    
+
     return array('success' => false, 'message' => __( 'Provider not supported', 'samira-theme' ));
 }
 
@@ -222,7 +234,10 @@ function samira_test_mailchimp_connection($api_key, $list_id) {
     ));
     
     if (is_wp_error($response)) {
-        return array('success' => false, 'message' => __( 'Connection error', 'samira-theme' ));
+        return array(
+            'success' => false,
+            'message' => sprintf(__('Connection error: %s', 'samira-theme'), $response->get_error_message())
+        );
     }
     
     $response_code = wp_remote_retrieve_response_code($response);
@@ -254,7 +269,10 @@ function samira_test_brevo_connection($api_key, $list_id) {
     ));
     
     if (is_wp_error($response)) {
-        return array('success' => false, 'message' => __( 'Connection error', 'samira-theme' ));
+        return array(
+            'success' => false,
+            'message' => sprintf(__('Connection error: %s', 'samira-theme'), $response->get_error_message())
+        );
     }
     
     $response_code = wp_remote_retrieve_response_code($response);
@@ -455,12 +473,20 @@ function samira_get_newsletter_lists_ajax() {
     if (!wp_verify_nonce($_POST['nonce'], 'samira_nonce') || !current_user_can('manage_options')) {
         wp_send_json_error(array('message' => __( 'Access denied', 'samira-theme' )));
     }
-    
+
     $provider = sanitize_text_field($_POST['provider'] ?? '');
-    $api_key = sanitize_text_field($_POST['api_key'] ?? '');
-    
+    $api_key  = sanitize_text_field($_POST['api_key'] ?? '');
+
+    if (empty($provider) || empty($api_key)) {
+        wp_send_json_error(array('message' => __( 'Provider and API key required', 'samira-theme' )));
+    }
+
     $lists = samira_get_newsletter_lists($provider, $api_key);
-    
+
+    if (empty($lists)) {
+        wp_send_json_error(array('message' => __( 'No lists found or connection error', 'samira-theme' )));
+    }
+
     wp_send_json_success(array('lists' => $lists));
 }
 add_action('wp_ajax_samira_get_newsletter_lists', 'samira_get_newsletter_lists_ajax');
