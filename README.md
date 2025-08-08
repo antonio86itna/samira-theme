@@ -13,6 +13,7 @@ Un tema WordPress moderno, elegante e completamente personalizzabile, progettato
 - **⚡ Performance Ottimizzate** - Lazy loading, CSS/JS minificati, caching-ready
 - **♿ Accessibilità WCAG** - Navigazione da tastiera, screen reader friendly
 - **🎨 Personalizzazione Avanzata** - Colori, tipografia, layout modificabili
+- **🌐 Multilingua Pronto** - File `.pot` per WPML/Polylang in `languages/`
 
 ### 🚀 Demo dal Vivo
 
@@ -31,6 +32,16 @@ Visualizza il tema in azione: [Demo Samira Theme](https://samira-theme-demo.com)
 2. **WordPress Admin** → Aspetto → Temi → Aggiungi Nuovo → Carica Tema
 3. **Attiva il tema** "Samira Theme" 
 4. **Configura** tramite il pannello "Samira Theme" nel menu admin
+
+### 🌐 Traduzioni e WPML
+
+Il tema è predisposto per la localizzazione. Il file sorgente delle stringhe si trova in `languages/samira-theme.pot` ed è compatibile con plugin come **WPML** e **Polylang**.
+
+Per rigenerare il file `.pot` è possibile utilizzare WP-CLI:
+
+```bash
+wp i18n make-pot . languages/samira-theme.pot
+```
 
 ### 🛠️ Configurazione
 
