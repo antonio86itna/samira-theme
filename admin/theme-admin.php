@@ -992,7 +992,7 @@ function samira_import_export_page() {
         <div class="samira-content">
             <div class="samira-main">
                 <div class="samira-card">
-                    <h2><?php _e('Export Settings', 'samira-theme'); ?></h2>
+                    <h2><?php _e('Download Settings', 'samira-theme'); ?></h2>
                     <form method="post" action="">
                         <?php wp_nonce_field('samira_import_export', 'samira_ie_nonce'); ?>
                         <p><?php _e('Download your current theme settings as a JSON file.', 'samira-theme'); ?></p>
@@ -1001,11 +1001,12 @@ function samira_import_export_page() {
                 </div>
 
                 <div class="samira-card">
-                    <h2><?php _e('Import Settings', 'samira-theme'); ?></h2>
+                    <h2><?php _e('Upload Settings', 'samira-theme'); ?></h2>
                     <form method="post" enctype="multipart/form-data">
                         <?php wp_nonce_field('samira_import_export', 'samira_ie_nonce'); ?>
+                        <p><?php _e('Upload a JSON file to import theme settings.', 'samira-theme'); ?></p>
                         <input type="file" name="samira_import_file" accept="application/json" />
-                        <p><input type="submit" name="samira_import" class="button button-primary" value="<?php esc_attr_e('Import Settings', 'samira-theme'); ?>" /></p>
+                        <p><input type="submit" name="samira_import" class="button button-primary" value="<?php esc_attr_e('Upload Settings', 'samira-theme'); ?>" /></p>
                     </form>
                 </div>
             </div>
