@@ -234,6 +234,12 @@ a:hover {
   .main-navigation .nav-menu {
     display: none;
   }
+
+  .main-navigation .nav-menu.active {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
 }
 
 /* Main Content */
