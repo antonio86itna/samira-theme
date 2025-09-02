@@ -70,7 +70,7 @@ samira_update_option('option_name', $sanitized_value);
   --color-background: #fcfcf9;
   --color-surface: #ffffff;
   --color-text: #1f2121;
-  --color-accent: #D4A574;
+  --color-accent: #e26f8e;
   
   /* Spacing system */
   --spacing-xs: 0.5rem;    /* 8px */
@@ -225,7 +225,7 @@ function samira_get_default_options() {
     return array(
         'samira_hero_title' => 'Samira Mahmoodi',
         'samira_hero_subtitle' => 'Scrittura, Arte, Rinascita',
-        'samira_accent_color' => '#D4A574',
+        'samira_accent_color' => '#e26f8e',
         // ... more defaults
     );
 }
@@ -437,7 +437,7 @@ describe('Dark Mode', () => {
 
 /* Use CSS custom properties for runtime changes */
 :root {
-    --dynamic-color: #D4A574;
+    --dynamic-color: #e26f8e;
 }
 .element {
     color: var(--dynamic-color); /* Easy to update via JS */

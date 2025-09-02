@@ -20,8 +20,8 @@ Requires PHP: 7.4
   --color-surface: #ffffff;
   --color-text: #1f2121;
   --color-text-secondary: #626c71;
-  --color-accent: #D4A574;
-  --color-accent-hover: #C19660;
+  --color-accent: #e26f8e;
+  --color-accent-hover: #CE5B7A;
   --color-border: #f5f5f5;
   --color-shadow: rgba(0, 0, 0, 0.1);
   --header-bg: rgba(252, 252, 249, 0.95);
@@ -53,8 +53,8 @@ body.dark-mode {
   --color-surface: #2a2a2a;
   --color-text: #f5f5f5;
   --color-text-secondary: #a0a0a0;
-  --color-accent: #E6B887;
-  --color-accent-hover: #D4A574;
+  --color-accent: #e26f8e;
+  --color-accent-hover: #CE5B7A;
   --color-border: #3a3a3a;
   --color-shadow: rgba(0, 0, 0, 0.3);
   --header-bg: rgba(26, 26, 26, 0.95);

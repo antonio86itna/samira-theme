@@ -32,7 +32,7 @@ function samira_customize_register($wp_customize) {
 
     // Accent color
     $wp_customize->add_setting('samira_accent_color', array(
-        'default' => '#D4A574',
+        'default' => '#e26f8e',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport' => 'postMessage',
     ));

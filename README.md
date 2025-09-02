@@ -108,7 +108,7 @@ Il tema usa variabili CSS per facile personalizzazione:
 
 ```css
 :root {
-  --color-accent: #D4A574;        /* Colore principale */
+  --color-accent: #e26f8e;        /* Colore principale */
   --color-background: #fcfcf9;    /* Sfondo chiaro */
   --color-text: #1f2121;          /* Testo principale */
 }

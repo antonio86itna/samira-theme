@@ -444,8 +444,8 @@ add_filter('excerpt_more', 'samira_excerpt_more');
  * Add custom meta tags
  */
 function samira_head_meta() {
-    echo '<meta name="theme-color" content="#D4A574">' . "\n";
-    echo '<meta name="msapplication-TileColor" content="#D4A574">' . "\n";
+    echo '<meta name="theme-color" content="#e26f8e">' . "\n";
+    echo '<meta name="msapplication-TileColor" content="#e26f8e">' . "\n";
     echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">' . "\n";
 }
 add_action('wp_head', 'samira_head_meta');
@@ -570,7 +570,7 @@ add_action('switch_theme', 'samira_theme_deactivation');
  * Add inline CSS for accent color
  */
 function samira_accent_color_css() {
-    $accent_color = get_option('samira_accent_color', '#D4A574');
+    $accent_color = get_option('samira_accent_color', '#e26f8e');
     
     // Generate hover color (darker)
     $rgb = sscanf($accent_color, "#%02x%02x%02x");

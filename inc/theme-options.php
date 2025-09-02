@@ -81,7 +81,7 @@ function samira_get_default_options() {
 
         // Branding
         'samira_logo_text'        => __( 'SM', 'samira-theme' ),
-        'samira_accent_color'     => '#D4A574',
+        'samira_accent_color'     => '#e26f8e',
         'samira_enable_dark_mode' => false,
 
         // Footer
@@ -312,7 +312,7 @@ function samira_get_social_links() {
  * Helper function to generate accent color CSS
  */
 function samira_get_accent_color_css() {
-    $accent_color = get_option('samira_accent_color', '#D4A574');
+    $accent_color = get_option('samira_accent_color', '#e26f8e');
 
     // Generate hover color (slightly darker)
     $rgb        = sscanf($accent_color, '#%02x%02x%02x');
