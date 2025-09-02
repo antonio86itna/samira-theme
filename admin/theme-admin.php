@@ -581,8 +581,8 @@ function samira_render_style_tab() {
                     <label for="samira_accent_color"><?php _e('Accent Color', 'samira-theme'); ?></label>
                 </th>
                 <td>
-                    <input type="color" id="samira_accent_color" name="samira_accent_color" 
-                           value="<?php echo esc_attr(get_option('samira_accent_color', '#D4A574')); ?>" 
+                    <input type="color" id="samira_accent_color" name="samira_accent_color"
+                           value="<?php echo esc_attr(get_option('samira_accent_color', '#e26f8e')); ?>"
                            class="samira-color-picker" />
                     <p class="description"><?php _e('Main color used for links, buttons and accents', 'samira-theme'); ?></p>
                 </td>
@@ -603,10 +603,10 @@ function samira_render_style_tab() {
 
         <h3><?php _e('Accent Color Preview', 'samira-theme'); ?></h3>
         <div class="samira-color-preview">
-            <div class="samira-preview-button" style="background-color: <?php echo esc_attr(get_option('samira_accent_color', '#D4A574')); ?>;">
+            <div class="samira-preview-button" style="background-color: <?php echo esc_attr(get_option('samira_accent_color', '#e26f8e')); ?>;">
                 <?php _e('Example Button', 'samira-theme'); ?>
             </div>
-            <p><span class="samira-preview-link" style="color: <?php echo esc_attr(get_option('samira_accent_color', '#D4A574')); ?>;"><?php _e('Example link', 'samira-theme'); ?></span></p>
+            <p><span class="samira-preview-link" style="color: <?php echo esc_attr(get_option('samira_accent_color', '#e26f8e')); ?>;"><?php _e('Example link', 'samira-theme'); ?></span></p>
         </div>
     </div>
 

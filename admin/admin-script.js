@@ -84,7 +84,7 @@ jQuery(document).ready(function($) {
                     updateColorPreview(color);
                 },
                 clear: function() {
-                    updateColorPreview('#D4A574');
+                    updateColorPreview('#e26f8e');
                 }
             });
         }

@@ -18,7 +18,7 @@
     font-size: 2rem;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 3px solid #D4A574;
+    border-bottom: 3px solid #e26f8e;
 }
 
 .samira-form {
@@ -47,13 +47,13 @@
 }
 
 .nav-tab:hover {
-    color: #D4A574;
+    color: #e26f8e;
     background: #f9fafb;
 }
 
 .nav-tab-active {
-    color: #D4A574 !important;
-    border-bottom-color: #D4A574 !important;
+    color: #e26f8e !important;
+    border-bottom-color: #e26f8e !important;
     background: #fff !important;
 }
 
@@ -100,7 +100,7 @@
     color: #1f2937;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #D4A574;
+    border-bottom: 2px solid #e26f8e;
 }
 
 .samira-tab-content h3 {
@@ -136,7 +136,7 @@
 .form-table input:focus,
 .form-table textarea:focus,
 .form-table select:focus {
-    border-color: #D4A574;
+    border-color: #e26f8e;
     outline: none;
     box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
 }
@@ -158,7 +158,7 @@
 }
 
 .samira-image-upload:hover {
-    border-color: #D4A574;
+    border-color: #e26f8e;
     background: #fff;
 }
 
@@ -190,7 +190,7 @@
 .samira-preview-button {
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    background-color: #D4A574;
+    background-color: #e26f8e;
     color: white;
     border-radius: 6px;
     font-weight: 600;
@@ -213,8 +213,8 @@
 }
 
 .samira-submit .button-primary {
-    background: #D4A574;
-    border-color: #D4A574;
+    background: #e26f8e;
+    border-color: #e26f8e;
     color: white;
     font-weight: 600;
     padding: 0.75rem 2rem;
@@ -225,8 +225,8 @@
 }
 
 .samira-submit .button-primary:hover {
-    background: #C19660;
-    border-color: #C19660;
+    background: #CE5B7A;
+    border-color: #CE5B7A;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(212, 165, 116, 0.4);
 }
@@ -248,7 +248,7 @@
 .stat-item strong {
     display: block;
     font-size: 1.5rem;
-    color: #D4A574;
+    color: #e26f8e;
     margin-bottom: 0.25rem;
 }
 
@@ -258,7 +258,7 @@
 }
 
 .notice {
-    border-left: 4px solid #D4A574 !important;
+    border-left: 4px solid #e26f8e !important;
     border-radius: 4px;
     margin: 1rem 0 !important;
 }
@@ -344,7 +344,7 @@
     width: 16px;
     height: 16px;
     border: 2px solid #f3f3f3;
-    border-top: 2px solid #D4A574;
+    border-top: 2px solid #e26f8e;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-right: 0.5rem;
@@ -374,24 +374,24 @@
 }
 
 .button-primary {
-    background: #D4A574 !important;
-    border-color: #D4A574 !important;
+    background: #e26f8e !important;
+    border-color: #e26f8e !important;
     box-shadow: 0 2px 4px rgba(212, 165, 116, 0.3) !important;
 }
 
 .button-primary:hover {
-    background: #C19660 !important;
-    border-color: #C19660 !important;
+    background: #CE5B7A !important;
+    border-color: #CE5B7A !important;
 }
 
 .button-secondary {
-    color: #D4A574 !important;
-    border-color: #D4A574 !important;
+    color: #e26f8e !important;
+    border-color: #e26f8e !important;
 }
 
 .button-secondary:hover {
     color: white !important;
-    background: #D4A574 !important;
+    background: #e26f8e !important;
 }
 
 /* WordPress editor customization */
@@ -402,7 +402,7 @@
 }
 
 .wp-editor-wrap:focus-within {
-    border-color: #D4A574;
+    border-color: #e26f8e;
     box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
 }
 
@@ -422,7 +422,7 @@ input[type="radio"] {
     width: 18px;
     height: 18px;
     margin-right: 0.5rem;
-    accent-color: #D4A574;
+    accent-color: #e26f8e;
 }
 
 /* Table enhancements */
@@ -497,7 +497,7 @@ input[type="radio"] {
 
 .samira-progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, #D4A574, #E6B887);
+    background: linear-gradient(90deg, #CE5B7A, #e26f8e);
     border-radius: 4px;
     transition: width 0.3s ease;
 }
