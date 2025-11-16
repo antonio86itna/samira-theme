@@ -98,6 +98,15 @@ function samira_get_default_options() {
         'samira_contact_email'   => '',
         'samira_contact_phone'   => '',
         'samira_contact_address' => '',
+
+        // About Page
+        'samira_about_page_title'       => __( 'About Me', 'samira-theme' ),
+        'samira_about_page_description' => '',
+        'samira_about_page_gallery'     => array(),
+
+        // Logo
+        'samira_logo_type'  => 'text', // 'text' or 'image'
+        'samira_logo_image' => '',
     );
 }
 
@@ -121,6 +130,7 @@ function samira_sanitize_option($value, $option_name) {
     switch ($option_name) {
         case 'samira_hero_image':
         case 'samira_book_cover':
+        case 'samira_logo_image':
         case 'samira_book_link_amazon':
         case 'samira_book_link_bam':
         case 'samira_book_link_bookshop':
@@ -139,6 +149,20 @@ function samira_sanitize_option($value, $option_name) {
 
         case 'samira_enable_dark_mode':
             return (bool) $value;
+
+        case 'samira_about_page_gallery':
+            // Ensure it's an array of integers
+            if (is_array($value)) {
+                return array_map('intval', array_filter($value));
+            }
+            return array();
+
+        case 'samira_about_page_description':
+        case 'samira_about_content':
+            return wp_kses_post($value);
+
+        case 'samira_logo_type':
+            return in_array($value, array('text', 'image')) ? $value : 'text';
 
         default:
             return sanitize_text_field($value);

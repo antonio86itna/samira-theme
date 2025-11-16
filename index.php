@@ -23,7 +23,7 @@ get_header(); ?>
                         </p>
                         <div class="hero__actions">
                             <a href="#about" class="btn btn--primary"><?php echo esc_html__( 'Discover my story', 'samira-theme' ); ?></a>
-                            <a href="#newsletter" class="btn btn--outline"><?php echo esc_html__( 'Subscribe to the newsletter', 'samira-theme' ); ?></a>
+                            <a href="#newsletter" class="btn btn--outline"><?php echo esc_html__( 'Join the newsletter', 'samira-theme' ); ?></a>
                         </div>
                     </div>
                     <div class="hero__image">
@@ -47,28 +47,22 @@ get_header(); ?>
         <section class="about section" id="about">
             <div class="container">
                 <h2 class="section__title"><?php echo esc_html( get_option('samira_about_title', __( 'About Me', 'samira-theme' )) ); ?></h2>
-                <div class="about__grid">
-                    <div class="about__content">
-                        <div class="about__text">
-                            <?php 
-                            $about_content = get_option('samira_about_content', __( 'Samira Mahmoodi began writing shortly after graduating from college. In 2016, she received a Bachelor of Science in Nursing. Unable to suppress her despair at that time, journaling her feelings led her to rediscover her love for art and literature.', 'samira-theme' ));
-                            echo wp_kses_post(wpautop($about_content));
-                            ?>
-                        </div>
-                    </div>
-                    <div class="about__journey">
-                        <h3 class="about__subtitle"><?php echo esc_html__( 'My Journey', 'samira-theme' ); ?></h3>
-                        <p><?php echo esc_html__( 'In 2019 I published my first book, a story of personal discovery that revealed the reasons behind my sadness and where I also found my greatest power: myself.', 'samira-theme' ); ?></p>
-                        <p><?php echo esc_html__( 'Art has always spoken to me and understood me better than anyone else. It has always been my safe haven for self-expression.', 'samira-theme' ); ?></p>
+                <div class="about__content-centered">
+                    <div class="about__text">
+                        <?php
+                        $about_content = get_option('samira_about_content', __( 'Samira Mahmoodi began writing shortly after graduating from college. In 2016, she received a Bachelor of Science in Nursing. Unable to suppress her despair at that time, journaling her feelings led her to rediscover her love for art and literature.', 'samira-theme' ));
+                        echo wp_kses_post(wpautop($about_content));
+                        ?>
+                        <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>" class="about__read-more"><?php echo esc_html__( 'Read More', 'samira-theme' ); ?></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Writing Section -->
+        <!-- Books Section -->
         <section class="writing section" id="writing">
             <div class="container">
-                <h2 class="section__title"><?php echo esc_html__( 'My Books', 'samira-theme' ); ?></h2>
+                <h2 class="section__title"><?php echo esc_html__( 'Books', 'samira-theme' ); ?></h2>
                 <div class="writing__content">
                     <?php
                     // Store links configuration
@@ -178,7 +172,7 @@ get_header(); ?>
         <!-- Art Section -->
         <section class="art section" id="art">
             <div class="container">
-                <h2 class="section__title"><?php echo esc_html__( 'My Art', 'samira-theme' ); ?></h2>
+                <h2 class="section__title"><?php echo esc_html__( 'Art', 'samira-theme' ); ?></h2>
                 <div class="art__content">
                       <p class="art__description"><?php echo esc_html__( 'Art has spoken to me and understood me better than anyone else. It has always been my safe haven for self-expression. Creating my art empowers me beyond explanation.', 'samira-theme' ); ?></p>
                     <div class="art__gallery">
@@ -249,7 +243,7 @@ get_header(); ?>
                             </div>
                         </div>
                         <button type="submit" class="btn btn--primary newsletter__submit">
-                            <span class="btn-text"><?php echo esc_html__( 'Subscribe to the Newsletter', 'samira-theme' ); ?></span>
+                            <span class="btn-text"><?php echo esc_html__( 'Join the newsletter', 'samira-theme' ); ?></span>
                             <span class="btn-loading" style="display: none;">
                                 <span class="loading-spinner"></span> <?php echo esc_html__( 'Subscribing...', 'samira-theme' ); ?>
                             </span>

@@ -5,11 +5,19 @@
             <div class="footer-content">
                 <!-- About Section -->
                 <div class="footer-about">
-                    <?php if (has_custom_logo()): ?>
-                        <?php the_custom_logo(); ?>
+                    <?php
+                    $logo_type = get_option('samira_logo_type', 'text');
+                    $logo_image = get_option('samira_logo_image', '');
+                    $logo_text = get_option('samira_logo_text', __( 'SM', 'samira-theme' ));
+
+                    if ($logo_type === 'image' && $logo_image):
+                        ?>
+                        <a href="<?php echo esc_url(home_url('/')); ?>" class="footer-logo-link" rel="home">
+                            <img src="<?php echo esc_url($logo_image); ?>" alt="<?php bloginfo('name'); ?>" class="footer-logo-image">
+                        </a>
                     <?php else: ?>
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="footer-logo" rel="home">
-                            <?php echo esc_html(get_option('samira_logo_text', __( 'SM', 'samira-theme' ))); ?>
+                            <?php echo esc_html($logo_text); ?>
                         </a>
                     <?php endif; ?>
                     
@@ -106,7 +114,7 @@
                                        required>
                             </div>
                             <button type="submit" class="newsletter-submit">
-                                <?php esc_html_e('Subscribe', 'samira-theme'); ?>
+                                <?php esc_html_e('Join the newsletter', 'samira-theme'); ?>
                             </button>
                         </form>
                         <div id="newsletter-message" class="newsletter-message" style="display: none;"></div>
@@ -218,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .finally(() => {
                 // Re-enable submit button
                 submitBtn.disabled = false;
-                submitBtn.textContent = '<?php esc_html_e('Subscribe', 'samira-theme'); ?>';
+                submitBtn.textContent = '<?php esc_html_e('Join the newsletter', 'samira-theme'); ?>';
             });
         });
     }

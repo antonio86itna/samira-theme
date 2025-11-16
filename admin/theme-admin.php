@@ -87,15 +87,18 @@ function samira_admin_page() {
                 <?php _e('Hero Section', 'samira-theme'); ?>
             </a>
             <a href="?page=samira-theme-settings&tab=about" class="nav-tab <?php echo $current_tab === 'about' ? 'nav-tab-active' : ''; ?>">
-                <?php _e('About Me', 'samira-theme'); ?>
+                <?php _e('About Section', 'samira-theme'); ?>
             </a>
-            <a href="?page=samira-theme-settings&tab=writing" class="nav-tab <?php echo $current_tab === 'writing' ? 'nav-tab-active' : ''; ?>">
-                <?php _e('Writing', 'samira-theme'); ?>
+            <a href="?page=samira-theme-settings&tab=about-page" class="nav-tab <?php echo $current_tab === 'about-page' ? 'nav-tab-active' : ''; ?>">
+                <?php _e('About Page', 'samira-theme'); ?>
+            </a>
+            <a href="?page=samira-theme-settings&tab=books" class="nav-tab <?php echo $current_tab === 'books' ? 'nav-tab-active' : ''; ?>">
+                <?php _e('Books Section', 'samira-theme'); ?>
             </a>
             <a href="?page=samira-theme-settings&tab=social" class="nav-tab <?php echo $current_tab === 'social' ? 'nav-tab-active' : ''; ?>">
                 <?php _e('Social Media', 'samira-theme'); ?>
             </a>
-            <a href="?page=samira-theme-settings&tab=style" class="nav-tab <?php echo $current_tab === 'style' ? 'nav-tab-active' : ''; ?>">
+            <a href="?page=samira-theme-settings&tab=style" class="nav-tab <?php echo $current_tab === 'social' ? 'nav-tab-active' : ''; ?>">
                 <?php _e('Style', 'samira-theme'); ?>
             </a>
         </nav>
@@ -113,8 +116,11 @@ function samira_admin_page() {
                         case 'about':
                             samira_render_about_tab();
                             break;
-                        case 'writing':
-                            samira_render_writing_tab();
+                        case 'about-page':
+                            samira_render_about_page_tab();
+                            break;
+                        case 'books':
+                            samira_render_books_tab();
                             break;
                         case 'social':
                             samira_render_social_tab();
@@ -197,18 +203,86 @@ function samira_render_general_tab() {
     <div class="samira-tab-content">
         <h2><?php _e('General Settings', 'samira-theme'); ?></h2>
 
+        <h3><?php _e('Logo Settings', 'samira-theme'); ?></h3>
         <table class="form-table">
             <tr>
+                <th scope="row">
+                    <label><?php _e('Logo Type', 'samira-theme'); ?></label>
+                </th>
+                <td>
+                    <fieldset>
+                        <label>
+                            <input type="radio" name="samira_logo_type" value="text"
+                                   <?php checked(get_option('samira_logo_type', 'text'), 'text'); ?> />
+                            <?php _e('Text Logo', 'samira-theme'); ?>
+                        </label><br>
+                        <label>
+                            <input type="radio" name="samira_logo_type" value="image"
+                                   <?php checked(get_option('samira_logo_type', 'text'), 'image'); ?> />
+                            <?php _e('Image Logo', 'samira-theme'); ?>
+                        </label>
+                    </fieldset>
+                    <p class="description"><?php _e('Choose between a text-based logo or an image logo', 'samira-theme'); ?></p>
+                </td>
+            </tr>
+
+            <tr class="logo-text-option">
                 <th scope="row">
                     <label for="samira_logo_text"><?php _e('Logo Text', 'samira-theme'); ?></label>
                 </th>
                 <td>
-                    <input type="text" id="samira_logo_text" name="samira_logo_text" 
+                    <input type="text" id="samira_logo_text" name="samira_logo_text"
                            value="<?php echo esc_attr(get_option('samira_logo_text', __( 'SM', 'samira-theme' ))); ?>"
                            class="regular-text" />
-                    <p class="description"><?php _e('Logo text if you don\'t upload a custom logo', 'samira-theme'); ?></p>
+                    <p class="description"><?php _e('Text to display as your logo', 'samira-theme'); ?></p>
                 </td>
             </tr>
+
+            <tr class="logo-image-option">
+                <th scope="row">
+                    <label for="samira_logo_image"><?php _e('Logo Image', 'samira-theme'); ?></label>
+                </th>
+                <td>
+                    <div class="samira-image-upload">
+                        <input type="hidden" id="samira_logo_image" name="samira_logo_image"
+                               value="<?php echo esc_url(get_option('samira_logo_image', '')); ?>" />
+                        <div class="samira-image-preview">
+                            <?php
+                            $logo_image = get_option('samira_logo_image', '');
+                            if ($logo_image): ?>
+                                <img src="<?php echo esc_url($logo_image); ?>" alt="Logo" style="max-width: 200px; max-height: 80px; height: auto;" />
+                            <?php endif; ?>
+                        </div>
+                        <p>
+                            <button type="button" class="button samira-upload-image"><?php _e('Upload Logo', 'samira-theme'); ?></button>
+                            <button type="button" class="button samira-remove-image"><?php _e('Remove Logo', 'samira-theme'); ?></button>
+                        </p>
+                        <p class="description"><?php _e('Recommended size: 200x60px (PNG format with transparent background recommended)', 'samira-theme'); ?></p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <script>
+        jQuery(document).ready(function($) {
+            function toggleLogoOptions() {
+                var logoType = $('input[name="samira_logo_type"]:checked').val();
+                if (logoType === 'text') {
+                    $('.logo-text-option').show();
+                    $('.logo-image-option').hide();
+                } else {
+                    $('.logo-text-option').hide();
+                    $('.logo-image-option').show();
+                }
+            }
+
+            toggleLogoOptions();
+            $('input[name="samira_logo_type"]').on('change', toggleLogoOptions);
+        });
+        </script>
+
+        <h3><?php _e('Site Information', 'samira-theme'); ?></h3>
+        <table class="form-table">
 
             <tr>
                 <th scope="row">
@@ -382,12 +456,251 @@ function samira_render_about_tab() {
 }
 
 /**
- * Render Writing Tab
+ * Render About Page Tab
  */
-function samira_render_writing_tab() {
+function samira_render_about_page_tab() {
     ?>
     <div class="samira-tab-content">
-        <h2><?php _e('Writing Section', 'samira-theme'); ?></h2>
+        <h2><?php _e('About Page Settings', 'samira-theme'); ?></h2>
+
+        <p class="description">
+            <?php _e('Configure the standalone About page with a custom image gallery. Create a new page and select the "About Page" template.', 'samira-theme'); ?>
+        </p>
+
+        <table class="form-table">
+            <tr>
+                <th scope="row">
+                    <label for="samira_about_page_title"><?php _e('Page Title', 'samira-theme'); ?></label>
+                </th>
+                <td>
+                    <input type="text" id="samira_about_page_title" name="samira_about_page_title"
+                           value="<?php echo esc_attr(get_option('samira_about_page_title', __( 'About Me', 'samira-theme' ))); ?>"
+                           class="large-text" />
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">
+                    <label for="samira_about_page_description"><?php _e('Page Description', 'samira-theme'); ?></label>
+                </th>
+                <td>
+                    <?php
+                    $about_page_description = get_option('samira_about_page_description', '');
+                    wp_editor($about_page_description, 'samira_about_page_description', array(
+                        'textarea_rows' => 10,
+                        'media_buttons' => true,
+                        'teeny' => false
+                    ));
+                    ?>
+                    <p class="description"><?php _e('Detailed content for your About page', 'samira-theme'); ?></p>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">
+                    <label><?php _e('Image Gallery', 'samira-theme'); ?></label>
+                </th>
+                <td>
+                    <div class="samira-gallery-upload">
+                        <input type="hidden" id="samira_about_page_gallery" name="samira_about_page_gallery"
+                               value="<?php echo esc_attr(implode(',', get_option('samira_about_page_gallery', array()))); ?>" />
+
+                        <div class="samira-gallery-preview" id="gallery-preview">
+                            <?php
+                            $gallery_images = get_option('samira_about_page_gallery', array());
+                            if (!empty($gallery_images) && is_array($gallery_images)) {
+                                foreach ($gallery_images as $image_id) {
+                                    if ($image_id) {
+                                        $image_url = wp_get_attachment_image_url($image_id, 'thumbnail');
+                                        if ($image_url) {
+                                            echo '<div class="gallery-image-item" data-id="' . esc_attr($image_id) . '">';
+                                            echo '<img src="' . esc_url($image_url) . '" alt="" />';
+                                            echo '<button type="button" class="remove-gallery-image" title="' . esc_attr__('Remove', 'samira-theme') . '">&times;</button>';
+                                            echo '</div>';
+                                        }
+                                    }
+                                }
+                            }
+                            ?>
+                        </div>
+
+                        <p>
+                            <button type="button" class="button samira-upload-gallery" id="upload-gallery-btn">
+                                <?php _e('Add Images to Gallery', 'samira-theme'); ?>
+                            </button>
+                            <button type="button" class="button samira-clear-gallery">
+                                <?php _e('Clear All Images', 'samira-theme'); ?>
+                            </button>
+                        </p>
+                        <p class="description">
+                            <?php _e('You can add up to 50 images. Images will be displayed in a responsive 3-column grid. The first 9 images will be shown initially, with a "Load More" button to display additional images.', 'samira-theme'); ?>
+                        </p>
+                        <p class="description">
+                            <strong><?php _e('Current images:', 'samira-theme'); ?></strong>
+                            <span id="gallery-count"><?php echo count($gallery_images); ?></span> / 50
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <style>
+    .samira-gallery-preview {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
+        margin-bottom: 15px;
+        padding: 15px;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        min-height: 120px;
+    }
+
+    .gallery-image-item {
+        position: relative;
+        cursor: move;
+    }
+
+    .gallery-image-item img {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 4px;
+        display: block;
+    }
+
+    .gallery-image-item .remove-gallery-image {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #dc3232;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        font-size: 18px;
+        line-height: 1;
+        display: none;
+    }
+
+    .gallery-image-item:hover .remove-gallery-image {
+        display: block;
+    }
+    </style>
+
+    <script>
+    jQuery(document).ready(function($) {
+        var galleryFrame;
+        var maxImages = 50;
+
+        // Upload gallery images
+        $('#upload-gallery-btn').on('click', function(e) {
+            e.preventDefault();
+
+            var currentCount = $('#gallery-preview .gallery-image-item').length;
+            if (currentCount >= maxImages) {
+                alert('<?php echo esc_js(__('Maximum 50 images allowed', 'samira-theme')); ?>');
+                return;
+            }
+
+            if (galleryFrame) {
+                galleryFrame.open();
+                return;
+            }
+
+            galleryFrame = wp.media({
+                title: '<?php echo esc_js(__('Select Images for Gallery', 'samira-theme')); ?>',
+                button: {
+                    text: '<?php echo esc_js(__('Add to Gallery', 'samira-theme')); ?>'
+                },
+                multiple: true
+            });
+
+            galleryFrame.on('select', function() {
+                var selection = galleryFrame.state().get('selection');
+                var currentCount = $('#gallery-preview .gallery-image-item').length;
+                var remaining = maxImages - currentCount;
+
+                var added = 0;
+                selection.map(function(attachment) {
+                    if (added >= remaining) {
+                        return;
+                    }
+
+                    attachment = attachment.toJSON();
+                    var imageId = attachment.id;
+                    var imageUrl = attachment.sizes && attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url;
+
+                    // Check if image already exists
+                    if ($('#gallery-preview').find('[data-id="' + imageId + '"]').length === 0) {
+                        $('#gallery-preview').append(
+                            '<div class="gallery-image-item" data-id="' + imageId + '">' +
+                            '<img src="' + imageUrl + '" alt="" />' +
+                            '<button type="button" class="remove-gallery-image" title="<?php echo esc_attr__('Remove', 'samira-theme'); ?>">&times;</button>' +
+                            '</div>'
+                        );
+                        added++;
+                    }
+                });
+
+                updateGalleryInput();
+            });
+
+            galleryFrame.open();
+        });
+
+        // Remove gallery image
+        $(document).on('click', '.remove-gallery-image', function(e) {
+            e.preventDefault();
+            $(this).parent().fadeOut(300, function() {
+                $(this).remove();
+                updateGalleryInput();
+            });
+        });
+
+        // Clear all gallery images
+        $('.samira-clear-gallery').on('click', function(e) {
+            e.preventDefault();
+            if (confirm('<?php echo esc_js(__('Are you sure you want to remove all images?', 'samira-theme')); ?>')) {
+                $('#gallery-preview').empty();
+                updateGalleryInput();
+            }
+        });
+
+        // Update hidden input with gallery IDs
+        function updateGalleryInput() {
+            var ids = [];
+            $('#gallery-preview .gallery-image-item').each(function() {
+                ids.push($(this).data('id'));
+            });
+            $('#samira_about_page_gallery').val(ids.join(','));
+            $('#gallery-count').text(ids.length);
+        }
+
+        // Make gallery sortable
+        if ($.fn.sortable) {
+            $('#gallery-preview').sortable({
+                update: function() {
+                    updateGalleryInput();
+                }
+            });
+        }
+    });
+    </script>
+    <?php
+}
+
+/**
+ * Render Books Tab
+ */
+function samira_render_books_tab() {
+    ?>
+    <div class="samira-tab-content">
+        <h2><?php _e('Books Section', 'samira-theme'); ?></h2>
 
         <div class="notice notice-info">
             <p><?php _e('You can also add books using the "Books" post type for more advanced management.', 'samira-theme'); ?>
@@ -631,11 +944,19 @@ function samira_save_settings($data) {
     foreach ($defaults as $option_name => $default_value) {
         if (isset($data[$option_name])) {
             $value = $data[$option_name];
+
+            // Special handling for gallery (convert comma-separated string to array)
+            if ($option_name === 'samira_about_page_gallery' && is_string($value)) {
+                $value = array_filter(array_map('intval', explode(',', $value)));
+                // Limit to 50 images
+                $value = array_slice($value, 0, 50);
+            }
+
             $sanitized_value = samira_sanitize_option($value, $option_name);
             update_option($option_name, $sanitized_value);
         } else {
             // Handle checkboxes that might not be in POST data
-            if (strpos($option_name, '_enable_') !== false || 
+            if (strpos($option_name, '_enable_') !== false ||
                 strpos($option_name, '_disable_') !== false ||
                 in_array($option_name, array('samira_clean_head', 'samira_lazy_loading'))) {
                 update_option($option_name, false);

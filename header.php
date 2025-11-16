@@ -27,13 +27,21 @@
                 <div class="header__content container">
 				<div class="site-branding">
 					<?php
-					if ( has_custom_logo() ) {
-						the_custom_logo();
+					$logo_type = get_option( 'samira_logo_type', 'text' );
+					$logo_image = get_option( 'samira_logo_image', '' );
+					$logo_text = get_option( 'samira_logo_text', __( 'SM', 'samira-theme' ) );
+
+					if ( $logo_type === 'image' && $logo_image ) {
+						?>
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="custom-logo-link" rel="home">
+							<img src="<?php echo esc_url( $logo_image ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="custom-logo">
+						</a>
+						<?php
 					} else {
 						?>
 						<h1 class="site-title">
 							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-                                                                <?php echo esc_html( get_option( 'samira_logo_text', __( 'SM', 'samira-theme' ) ) ); ?>
+								<?php echo esc_html( $logo_text ); ?>
 							</a>
 						</h1>
 						<?php
@@ -83,10 +91,9 @@
 		echo '<ul id="primary-menu" class="nav-menu">';
 		echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">' . esc_html__( 'Home', 'samira-theme' ) . '</a></li>';
 		echo '<li><a href="#about">' . esc_html__( 'About', 'samira-theme' ) . '</a></li>';
-		echo '<li><a href="#writing">' . esc_html__( 'Writing', 'samira-theme' ) . '</a></li>';
+		echo '<li><a href="#writing">' . esc_html__( 'Books', 'samira-theme' ) . '</a></li>';
 		echo '<li><a href="#art">' . esc_html__( 'Art', 'samira-theme' ) . '</a></li>';
-		echo '<li><a href="' . esc_url( get_post_type_archive_link( 'post' ) ) . '">' . esc_html__( 'Blog', 'samira-theme' ) . '</a></li>';
-		echo '<li><a href="#contact">' . esc_html__( 'Contact', 'samira-theme' ) . '</a></li>';
+		echo '<li><a href="#newsletter">' . esc_html__( 'Newsletter', 'samira-theme' ) . '</a></li>';
 		echo '</ul>';
 	}
 	?>
