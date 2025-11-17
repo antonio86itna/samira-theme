@@ -28,13 +28,25 @@
 				<div class="site-branding">
 					<?php
 					$logo_type = get_option( 'samira_logo_type', 'text' );
-					$logo_image = get_option( 'samira_logo_image', '' );
+					$logo_image_id = get_option( 'samira_logo_image_id', '' );
+					$logo_image_url = get_option( 'samira_logo_image', '' );
 					$logo_text = get_option( 'samira_logo_text', __( 'SM', 'samira-theme' ) );
 
-					if ( $logo_type === 'image' && $logo_image ) {
+					if ( $logo_type === 'image' && ( $logo_image_id || $logo_image_url ) ) {
 						?>
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="custom-logo-link" rel="home">
-							<img src="<?php echo esc_url( $logo_image ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="custom-logo">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="custom-logo-link" rel="home" aria-label="<?php bloginfo( 'name' ); ?>">
+							<?php
+							if ( $logo_image_id ) {
+								echo wp_get_attachment_image( $logo_image_id, 'medium', false, array(
+									'class' => 'custom-logo',
+									'alt'   => get_bloginfo( 'name' ),
+								) );
+							} else {
+								?>
+								<img src="<?php echo esc_url( $logo_image_url ); ?>" alt="<?php bloginfo( 'name' ); ?>" class="custom-logo" loading="eager">
+								<?php
+							}
+							?>
 						</a>
 						<?php
 					} else {

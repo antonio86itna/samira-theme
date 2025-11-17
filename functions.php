@@ -216,20 +216,20 @@ add_action('widgets_init', 'samira_widgets_init');
  * Custom Post Types
  */
 function samira_custom_post_types() {
-    // Portfolio/Art
+    // Art (formerly Portfolio)
     register_post_type('portfolio', array(
         'labels' => array(
-            'name'               => __( 'Portfolio', 'samira-theme' ),
-            'singular_name'      => __( 'Work', 'samira-theme' ),
-            'menu_name'          => __( 'Portfolio', 'samira-theme' ),
-            'add_new'            => __( 'Add Work', 'samira-theme' ),
-            'add_new_item'       => __( 'Add New Work', 'samira-theme' ),
-            'edit_item'          => __( 'Edit Work', 'samira-theme' ),
-            'new_item'           => __( 'New Work', 'samira-theme' ),
-            'view_item'          => __( 'View Work', 'samira-theme' ),
-            'search_items'       => __( 'Search Works', 'samira-theme' ),
-            'not_found'          => __( 'No works found', 'samira-theme' ),
-            'not_found_in_trash' => __( 'No works in trash', 'samira-theme' ),
+            'name'               => __( 'Art', 'samira-theme' ),
+            'singular_name'      => __( 'Artwork', 'samira-theme' ),
+            'menu_name'          => __( 'Art', 'samira-theme' ),
+            'add_new'            => __( 'Add Artwork', 'samira-theme' ),
+            'add_new_item'       => __( 'Add New Artwork', 'samira-theme' ),
+            'edit_item'          => __( 'Edit Artwork', 'samira-theme' ),
+            'new_item'           => __( 'New Artwork', 'samira-theme' ),
+            'view_item'          => __( 'View Artwork', 'samira-theme' ),
+            'search_items'       => __( 'Search Artworks', 'samira-theme' ),
+            'not_found'          => __( 'No artworks found', 'samira-theme' ),
+            'not_found_in_trash' => __( 'No artworks in trash', 'samira-theme' ),
         ),
         'public' => true,
         'show_ui' => true,
@@ -239,28 +239,7 @@ function samira_custom_post_types() {
         'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'),
         'has_archive' => true,
         'taxonomies' => array('art_type'),
-        'rewrite' => array('slug' => 'portfolio'),
-        'show_in_rest' => true,
-    ));
-    
-    // Books
-    register_post_type('books', array(
-        'labels' => array(
-            'name'               => __( 'Books', 'samira-theme' ),
-            'singular_name'      => __( 'Book', 'samira-theme' ),
-            'menu_name'          => __( 'My Books', 'samira-theme' ),
-            'add_new'            => __( 'Add Book', 'samira-theme' ),
-            'add_new_item'       => __( 'Add New Book', 'samira-theme' ),
-            'edit_item'          => __( 'Edit Book', 'samira-theme' ),
-        ),
-        'public' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'menu_position' => 26,
-        'menu_icon' => 'dashicons-book',
-        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'),
-        'has_archive' => true,
-        'rewrite' => array('slug' => 'books'),
+        'rewrite' => array('slug' => 'art'),
         'show_in_rest' => true,
     ));
 }

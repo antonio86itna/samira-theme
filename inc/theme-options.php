@@ -105,8 +105,9 @@ function samira_get_default_options() {
         'samira_about_page_gallery'     => array(),
 
         // Logo
-        'samira_logo_type'  => 'text', // 'text' or 'image'
-        'samira_logo_image' => '',
+        'samira_logo_type'     => 'text', // 'text' or 'image'
+        'samira_logo_image'    => '',
+        'samira_logo_image_id' => '',
     );
 }
 
