@@ -110,6 +110,15 @@ function samira_theme_scripts() {
         )
     );
 
+    // Mobile menu script
+    wp_enqueue_script(
+        'samira-mobile-menu',
+        SAMIRA_THEME_URI . '/js/mobile-menu.js',
+        array(),
+        SAMIRA_THEME_VERSION,
+        true
+    );
+
     // Localization for AJAX
     wp_localize_script('samira-main', 'samira_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),

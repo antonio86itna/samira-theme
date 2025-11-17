@@ -90,7 +90,7 @@
                                        </button>
 
 					<!-- Contact Button -->
-					<a href="#contact" class="contact-btn">
+					<a href="#contact" class="contact-btn header__cta">
 						<?php esc_html_e( 'Contact', 'samira-theme' ); ?>
 					</a>
                                 </div>
