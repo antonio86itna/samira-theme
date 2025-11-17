@@ -5,11 +5,31 @@
             <div class="footer-content">
                 <!-- About Section -->
                 <div class="footer-about">
-                    <?php if (has_custom_logo()): ?>
-                        <?php the_custom_logo(); ?>
+                    <?php
+                    $logo_type = get_option('samira_logo_type', 'text');
+                    $logo_image_id = get_option('samira_logo_image_id', '');
+                    $logo_image_url = get_option('samira_logo_image', '');
+                    $logo_text = get_option('samira_logo_text', __( 'SM', 'samira-theme' ));
+
+                    if ($logo_type === 'image' && ($logo_image_id || $logo_image_url)):
+                        ?>
+                        <a href="<?php echo esc_url(home_url('/')); ?>" class="footer-logo-link" rel="home" aria-label="<?php bloginfo('name'); ?>">
+                            <?php
+                            if ($logo_image_id) {
+                                echo wp_get_attachment_image($logo_image_id, 'medium', false, array(
+                                    'class' => 'footer-logo-image',
+                                    'alt'   => get_bloginfo('name'),
+                                ));
+                            } else {
+                                ?>
+                                <img src="<?php echo esc_url($logo_image_url); ?>" alt="<?php bloginfo('name'); ?>" class="footer-logo-image" loading="lazy">
+                                <?php
+                            }
+                            ?>
+                        </a>
                     <?php else: ?>
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="footer-logo" rel="home">
-                            <?php echo esc_html(get_option('samira_logo_text', __( 'SM', 'samira-theme' ))); ?>
+                            <?php echo esc_html($logo_text); ?>
                         </a>
                     <?php endif; ?>
                     
@@ -106,7 +126,7 @@
                                        required>
                             </div>
                             <button type="submit" class="newsletter-submit">
-                                <?php esc_html_e('Subscribe', 'samira-theme'); ?>
+                                <?php esc_html_e('Join the newsletter', 'samira-theme'); ?>
                             </button>
                         </form>
                         <div id="newsletter-message" class="newsletter-message" style="display: none;"></div>
@@ -218,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .finally(() => {
                 // Re-enable submit button
                 submitBtn.disabled = false;
-                submitBtn.textContent = '<?php esc_html_e('Subscribe', 'samira-theme'); ?>';
+                submitBtn.textContent = '<?php esc_html_e('Join the newsletter', 'samira-theme'); ?>';
             });
         });
     }

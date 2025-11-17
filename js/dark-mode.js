@@ -95,17 +95,29 @@
             if (!icon) return;
 
             icon.setAttribute('viewBox', '0 0 24 24');
+            icon.setAttribute('fill', 'none');
+            icon.setAttribute('stroke', 'currentColor');
+            icon.setAttribute('stroke-width', '2');
+            icon.setAttribute('stroke-linecap', 'round');
+            icon.setAttribute('stroke-linejoin', 'round');
 
             if (isDark) {
-                // Moon icon for dark mode
+                // Sun icon for dark mode (to switch back to light)
                 icon.innerHTML = `
-                    <path d="M17.293 13.293A8 8 0 0 1 6.707 2.707a8.001 8.001 0 1 0 10.586 10.586Z" fill="currentColor"/>
+                    <circle cx="12" cy="12" r="5"/>
+                    <line x1="12" y1="1" x2="12" y2="3"/>
+                    <line x1="12" y1="21" x2="12" y2="23"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                    <line x1="1" y1="12" x2="3" y2="12"/>
+                    <line x1="21" y1="12" x2="23" y2="12"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
                 `;
             } else {
-                // Sun icon for light mode
+                // Moon icon for light mode (to switch to dark)
                 icon.innerHTML = `
-                    <path d="M10 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" fill="currentColor"/>
-                    <path d="M10 1v2M10 17v2M18.66 7.34l-1.42 1.42M4.76 12.24l-1.42 1.42M1 10h2M17 10h2M18.66 12.66l-1.42-1.42M4.76 7.76L3.34 6.34" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                 `;
             }
         }

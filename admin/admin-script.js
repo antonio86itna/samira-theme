@@ -47,6 +47,18 @@ jQuery(document).ready(function($) {
                 const attachment = mediaUploader.state().get('selection').first().toJSON();
 
                 $input.val(attachment.url);
+
+                // Save attachment ID if this is for logo
+                const inputName = $input.attr('name');
+                if (inputName === 'samira_logo_image') {
+                    const $idInput = $container.find('input[name="samira_logo_image_id"]');
+                    if ($idInput.length === 0) {
+                        $input.after('<input type="hidden" name="samira_logo_image_id" value="' + attachment.id + '">');
+                    } else {
+                        $idInput.val(attachment.id);
+                    }
+                }
+
                 $preview.html('<img src="' + attachment.url + '" alt="' + samira_admin.strings.selected_image_alt + '" style="max-width: 200px; height: auto;" />');
 
                 // Show success message
@@ -68,6 +80,12 @@ jQuery(document).ready(function($) {
 
             $input.val('');
             $preview.empty();
+
+            // Remove ID input if exists
+            const inputName = $input.attr('name');
+            if (inputName === 'samira_logo_image') {
+                $container.find('input[name="samira_logo_image_id"]').val('');
+            }
 
             showNotification(samira_admin.strings.image_removed, 'info');
         });
