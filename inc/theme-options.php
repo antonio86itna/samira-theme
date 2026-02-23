@@ -256,13 +256,9 @@ function samira_get_theme_stats() {
     $posts_count       = wp_count_posts();
     $stats['posts']    = $posts_count->publish;
 
-    // Portfolio count
-    $portfolio_count   = wp_count_posts('portfolio');
+    // Art (portfolio) count
+    $portfolio_count    = wp_count_posts('portfolio');
     $stats['portfolio'] = isset($portfolio_count->publish) ? $portfolio_count->publish : 0;
-
-    // Books count
-    $books_count     = wp_count_posts('books');
-    $stats['books']  = isset($books_count->publish) ? $books_count->publish : 0;
 
     // Newsletter subscribers (if available)
     $stats['newsletter_provider'] = get_option('samira_newsletter_provider', 'none');
@@ -337,22 +333,46 @@ function samira_get_social_links() {
  * Helper function to generate accent color CSS
  */
 function samira_get_accent_color_css() {
-    $accent_color = get_option('samira_accent_color', '#e26f8e');
+    $accent_color = sanitize_hex_color( get_option( 'samira_accent_color', '#e26f8e' ) );
+    if ( ! $accent_color ) {
+        $accent_color = '#e26f8e';
+    }
 
     // Generate hover color (slightly darker)
-    $rgb        = sscanf($accent_color, '#%02x%02x%02x');
+    $rgb = sscanf( $accent_color, '#%02x%02x%02x' );
+    if ( ! is_array( $rgb ) || count( $rgb ) !== 3 || null === $rgb[0] ) {
+        return ':root { --color-accent: #e26f8e; --color-accent-hover: #d05a78; }';
+    }
+
     $hover_color = sprintf(
         '#%02x%02x%02x',
-        max(0, $rgb[0] - 20),
-        max(0, $rgb[1] - 20),
-        max(0, $rgb[2] - 20)
+        max( 0, min( 255, (int) $rgb[0] - 20 ) ),
+        max( 0, min( 255, (int) $rgb[1] - 20 ) ),
+        max( 0, min( 255, (int) $rgb[2] - 20 ) )
     );
 
-    return "
-        :root {
-            --color-accent: {$accent_color};
-            --color-accent-hover: {$hover_color};
-        }
-    ";
+    return sprintf(
+        ':root { --color-accent: %s; --color-accent-hover: %s; }',
+        esc_attr( $accent_color ),
+        esc_attr( $hover_color )
+    );
+}
+
+/**
+ * Reset all theme options to defaults
+ */
+function samira_reset_options() {
+    $defaults = samira_get_default_options();
+
+    foreach ( $defaults as $option_name => $default_value ) {
+        update_option( $option_name, $default_value );
+    }
+
+    // Clear caches
+    if ( function_exists( 'wp_cache_flush' ) ) {
+        wp_cache_flush();
+    }
+
+    do_action( 'samira_options_reset' );
 }
 

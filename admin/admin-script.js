@@ -8,8 +8,6 @@
 jQuery(document).ready(function($) {
     'use strict';
 
-    console.log(samira_admin.strings.admin_loaded);
-
     // Initialize all admin functionality
     initImageUpload();
     initColorPicker();

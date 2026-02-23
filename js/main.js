@@ -15,8 +15,6 @@
 
     // Initialize all theme functionality
     function initTheme() {
-        console.log(samira_ajax.strings.theme_initialized);
-
         initSmoothScroll();
         initScrollAnimations();
         initHeaderScroll();
@@ -109,50 +107,9 @@
         });
     }
 
-    // Mobile menu functionality
+    // Mobile menu is handled by mobile-menu.js
     function initMobileMenu() {
-        const $toggle = $('.menu-toggle');
-        const $menu = $('.nav-menu');
-
-        $toggle.on('click', function() {
-            const isOpen = $toggle.attr('aria-expanded') === 'true';
-
-            if (isOpen) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
-        });
-
-        // Close menu on link click
-        $('.nav-menu a').on('click', function() {
-            closeMobileMenu();
-        });
-
-        // Close menu on escape key
-        $(document).on('keydown', function(e) {
-            if (e.keyCode === 27 && $menu.hasClass('active')) {
-                closeMobileMenu();
-            }
-        });
-
-        // Close menu on outside click
-        $(document).on('click', function(e) {
-            if ($menu.hasClass('active') &&
-                !$(e.target).closest('.nav-menu, .menu-toggle').length) {
-                closeMobileMenu();
-            }
-        });
-
-        function openMobileMenu() {
-            $toggle.attr('aria-expanded', 'true');
-            $menu.addClass('active');
-        }
-
-        function closeMobileMenu() {
-            $toggle.attr('aria-expanded', 'false');
-            $menu.removeClass('active');
-        }
+        // Handled by dedicated mobile-menu.js script
     }
 
     // Newsletter form functionality
@@ -397,9 +354,9 @@
         });
 
         // Focus management for mobile menu
-        $('.menu-toggle').on('click', function() {
+        $(document).on('click', '.mobile-menu-toggle', function() {
             setTimeout(function() {
-                if ($('.nav-menu').hasClass('active')) {
+                if ($('.main-navigation').hasClass('active')) {
                     $('.nav-menu a:first').focus();
                 }
             }, 300);
@@ -413,8 +370,12 @@
     window.samiraTheme = {
         initTheme: initTheme,
         closeMobileMenu: function() {
-            $('.menu-toggle').attr('aria-expanded', 'false');
-            $('.nav-menu').removeClass('active');
+            var $navigation = $('.main-navigation');
+            var $toggle = $('.mobile-menu-toggle');
+            $navigation.removeClass('active');
+            $toggle.removeClass('active');
+            $toggle.attr('aria-expanded', 'false');
+            $('body').removeClass('mobile-menu-open');
         }
     };
 

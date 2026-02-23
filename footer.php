@@ -142,7 +142,7 @@
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
                     <p class="footer-copyright">
-                        &copy; <?php echo date('Y'); ?> 
+                        &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?>
                         <?php 
                         $copyright_name = get_option('samira_copyright_name', __( 'Samira Mahmoodi', 'samira-theme' ));
                         echo esc_html($copyright_name);

@@ -1,6 +1,6 @@
 <?php
 /**
- * Portfolio archive template
+ * Art (Portfolio) archive template
  *
  * @package Samira_Theme
  */
