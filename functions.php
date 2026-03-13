@@ -280,104 +280,39 @@ function samira_custom_taxonomies() {
 }
 add_action('init', 'samira_custom_taxonomies');
 
-/**
- * Book purchase links meta box.
- */
-function samira_add_book_meta_box() {
-    add_meta_box(
-        'samira-book-links',
-        __( 'Book Purchase Links', 'samira-theme' ),
-        'samira_book_links_meta_box_callback',
-        'books',
-        'normal',
-        'default'
-    );
-}
-add_action('add_meta_boxes', 'samira_add_book_meta_box');
 
 /**
- * Meta box display callback.
- *
- * @param WP_Post $post The current post object.
+ * Fallback menu for when no menu is assigned
  */
-function samira_book_links_meta_box_callback($post) {
-    wp_nonce_field('samira_book_links_meta', 'samira_book_links_meta_nonce');
-
-    $amazon   = get_post_meta($post->ID, 'book_amazon_link', true);
-    $bam      = get_post_meta($post->ID, 'book_bam_link', true);
-    $bookshop = get_post_meta($post->ID, 'book_bookshop_link', true);
-    $bn       = get_post_meta($post->ID, 'book_bn_link', true);
-
-    echo '<table class="form-table">';
-    echo '<tr><th><label for="book_amazon_link">' . esc_html__( 'Amazon Link', 'samira-theme' ) . '</label></th>';
-    echo '<td><input type="url" id="book_amazon_link" name="book_amazon_link" value="' . esc_attr( $amazon ) . '" class="widefat" /></td></tr>';
-
-    echo '<tr><th><label for="book_bam_link">' . esc_html__( 'Books-A-Million Link', 'samira-theme' ) . '</label></th>';
-    echo '<td><input type="url" id="book_bam_link" name="book_bam_link" value="' . esc_attr( $bam ) . '" class="widefat" /></td></tr>';
-
-    echo '<tr><th><label for="book_bookshop_link">' . esc_html__( 'Bookshop Link', 'samira-theme' ) . '</label></th>';
-    echo '<td><input type="url" id="book_bookshop_link" name="book_bookshop_link" value="' . esc_attr( $bookshop ) . '" class="widefat" /></td></tr>';
-
-    echo '<tr><th><label for="book_bn_link">' . esc_html__( 'Barnes &amp; Noble Link', 'samira-theme' ) . '</label></th>';
-    echo '<td><input type="url" id="book_bn_link" name="book_bn_link" value="' . esc_attr( $bn ) . '" class="widefat" /></td></tr>';
-    echo '</table>';
+if ( ! function_exists( 'samira_fallback_menu' ) ) {
+    function samira_fallback_menu() {
+        echo '<ul id="primary-menu" class="nav-menu">';
+        echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">' . esc_html__( 'Home', 'samira-theme' ) . '</a></li>';
+        echo '<li><a href="#about">' . esc_html__( 'About', 'samira-theme' ) . '</a></li>';
+        echo '<li><a href="#writing">' . esc_html__( 'Books', 'samira-theme' ) . '</a></li>';
+        echo '<li><a href="#art">' . esc_html__( 'Art', 'samira-theme' ) . '</a></li>';
+        echo '<li><a href="#newsletter">' . esc_html__( 'Newsletter', 'samira-theme' ) . '</a></li>';
+        echo '</ul>';
+    }
 }
 
 /**
- * Save book link meta box content.
- *
- * @param int $post_id Post ID.
- */
-function samira_save_book_links_meta($post_id) {
-    if (!isset($_POST['samira_book_links_meta_nonce']) || !wp_verify_nonce($_POST['samira_book_links_meta_nonce'], 'samira_book_links_meta')) {
-        return;
-    }
-
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
-
-    if (isset($_POST['post_type']) && 'books' === $_POST['post_type']) {
-        if (!current_user_can('edit_post', $post_id)) {
-            return;
-        }
-    } else {
-        return;
-    }
-
-    $fields = array('book_amazon_link', 'book_bam_link', 'book_bookshop_link', 'book_bn_link');
-
-    foreach ($fields as $field) {
-        if (isset($_POST[$field])) {
-            $url = esc_url_raw(wp_unslash($_POST[$field]));
-
-            if (!empty($url)) {
-                update_post_meta($post_id, $field, $url);
-            } else {
-                delete_post_meta($post_id, $field);
-            }
-        }
-    }
-}
-add_action('save_post_books', 'samira_save_book_links_meta');
-
-/**
- * Include dei file necessari con controlli
+ * Include required files with checks
  */
 function samira_include_files() {
     $includes = array(
         '/inc/theme-options.php',
-        '/inc/newsletter-integration.php', 
+        '/inc/newsletter-integration.php',
         '/inc/customizer.php',
         '/admin/theme-admin.php',
     );
-    
+
     foreach ($includes as $file) {
         $filepath = SAMIRA_THEME_DIR . $file;
         if (file_exists($filepath)) {
             require_once $filepath;
         } else {
-            error_log("Samira Theme: File mancante - " . $filepath);
+            error_log( 'Samira Theme: Missing file - ' . $filepath );
         }
     }
 }
@@ -513,35 +448,43 @@ add_action('init', 'samira_clean_head');
 /**
  * Debug helper function
  */
-if (!function_exists('samira_debug')) {
-    function samira_debug($data, $die = false) {
-        if (defined('WP_DEBUG') && WP_DEBUG) {
+if ( ! function_exists( 'samira_debug' ) ) {
+    /**
+     * Debug helper (WP_DEBUG only).
+     *
+     * @param mixed $data Data to dump.
+     * @param bool  $die  Whether to halt execution.
+     */
+    function samira_debug( $data, $die = false ) {
+        if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
             echo '<pre style="background: #f0f0f0; padding: 10px; margin: 10px 0; border: 1px solid #ddd;">';
-            print_r($data);
+            // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
+            print_r( $data );
             echo '</pre>';
-            if ($die) die();
+            if ( $die ) {
+                wp_die();
+            }
         }
     }
 }
 
 /**
- * Inizializzazione opzioni tema alla attivazione
+ * Initialize theme options on activation
  */
 function samira_theme_activation() {
     // Set default options
     $defaults = samira_get_default_options();
 
     foreach ($defaults as $option => $value) {
-        if (get_option($option) === false) {
-            add_option($option, $value);
+        if ( get_option( $option ) === false ) {
+            add_option( $option, $value );
         }
     }
 
     // Flush rewrite rules for custom post types
     flush_rewrite_rules();
-    
-    // Log attivazione tema
-    error_log('Samira Theme attivato con successo');
+
+    error_log( 'Samira Theme activated successfully' );
 }
 add_action('after_switch_theme', 'samira_theme_activation');
 
@@ -558,18 +501,26 @@ add_action('switch_theme', 'samira_theme_deactivation');
  * Add inline CSS for accent color
  */
 function samira_accent_color_css() {
-    $accent_color = get_option('samira_accent_color', '#e26f8e');
-    
+    $accent_color = sanitize_hex_color( get_option( 'samira_accent_color', '#e26f8e' ) );
+    if ( ! $accent_color ) {
+        $accent_color = '#e26f8e';
+    }
+
     // Generate hover color (darker)
-    $rgb = sscanf($accent_color, "#%02x%02x%02x");
-    if ($rgb && count($rgb) === 3) {
-        $hover_color = sprintf("#%02x%02x%02x", 
-            max(0, min(255, $rgb[0] - 20)), 
-            max(0, min(255, $rgb[1] - 20)), 
-            max(0, min(255, $rgb[2] - 20))
+    $rgb = sscanf( $accent_color, '#%02x%02x%02x' );
+    if ( is_array( $rgb ) && count( $rgb ) === 3 && null !== $rgb[0] && null !== $rgb[1] && null !== $rgb[2] ) {
+        $hover_color = sprintf(
+            '#%02x%02x%02x',
+            max( 0, min( 255, (int) $rgb[0] - 20 ) ),
+            max( 0, min( 255, (int) $rgb[1] - 20 ) ),
+            max( 0, min( 255, (int) $rgb[2] - 20 ) )
         );
-        
-        echo "<style id='samira-accent-color'>:root { --color-accent: {$accent_color}; --color-accent-hover: {$hover_color}; }</style>\n";
+
+        printf(
+            '<style id="samira-accent-color">:root { --color-accent: %s; --color-accent-hover: %s; }</style>' . "\n",
+            esc_attr( $accent_color ),
+            esc_attr( $hover_color )
+        );
     }
 }
 add_action('wp_head', 'samira_accent_color_css', 20);
@@ -581,16 +532,24 @@ function samira_check_requirements() {
     $wp_version = get_bloginfo('version');
     $php_version = PHP_VERSION;
     
-    if (version_compare($wp_version, '5.0', '<')) {
-        add_action('admin_notices', function() {
-            echo '<div class="notice notice-error"><p><strong>Samira Theme:</strong> Richiede WordPress 5.0 o superiore. Versione attuale: ' . get_bloginfo('version') . '</p></div>';
-        });
+    if ( version_compare( $wp_version, '5.0', '<' ) ) {
+        add_action( 'admin_notices', function() {
+            printf(
+                '<div class="notice notice-error"><p><strong>Samira Theme:</strong> %s %s</p></div>',
+                esc_html__( 'Requires WordPress 5.0 or higher. Current version:', 'samira-theme' ),
+                esc_html( get_bloginfo( 'version' ) )
+            );
+        } );
     }
-    
-    if (version_compare($php_version, '7.4', '<')) {
-        add_action('admin_notices', function() {
-            echo '<div class="notice notice-error"><p><strong>Samira Theme:</strong> Richiede PHP 7.4 o superiore. Versione attuale: ' . PHP_VERSION . '</p></div>';
-        });
+
+    if ( version_compare( $php_version, '7.4', '<' ) ) {
+        add_action( 'admin_notices', function() {
+            printf(
+                '<div class="notice notice-error"><p><strong>Samira Theme:</strong> %s %s</p></div>',
+                esc_html__( 'Requires PHP 7.4 or higher. Current version:', 'samira-theme' ),
+                esc_html( PHP_VERSION )
+            );
+        } );
     }
 }
 add_action('admin_init', 'samira_check_requirements');

@@ -89,51 +89,7 @@ get_header(); ?>
                         ),
                     );
 
-                    // Display books from custom post type first
-                    $books_query = new WP_Query(array(
-                        'post_type'      => 'books',
-                        'posts_per_page' => -1,
-                        'meta_key'       => 'book_year',
-                        'orderby'        => 'meta_value_num',
-                        'order'          => 'DESC',
-                    ));
-
-                    if ($books_query->have_posts()):
-                        while ($books_query->have_posts()):
-                            $books_query->the_post(); ?>
-                            <div class="book-card">
-                                <div class="book-card__cover">
-                                    <?php if (has_post_thumbnail()): ?>
-                                        <?php the_post_thumbnail('medium', array('class' => 'book-card__cover')); ?>
-                                    <?php else: ?>
-                                        <div class="book-card__cover-placeholder">
-                                            <span><?php echo esc_html__( 'Book', 'samira-theme' ); ?></span>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="book-card__content">
-                                    <h3 class="book-card__title"><?php the_title(); ?></h3>
-                                    <p class="book-card__year"><?php echo esc_html(get_post_meta(get_the_ID(), 'book_year', true)); ?></p>
-                                    <div class="book-card__description">
-                                        <?php the_excerpt(); ?>
-                                    </div>
-                                    <div class="book-card__links">
-                                        <?php foreach ($store_links as $class => $data):
-                                            $link = get_post_meta(get_the_ID(), $data['meta'], true);
-                                            if ($link): ?>
-                                                <a href="<?php echo esc_url($link); ?>" class="btn btn--<?php echo esc_attr($class); ?>" target="_blank" rel="noopener">
-                                                    <?php printf(esc_html__( 'Buy on %s', 'samira-theme' ), esc_html($data['label'])); ?>
-                                                </a>
-                                            <?php endif;
-                                        endforeach; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endwhile;
-                        wp_reset_postdata();
-                    else:
-                        // Fallback to book from theme options
-                        ?>
+                    ?>
                         <div class="book-card">
                             <?php 
                             $book_cover = get_option('samira_book_cover');
@@ -164,7 +120,6 @@ get_header(); ?>
                                 </div>
                             </div>
                         </div>
-                    <?php endif; ?>
                 </div>
             </div>
         </section>

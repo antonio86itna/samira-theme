@@ -68,12 +68,12 @@ add_action('admin_menu', 'samira_add_admin_menu');
  */
 function samira_admin_page() {
     // Handle form submission
-    if ($_POST && wp_verify_nonce($_POST['samira_nonce'], 'samira_settings')) {
-        samira_save_settings($_POST);
-        echo '<div class="notice notice-success"><p>' . __('Settings saved successfully!', 'samira-theme') . '</p></div>';
+    if ( ! empty( $_POST ) && isset( $_POST['samira_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['samira_nonce'] ) ), 'samira_settings' ) ) {
+        samira_save_settings( $_POST );
+        echo '<div class="notice notice-success"><p>' . esc_html__( 'Settings saved successfully!', 'samira-theme' ) . '</p></div>';
     }
 
-    $current_tab = $_GET['tab'] ?? 'general';
+    $current_tab = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'general';
     ?>
 
     <div class="wrap samira-admin">
@@ -98,7 +98,7 @@ function samira_admin_page() {
             <a href="?page=samira-theme-settings&tab=social" class="nav-tab <?php echo $current_tab === 'social' ? 'nav-tab-active' : ''; ?>">
                 <?php _e('Social Media', 'samira-theme'); ?>
             </a>
-            <a href="?page=samira-theme-settings&tab=style" class="nav-tab <?php echo $current_tab === 'social' ? 'nav-tab-active' : ''; ?>">
+            <a href="?page=samira-theme-settings&tab=style" class="nav-tab <?php echo $current_tab === 'style' ? 'nav-tab-active' : ''; ?>">
                 <?php _e('Style', 'samira-theme'); ?>
             </a>
         </nav>
@@ -702,11 +702,6 @@ function samira_render_books_tab() {
     <div class="samira-tab-content">
         <h2><?php _e('Books Section', 'samira-theme'); ?></h2>
 
-        <div class="notice notice-info">
-            <p><?php _e('You can also add books using the "Books" post type for more advanced management.', 'samira-theme'); ?>
-               <a href="<?php echo admin_url('edit.php?post_type=books'); ?>"><?php _e('Manage Books', 'samira-theme'); ?></a></p>
-        </div>
-
         <table class="form-table">
             <tr>
                 <th scope="row">
@@ -975,14 +970,14 @@ function samira_save_settings($data) {
  */
 function samira_newsletter_page() {
     // Handle form submission
-    if ($_POST && wp_verify_nonce($_POST['samira_nonce'], 'samira_newsletter_settings')) {
-        update_option('samira_newsletter_provider', sanitize_text_field($_POST['samira_newsletter_provider'] ?? ''));
-        update_option('samira_newsletter_api_key', sanitize_text_field($_POST['samira_newsletter_api_key'] ?? ''));
-        update_option('samira_newsletter_list_id', sanitize_text_field($_POST['samira_newsletter_list_id'] ?? ''));
-        update_option('samira_newsletter_title', sanitize_text_field($_POST['samira_newsletter_title'] ?? ''));
-        update_option('samira_newsletter_description', sanitize_textarea_field($_POST['samira_newsletter_description'] ?? ''));
+    if ( ! empty( $_POST ) && isset( $_POST['samira_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['samira_nonce'] ) ), 'samira_newsletter_settings' ) ) {
+        update_option( 'samira_newsletter_provider', sanitize_text_field( wp_unslash( $_POST['samira_newsletter_provider'] ?? '' ) ) );
+        update_option( 'samira_newsletter_api_key', sanitize_text_field( wp_unslash( $_POST['samira_newsletter_api_key'] ?? '' ) ) );
+        update_option( 'samira_newsletter_list_id', sanitize_text_field( wp_unslash( $_POST['samira_newsletter_list_id'] ?? '' ) ) );
+        update_option( 'samira_newsletter_title', sanitize_text_field( wp_unslash( $_POST['samira_newsletter_title'] ?? '' ) ) );
+        update_option( 'samira_newsletter_description', sanitize_textarea_field( wp_unslash( $_POST['samira_newsletter_description'] ?? '' ) ) );
 
-        echo '<div class="notice notice-success"><p>' . __('Newsletter settings saved!', 'samira-theme') . '</p></div>';
+        echo '<div class="notice notice-success"><p>' . esc_html__( 'Newsletter settings saved!', 'samira-theme' ) . '</p></div>';
     }
     ?>
 
@@ -1250,11 +1245,7 @@ function samira_stats_page() {
                         </div>
                         <div class="stat-item">
                             <strong><?php echo esc_html($theme_stats['portfolio']); ?></strong>
-                            <span><?php esc_html_e('Portfolio Items', 'samira-theme'); ?></span>
-                        </div>
-                        <div class="stat-item">
-                            <strong><?php echo esc_html($theme_stats['books']); ?></strong>
-                            <span><?php esc_html_e('Books', 'samira-theme'); ?></span>
+                            <span><?php esc_html_e('Art Items', 'samira-theme'); ?></span>
                         </div>
                         <div class="stat-item">
                             <strong><?php echo esc_html($theme_stats['social_links']); ?></strong>
@@ -1334,35 +1325,36 @@ function samira_import_export_page() {
         return;
     }
 
-    if (isset($_POST['samira_export']) && check_admin_referer('samira_import_export', 'samira_ie_nonce')) {
+    if ( ! empty( $_POST['samira_export'] ) && check_admin_referer( 'samira_import_export', 'samira_ie_nonce' ) ) {
         $options = samira_export_options();
         $json    = wp_json_encode($options);
 
         header('Content-Description: File Transfer');
         header('Content-Type: application/json; charset=utf-8');
-        header('Content-Disposition: attachment; filename=samira-theme-settings-' . date('Y-m-d') . '.json');
+        header('Content-Disposition: attachment; filename=samira-theme-settings-' . gmdate('Y-m-d') . '.json');
         echo $json;
         exit;
     }
 
-    if (isset($_POST['samira_import']) && check_admin_referer('samira_import_export', 'samira_ie_nonce')) {
-        if (!empty($_FILES['samira_import_file']['tmp_name'])) {
-            $file_contents = file_get_contents($_FILES['samira_import_file']['tmp_name']);
-            $options       = json_decode($file_contents, true);
+    if ( ! empty( $_POST['samira_import'] ) && check_admin_referer( 'samira_import_export', 'samira_ie_nonce' ) ) {
+        if ( ! empty( $_FILES['samira_import_file']['tmp_name'] ) ) {
+            // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+            $file_contents = file_get_contents( sanitize_text_field( $_FILES['samira_import_file']['tmp_name'] ) );
+            $options       = json_decode( $file_contents, true );
 
-            if (json_last_error() === JSON_ERROR_NONE) {
-                $result = samira_import_options($options);
-                if (!is_wp_error($result)) {
+            if ( json_last_error() === JSON_ERROR_NONE && is_array( $options ) ) {
+                $result = samira_import_options( $options );
+                if ( ! is_wp_error( $result ) ) {
                     wp_cache_flush();
-                    echo '<div class="notice notice-success"><p>' . __('Settings imported successfully.', 'samira-theme') . '</p></div>';
+                    echo '<div class="notice notice-success"><p>' . esc_html__( 'Settings imported successfully.', 'samira-theme' ) . '</p></div>';
                 } else {
-                    echo '<div class="notice notice-error"><p>' . esc_html($result->get_error_message()) . '</p></div>';
+                    echo '<div class="notice notice-error"><p>' . esc_html( $result->get_error_message() ) . '</p></div>';
                 }
             } else {
-                echo '<div class="notice notice-error"><p>' . __('Invalid JSON file.', 'samira-theme') . '</p></div>';
+                echo '<div class="notice notice-error"><p>' . esc_html__( 'Invalid JSON file.', 'samira-theme' ) . '</p></div>';
             }
         } else {
-            echo '<div class="notice notice-error"><p>' . __('Please upload a JSON file.', 'samira-theme') . '</p></div>';
+            echo '<div class="notice notice-error"><p>' . esc_html__( 'Please upload a JSON file.', 'samira-theme' ) . '</p></div>';
         }
     }
 
@@ -1401,11 +1393,11 @@ function samira_import_export_page() {
  * AJAX handler for reset options
  */
 function samira_reset_options_ajax() {
-    if (!wp_verify_nonce($_POST['nonce'], 'samira_reset') || !current_user_can('manage_options')) {
-        wp_send_json_error(array('message' => __( 'Access denied', 'samira-theme' )));
+    if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'samira_reset' ) || ! current_user_can( 'manage_options' ) ) {
+        wp_send_json_error( array( 'message' => __( 'Access denied', 'samira-theme' ) ) );
     }
 
     samira_reset_options();
-    wp_send_json_success(array('message' => __( 'Settings reset successfully!', 'samira-theme' )));
+    wp_send_json_success( array( 'message' => __( 'Settings reset successfully!', 'samira-theme' ) ) );
 }
 add_action('wp_ajax_samira_reset_options', 'samira_reset_options_ajax');

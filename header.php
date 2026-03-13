@@ -61,15 +61,7 @@
 					?>
 				</div><!-- .site-branding -->
 
-				<nav id="site-navigation" class="main-navigation">
-					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-						<span class="menu-toggle-text"><?php esc_html_e( 'Menu', 'samira-theme' ); ?></span>
-						<span class="menu-icon">
-							<span></span>
-							<span></span>
-							<span></span>
-						</span>
-					</button>
+				<nav id="site-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Primary Navigation', 'samira-theme' ); ?>">
 					<?php
 					wp_nav_menu(
 						array(
@@ -97,17 +89,6 @@
                         </div>
         </header><!-- #masthead -->
 
-	<?php
-	// Fallback menu for when no menu is assigned
-	function samira_fallback_menu() {
-		echo '<ul id="primary-menu" class="nav-menu">';
-		echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">' . esc_html__( 'Home', 'samira-theme' ) . '</a></li>';
-		echo '<li><a href="#about">' . esc_html__( 'About', 'samira-theme' ) . '</a></li>';
-		echo '<li><a href="#writing">' . esc_html__( 'Books', 'samira-theme' ) . '</a></li>';
-		echo '<li><a href="#art">' . esc_html__( 'Art', 'samira-theme' ) . '</a></li>';
-		echo '<li><a href="#newsletter">' . esc_html__( 'Newsletter', 'samira-theme' ) . '</a></li>';
-		echo '</ul>';
-	}
-	?>
+	<?php // Fallback menu function defined in functions.php ?>
 
 	<main id="primary" class="site-main">
